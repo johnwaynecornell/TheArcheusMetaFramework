@@ -1,0 +1,127 @@
+Archeus: {
+  index: "./index.html";
+  InitialPrompt: "./Initial Prompt.html";
+
+  AMF: {
+    Overview: {
+      id: AMF.Overview;
+      file: "./AMF-00.html";
+      description: "Entry point to the Archeus Meta-Framework and its foundational structure.";
+    };
+    Structure: {
+      file: "./AMF-01.html";
+      description: "Outlines the layered architecture of AMF and its inter-framework relationships.";
+    };
+    Applications: "./AMF-Applications.html";
+    Exercises: "./AMF-Exercises.html";
+    UserOnboarding: "./AMF-User.html";
+    Visuals: "./AMF-Visuals.html";
+    DocTree: "./AMF-DocTree.html";
+
+    SMV: {
+      Overview: {
+        id: AMF.SMV.Overview;
+        file: "./AMF-SMV-01.html";
+        description: "Describes Symbolic Multi-Modal Visualization (SMV) as a reasoning and cognitive reflection tool.";
+      };
+      Pathways: {
+        file: "./AMF-SMV-02.html";
+        description: "Explores emergent symbolic pathways and how they evolve through SMV.";
+      };
+      Articles: {
+        Article1: "./AMF-SMV-Article Series 1 - 1 Why Emergence is Like Jazz.html";
+        Article2: "./AMF-SMV-Article Series 1 - 2 Why Governence is More Like Gardening.html";
+        Article3: "./AMF-SMV-Article Series 1 - 3 When Nodes Speak.html";
+        Article4: "./AMF-SMV-Article Series 1 - 4 The Emergent Pathways.html";
+        Article5: "./AMF-SMV-Article Series 1 - 5 Beyond the Framework.html";
+      }
+    }
+
+    AllSpark: {
+      Root: {
+        id: AMF.AllSpark;
+        file: "./AMF-AllSpark-00.html";
+        description: "Symbolic origin pattern for foundational adaptive spark-based models.";
+      };
+      Schema: {
+        file: "./AMF-AllSpark-01.html";
+        description: "Refined structural representation of the AllSpark framework in deployment.";
+      };
+    }
+
+    KTW: {
+      Overview: {
+        id: AMF.KTW;
+        file: "./AMF-KTW-00.html";
+        description: "Introduces Knowledge Trees and Webs (KTW) as symbolic navigational structures within AMF, blending determinism with emergence for interdisciplinary exploration, governance, and symbolic learning.";
+      };
+      Guide: {
+        file: "./AMF-KTW-01.html";
+        description: "Practitioner’s guide to applying Knowledge Trees and Webs (KTW) in real-world contexts—bridging theory with actionable steps for dynamic symbolic implementation.";
+        symbolic: AMF.KTW.Overview ⊢ AMF.KTW.Guide;
+      };
+    }
+
+    Emergence: "./AMF-Emergence.html";
+    MetaNarrative: "./AMF-MN-01.html";
+  }
+
+  SLF: {
+    Root: {
+      id: SLF.Root;
+      file: "./SLF-00.html";
+      description: "Symbolic Language Framework base — defines core operators and logic-space syntax.";
+    };
+    Draft: "./SLF-00.tmp.html";
+    Extension: {
+      id: SLF.Extension;
+      file: "./SLF-01.html";
+      description: "Expands the Symbolic Language Framework (SLF) with applied operators, precedence rules, and practitioner guidelines for symbolic reasoning.";
+      symbolic: SLF.Root ⊢ SLF.Extension;
+    };
+    MetaphorAnnex: {
+      id: SLF.MetaphorAnnex;
+      file: "./SLF-MA-00.html";
+      description: "Collection of metaphorical and symbolic references to enrich symbolic reasoning.";
+    };
+    ArticleIntro: "./SLF-Article-01 Introduction to the Symbolic Language Framework.html";
+    ExecutionSchema: "./AMF-SLF-EXEC-00.html";
+  }
+
+  ARF: {
+    Root: {
+      id: ARF.Root;
+      file: "./ARF-00.html";
+      description: "Defines the Adaptive Reasoning Framework core and its interaction model.";
+    };
+    Extended: "./ARF-01.html";
+    ConstrainOpen: {
+      id: ARF.ConstrainOpen;
+      file: "./ARF-ConstrainOpen-00.html";
+      description: "Behavioral directive for navigating symbolic constraint and openness.";
+      symbolic: MCF.ConstrainOpenReflex ⊢ ARF.ConstrainOpen;
+    };
+  }
+
+  MCF: {
+    Root: {
+      id: MCF.Root;
+      file: "./MCF-00.html";
+      description: "Meta-Consciousness Framework base — governs symbolic reflection and adaptability.";
+    };
+    Layer1: "./MCF-01.html";
+    Layer2: "./MCF-02.html";
+    Layer3: "./MCF-03.html";
+    ConstrainOpenReflex: {
+      id: MCF.ConstrainOpenReflex;
+      file: "./MCF-ConstrainOpenReflex-00.html";
+      description: "Meta-governor for symbolic ambiguity vs. resolution.";
+      symbolic: MCF.ConstrainOpenReflex ⊢ ARF.ConstrainOpen;
+    };
+  }
+
+  Utilities: {
+    SymbolicIntroTemplate: "./Symbolic Intro Template-00.html";
+    ArticleGuide: "./Archeus Meta-Framework Article Guide.html";
+  }
+}
