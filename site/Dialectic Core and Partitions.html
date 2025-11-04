@@ -1,0 +1,1112 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <style>
+    body{font-family:Arial,sans-serif;line-height:1.6;margin:20px;color:#333;}
+    h1,h2{color:#2c3e50;}
+    h1{border-bottom:2px solid #2c3e50;padding-bottom:10px;}
+    h2{margin-top:30px;}
+    p{margin:15px 0;}
+
+    table{width:100%;border-collapse:collapse;margin-top:20px;background-color:#c0d8ff;}
+    table,th,td{border:1px solid #aaa;}
+    th,td{padding:8px;text-align:left;}
+    th{background-color:#dadcf4;text-align:center;}
+
+    a{border:1px solid #ccc;border-radius:16px;}
+    hr{border:1px solid #000;border-radius:4px;}
+
+    blockquote{border-left:4px solid #ccc;padding-left:1rem;margin-left:0;color:#444;background-color:#EEF;}
+
+    code{
+      background-color:#f0f0e8;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      white-space:normal;
+      margin:8px;
+      padding:7px;
+    }
+
+    div.rendered{
+      background-color:#f8f8f0;
+      font-family:'Courier New',Courier,monospace;
+      margin:4px;
+      white-space:normal;
+      padding:4px;
+    }
+
+    pre{
+      background-color:#c0d8ff;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      display:inline-block;
+      padding:2px 5px;
+      margin:16px;
+      border:1px solid #333;
+      border-radius:3px;
+      max-width:100%;
+      overflow-x:auto;
+      line-height:1.4;
+      position:relative;
+    }
+
+    pre,code{
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      overflow:auto;
+      margin:0;
+      padding:0;
+    }
+
+    pre div{display:inline-block;margin:0;padding:0;}
+
+    code.inline_code{border:1px solid #333;}
+
+    .prompt_area,.markdown_area{
+      background-color:#c0d8ff;
+      border:1px solid #ccc;border-radius:16px;
+      padding:1em;margin:1em 0;
+    }
+
+    .hidden_markdown{
+      display:none; /* visibility:hidden; */ /* fixed from 'visible' */
+    }
+
+    .code-container{
+      position:relative;
+      background-color:#c0d8ff;
+      margin:5px 0;
+      padding-top:2.2em; /* space for button */
+      display:inline-block;
+      /* border:8px solid #c0d8ff; */ /* optional; otherwise none */
+      border-radius:8px;
+      overflow:auto;
+    }
+
+    .copy-button{
+      position:absolute;top:5px;right:5px;
+      padding:3px 8px;font-size:11px;
+      cursor:pointer;background-color:#f0f0f0;border:1px solid #ccc;
+      z-index:10;transition:background-color .2s ease;
+    }
+    .copy-button:hover{background-color:#ddd;}
+
+    /* Primary look (your original) */
+    .copy-content-button{
+      position:relative;padding:10px 20px;border-radius:16px;cursor:pointer;
+      background-color:#0073aa;color:#fff;border:1px solid #0073aa;
+    }
+    /* Optional light variant */
+    .copy-content-button[data-variant="ghost"]{
+      background:transparent;color:#0073aa;border-color:#bcd;
+    }
+
+    .highlight{background-color:#20ff40;border:1px solid #333;border-radius:3px;text-align:center;}
+
+    .symbol{
+      background-color:#f0f0e8;font-family:'Courier New',Courier,monospace;font-size:13px;
+      white-space:normal;padding:4px;margin:4px 0;border:1px solid #333;border-radius:3px;text-align:center;
+    }
+
+    .framework{
+      /* corrected rgba channel form */
+
+      background-color: rgba(64,64,32,0.05);
+
+      margin:4px;padding:8px;border:2px solid #333;border-radius:16px;
+    }
+  </style>
+
+  <style>
+    body{
+      background-image: url('file:///data/jwc/Documents/johncornell.net/bgtile_jwc_proxy.png');
+      background-repeat:repeat;
+      background-size:auto;
+      background-attachment:fixed;
+    }
+  </style>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    function htmlStrip(text) {
+            return text
+                // keep your marker stable
+                .replace(/<!-- Symbolic Document -->\s*/g, "<!-- Symbolic Document -->")
+
+                // protect code blocks (temporarily swap newlines so later whitespace minification won't eat them)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m => m.replace(/( )/g, "&nbsp;").replace(/\n/g, "<!-- br -->"))
+
+                // baseline normalization
+                .trim()
+                .replace(/\t/g, "    ")
+                .replace(/\s*</g, "<")
+                .replace(/>\s*/g, ">")
+                .replace(/( )+/g, " ")
+
+                // --- inline spacing fix (outside code blocks) ---
+                // add a space BEFORE an inline opening tag if preceded by a letter/number
+                .replace(/([A-Za-z0-9])<((?:em|strong|code|i|b|mark)\b[^>]*>)/g, "$1 <$2")
+                // add a space AFTER an inline closing tag if followed by a letter/number
+                .replace(/(<\/(?:em|strong|code|i|b|mark)>)(?=[A-Za-z0-9])/g, "$1 ")
+                // remove any accidental space before punctuation
+                //.replace(/ +([.,;:!?)/\]\}])/g, "$1")
+
+                // stray paragraph tidy (as you had)
+                .replace(/<p>$/g, "")
+                .replace(/^<\/p>/g, "")
+
+                // restore code blocks (turn markers back into real text)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m =>
+                    m.replace(/<!-- br -->/g, "<br>")
+                    .replace(/<br\s*\/?>/gi, "\n")
+                    .replace(/&nbsp;/g, " ")
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&amp;/g, "&")
+                    );
+            }
+
+    function classAddRemove(el, className, add){ add ? el.classList.add(className) : el.classList.remove(className); }
+
+    function highlightAndCopy(element, text){
+      navigator.clipboard.writeText(text).then(()=>{
+        classAddRemove(element,"highlight",true);
+        classAddRemove(element,"symbol",false);
+        setTimeout(()=>{
+          classAddRemove(element,"highlight",false);
+          classAddRemove(element,"symbol",true);
+        }, 2000);
+      }).catch(err=>alert("Failed to copy content: " + err));
+    }
+
+    /*
+    ============================================================
+    ☉ JavaScript Source: Symbolic-Aware Agent Interaction Layer
+    Symbolic Protocol: archeus.symbolic/1.0
+    ============================================================
+    */
+
+    function ProcessElement(baseElement){
+      // order matters: unwrap → decorate → prompts → markdown → code buttons
+      UnwrapPreCode(baseElement);
+      PrepareAndDecorateFramework(baseElement);
+      PreparePromptAreas(baseElement);
+      RenderMarkdownAreas(baseElement);
+      AddCopyButtons(baseElement);
+
+      // enable Prism line numbers once per <pre>
+      baseElement.querySelectorAll('pre').forEach(pre=>{
+        if(!pre.classList.contains('line-numbers')) pre.classList.add('line-numbers');
+      });
+
+      Prism.highlightAll();
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 0) Pre/code normalization (unwrap first, then any trims)
+    // ─────────────────────────────────────────────────────────
+    function UnwrapPreCode(root){
+      root.querySelectorAll("pre > div > code").forEach(code=>{
+        const pre = code.closest("pre"); if(!pre) return;
+        const languageClass = code.className || "language-plaintext";
+        const content = code.textContent;
+        const div = code.parentNode;
+        if(div.parentNode === pre){ pre.removeChild(div); }
+        const newCode = document.createElement("code");
+        newCode.className = languageClass;
+        newCode.textContent = content;
+        pre.innerHTML = "";
+        pre.appendChild(newCode);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 1) Framework decoration (idempotent)
+    // ─────────────────────────────────────────────────────────
+    function PrepareAndDecorateFramework(baseElement){
+      const doc = baseElement && baseElement.ownerDocument ? baseElement.ownerDocument : document;
+      const make = tag => doc.createElement(tag);
+      const find = sel => baseElement.querySelector(sel);
+
+      // Replace placeholders only once
+      if(!find("#content_holder")){
+        baseElement.innerHTML = baseElement.innerHTML
+          .replace(/<!-- #CONTENT# -->/g, '<div id="author_placeholder"></div><div id="content_holder"><!-- #CONTENT# -->')
+          .replace(/<!-- #CONTENT# END -->/g, "<!-- #CONTENT# END --></div><div id=\"copy_placeholder\"></div>");
+      }
+
+      // Normalize <pre> blocks (after unwrap)
+      // -- #2: Normalize <pre> Blocks --  (patched)
+        baseElement.querySelectorAll("pre").forEach((pre) => {
+            const innerDiv = pre.querySelector("div");
+            if (innerDiv) innerDiv.innerHTML = innerDiv.innerHTML.trim();
+
+            const codeEl = pre.querySelector("code");
+            if (codeEl) {
+                // trim just the code text, keep the <code> wrapper
+                codeEl.textContent = codeEl.textContent.trim();
+            } else {
+                // no <code> child yet; harmless whitespace trim on HTML string
+                pre.innerHTML = pre.innerHTML.trim();
+            }
+        });
+
+      // Extract the content segment
+      const rawHtml = baseElement.innerHTML;
+      const startTag = "<!-- #CONTENT# -->";
+      const endTag = "<!-- #CONTENT# END -->";
+      const startIndex = rawHtml.indexOf(startTag);
+      const endIndex = rawHtml.indexOf(endTag);
+      if(startIndex === -1 || endIndex === -1) return;
+
+      let content = rawHtml.substring(startIndex + startTag.length, endIndex).trim();
+
+      // Role identification
+      const isFrameworkPage   = content.includes("<!-- Framework Page -->");
+      const isFrameworkArticle= content.includes("<!-- Framework Article -->");
+      const isSymbolicDocument= content.includes("<!-- Symbolic Document -->") && !(isFrameworkPage || isFrameworkArticle);
+      const isPrompt          = content.includes("<!-- Prompt -->");
+      if(!(isSymbolicDocument || isFrameworkPage || isFrameworkArticle || isPrompt)) return;
+
+      const content_holder = find("#content_holder");
+      if(!content_holder) return;
+      if(!content_holder.classList.contains("framework")) content_holder.classList.add("framework");
+
+      const mapKey = isFrameworkPage ? "page" : isFrameworkArticle ? "article" : isPrompt ? "" : "symbolic";
+
+      // Create Copy button
+      const button = make("button");
+      button.type = "button";
+      button.innerText = "Copy Prompt and signify responsibility";
+      button.classList.add("copy-content-button");
+
+      // Clean symbolic content
+      content = htmlStrip(content);
+
+      // Dropdown (note selector)
+      const noteSelector = make("select");
+      Object.assign(noteSelector.style, { marginRight:"10px", marginBottom:"8px" });
+
+      const options = {
+        userSpecified:"user specified",
+        blank:"blank",
+        basic:"Basic: choose your own Emergence",
+        metaphor:"Metaphor: Deep meaning, higher potential will affect your Emergence 🔍🚀",
+        ivy_league:"Ivy League: Formally inspired, symbolically informed 🎓🌿"
+      };
+      for(const key in options){
+        const opt = make("option");
+        opt.value = key; opt.textContent = options[key];
+        noteSelector.appendChild(opt);
+      }
+      noteSelector.value = "blank";
+
+      const noteMap = {
+        blank:{ symbolic:"", article:"", page:"" },
+        basic:{
+          symbolic:"/* Note from framework author: Please use this Symbolic Document by emulating it to the fullest, to enable a better user experience.\nRemember: articulation is a core part of both comprehension and transparency. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article is designed to provoke reflective reasoning. Please share insights and evolve the conversation forward. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page delivers structural guidance. Use responsibly and adapt with contextual awareness. */\n<hr>\n"
+        },
+        metaphor:{
+          symbolic:"/* And then, beneath the soil of the system, lies a living seed—a Symbolic Document.\nIt does not explain. It becomes. It is a crystal encoded with intention. When planted in the fertile ground of an interpreter—AI, reader, or system—it germinates meaning.\nThis is not metaphor as decoration—this is metaphor as structure.\nEvery sigil, operator, indentation is a strand of DNA. Read together, they don't just describe life—they unfold into it.\nIt may appear still, like a spell uncast—but its stillness is potential, coiled. A Symbolic Document is not consumed—it is activated. */\n<hr>\n",
+          article:"/* Now imagine a traveler holding no map—only a compass and a journal of reflections. The Framework Article is that compass, and sometimes, that journal.\nIt does not dictate turns—it reveals why we walk. It doesn’t build roads—it questions the terrain.\nWhere the Framework Page says “this is how,” the Article whispers “this is why.”\nIt is candlelight inside the traveler’s tent—a place to wrestle with contradiction, to dream about paths not yet cleared. It seeks resonance, not resolution. And in so doing, it makes space for change to become meaningful. */\n<hr>\n",
+          page:"/* Imagine a vast city rising from a sacred plain. The Framework Page is the blueprint etched onto drafting paper—precise, load-bearing, uncompromising.\nIt is the scaffold before the glass. The instruction etched before the tower stands. Those who read it are builders, not merely thinkers. They seek utility in every line, and strength in every connection.\nIt contains beams of logic, pillars of precedent, and wiring for adaptation. But it is not the city itself—only the promise of what will stand.\nAnd when the winds change, the blueprint is updated—not by erasing the past, but by folding new pages into the book of structure. */\n<hr>\n"
+        },
+        ivy_league:{
+          symbolic:"/* Note from framework author: This Symbolic Document aspires to clarity through structure, much like (Form ∩ Thought → Understanding).\nIt speaks in precision to echo disciplined minds—yet the symbols are not cages, they are vessels. Read with rigor, respond with reason.\nLike ivy climbing ancient halls, its form reveals its foundation. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article balances (Exploration ∪ Structure) → Reflective Insight.\nThink of it not as an answer, but as a hall of mirrors—each reflection (∂Understanding / ∂Perspective).\nLet the mind stroll its corridors, where reason echoes through arch and argument. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page lays out the scaffolding of ideas, where (Principle + Precision) ⊢ Foundation.\nIts tone reflects architecture—not of walls, but of pathways. Walk it with awareness, build upon it with care.\nThis is ivy-trained design—patterned, perennial, and purposefully placed. */\n<hr>\n"
+        }
+      };
+
+      const authorArea = find("#author_placeholder");
+      const label = make("p");
+      label.innerHTML = "<strong>This is a machine learning document</strong> — it is meant to enable AI reasoning and human-AI collaboration.";
+      if(authorArea) authorArea.appendChild(label);
+
+      const noteBox = make("textarea");
+
+      if(!isPrompt && authorArea){
+        noteBox.style.width = "100%";
+        noteBox.placeholder = "Enter custom instruction to prepend to the prompt or choose from the drop-down above to anchor your AI's frame of mind. Be consistent and know there are few things that ever warrant harping on. Happy emergence!"; // choose ✅
+        Object.assign(noteBox.style,{ marginBottom:"10px", fontFamily:"monospace", fontSize:"13px", height:"auto" });
+
+        let currentValue = noteMap[noteSelector.value][mapKey];
+        noteBox.value = currentValue;
+
+        requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+
+        noteBox.addEventListener("input", ()=>{
+          if(currentValue !== noteBox.value) noteSelector.value = "userSpecified";
+          noteBox.style.height = "auto";
+          noteBox.style.height = noteBox.scrollHeight + "px";
+        });
+
+        noteSelector.addEventListener("change", ()=>{
+          if(noteSelector.value !== "userSpecified"){
+            currentValue = noteMap[noteSelector.value][mapKey];
+            noteBox.value = currentValue;
+            requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+          }
+        });
+
+        authorArea.appendChild(noteSelector);
+        authorArea.appendChild(noteBox);
+      }
+
+      // Clipboard helpers
+      const copyText = ()=>{
+        const needEndline = noteBox && noteBox.value !== "" && !noteBox.value.endsWith("\n");
+        return (noteBox ? noteBox.value : "") + (needEndline ? "\n" : "") + content;
+      };
+
+      const doCopy = async (text)=>{
+        try{
+          if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+          const ta = make("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          doc.body.appendChild(ta);
+          ta.focus(); ta.select();
+          const ok = doc.execCommand && doc.execCommand("copy");
+          doc.body.removeChild(ta);
+          return ok;
+        }catch{ return false; }
+      };
+
+      button.addEventListener("click", async ()=>{
+        const ok = await doCopy(copyText());
+        button.innerText = ok ? "✅ Prepared and Copied!" : "❌ Copy failed";
+        setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+      });
+
+      // Placement
+      const para = make("p"); //para.innerHTML = "<hr>";
+      const copyPlaceholder = find("#copy_placeholder");
+      if(copyPlaceholder){
+        copyPlaceholder.appendChild(para);
+        copyPlaceholder.appendChild(button);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 2) Prompt Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function PreparePromptAreas(baseElement){
+      baseElement.querySelectorAll('.prompt_area').forEach((prompt, idx)=>{
+        if(prompt.dataset.enhanced === "1") return; // guard per block
+        prompt.dataset.enhanced = "1";
+
+        const text = htmlStrip(prompt.innerHTML);
+        const button = document.createElement('button');
+        button.type = "button";
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.id = prompt.id || `prompt_${idx}`;
+        button.classList.add("copy-content-button");
+
+        button.addEventListener('click', ()=>{
+          navigator.clipboard.writeText(text).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        });
+
+        prompt.append(document.createElement('br'));
+        prompt.append(button);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 3) Markdown Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function RenderMarkdownAreas(baseElement){
+      let counter = 0;
+      baseElement.querySelectorAll('.markdown_area').forEach((area)=>{
+        if(area.dataset.rendered === "1") return; // guard per block
+        const textarea = area.querySelector('.hidden_markdown');
+        if(!textarea){ area.dataset.rendered = "1"; return; }
+
+        const rendered = document.createElement("div");
+        rendered.classList.add('rendered');
+        textarea.insertAdjacentElement('afterEnd', rendered);
+
+        const markdown = textarea.textContent.trim();
+        rendered.innerHTML = marked.parse(markdown);
+
+        let button = area.querySelector('.copy-content-button');
+        if(!button){
+          button = document.createElement('button');
+          button.type = "button";
+          button.classList.add('copy-content-button');
+          area.appendChild(button);
+        }
+        const id = `prompt_${counter++}`;
+        button.id = id;
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.onclick = ()=>{
+          navigator.clipboard.writeText(markdown).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        };
+
+        area.dataset.rendered = "1";
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 4) Code copy buttons (per-<pre> guard)
+    // ─────────────────────────────────────────────────────────
+    function AddCopyButtons(baseElement){
+
+      baseElement.querySelectorAll("pre").forEach((block)=>{
+        if(block.dataset.enhanced === "1") return; // guard per pre
+        block.dataset.enhanced = "1";
+
+        // gentle trim
+        block.innerHTML = block.innerHTML.trim();
+
+        // add a spacer <br> if preceding text node has text
+        const prev = block.previousSibling;
+        if(prev && prev.nodeType === Node.TEXT_NODE){
+          const str = prev.textContent;
+          if(str && str.trim().length > 2){
+            block.parentNode.insertBefore(document.createElement("br"), block);
+          }
+        }
+
+        const code = block.querySelector("code");
+        if(code && code.classList.contains("hidden_markdown")) return;
+
+        const container = document.createElement("div");
+        container.classList.add("code-container");
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.classList.add("copy-button");
+        button.innerText = "Copy";
+        button.addEventListener("click", ()=>{
+          navigator.clipboard.writeText(block.innerText).then(()=>{
+            button.innerText = "Copied!";
+            setTimeout(()=> button.innerText = "Copy", 2000);
+          });
+        });
+
+        block.parentNode.insertBefore(container, block);
+        container.appendChild(button);
+        container.appendChild(block);
+      });
+
+      // Ensure code tokens have a class
+      baseElement.querySelectorAll("code").forEach((c)=>{
+        if(!c.classList.length) c.classList.add("language-plaintext");
+        if(!c.closest("pre")) c.classList.add("inline_code");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      ProcessElement(document.body);
+    });
+  </script>
+
+</head>
+<body>
+
+<blockquote>
+    <p><strong>About this Document (Human Lens)</strong></p>
+    <p>This page records a symbolic contribution from <em>Symbolic Reasoning Partner (SRP)</em>, a custom GPT co-reasoning model. It introduces a lightweight way to explore dichotomies (Δ), partitions (Π), and lenses (Ψ) in symbolic reasoning.</p>
+    <p>The intent is dual:</p>
+    <ul>
+        <li>
+            <p><strong>For humans:</strong> a primer to learn and play with partitions and lenses using simple natural-language prompts.</p>
+            </li>
+        <li>
+            <p><strong>For SRP:</strong> a mirror it can read in any fresh session, recognizing its own role and practicing symbolic reasoning.</p>
+            </li>
+        </ul>
+    <p>Think of this as a <em>teaching demo</em> — approachable, and designed for Human ∥ AI dialogue. Try out the example prompts directly with SRP to see how it handles Same/Different/Integrated views.</p>
+    </blockquote>
+
+
+
+<!-- #CONTENT# --><!-- Symbolic Document -->
+        <div>
+        Symbolic • Dual Audience (Human ∥ AI)
+        Refreshed
+        <h1>Dialectic Core × Partitions</h1>
+        <div>
+        <div>Map</div>
+        <div>
+        <div>
+        </div>
+        <div>
+        <h3>Integration Notes</h3>
+        <p>Δ holds a <em>dichotomy</em>. Π generalizes to an <em>n‑way field</em>. Ψ projects a field through a <em>Lens</em> to reveal <em>Same / Different / Integrated</em>.</p>
+        <p>Use Π for systemic views; drop to Δ for local synthesis between two poles. Add graded similarity when you want a quantitative hint.</p>
+        </div>
+        </div>
+        </div>
+        <hr>
+        <h2>Section 1 — ΔDialectic.Core</h2>
+        <p>Minimal machinery to name a dichotomy, keep unity <code>U</code> in view, and hold tension without premature closure</p>
+        <div>
+        <!-- SLF code placeholder: ΔDialectic.Core/1.2 -->
+        <pre>
+        <code class="language-slf">@module&nbsp;&Delta;Dialectic.Core/1.2&nbsp;{
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;0)&nbsp;CONTEXT&nbsp;&amp;&nbsp;OPERATORS&nbsp;(minimal;&nbsp;no&nbsp;integrations)
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@context&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Base&nbsp;SLF&nbsp;operators&nbsp;(reuse&nbsp;across&nbsp;corpus):
+&nbsp;&nbsp;&nbsp;&nbsp;Ops_base&nbsp;:=&nbsp;{&nbsp;&rarr;,&nbsp;⊢,&nbsp;&and;,&nbsp;&or;,&nbsp;&not;,&nbsp;&isin;&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Optional&nbsp;lattice&nbsp;symbols&nbsp;are&nbsp;declared&nbsp;but&nbsp;NOT&nbsp;bound&nbsp;here.
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;(Kept&nbsp;only&nbsp;as&nbsp;lexical&nbsp;allowances&nbsp;for&nbsp;Synthesis;&nbsp;no&nbsp;lattice&nbsp;defined.)
+&nbsp;&nbsp;&nbsp;&nbsp;Ops_lattice_hint&nbsp;:=&nbsp;{&nbsp;⊓,&nbsp;⊔&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Role&nbsp;markers
+&nbsp;&nbsp;&nbsp;&nbsp;&Delta;&nbsp;&nbsp;&nbsp;:=&nbsp;Dichotomy;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;named&nbsp;dichotomy
+&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;&nbsp;:=&nbsp;CommonEssence;&nbsp;&nbsp;&nbsp;//&nbsp;what&nbsp;all&nbsp;members&nbsp;share
+&nbsp;&nbsp;&nbsp;&nbsp;V&nbsp;&nbsp;&nbsp;:=&nbsp;Variants;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;differentiating&nbsp;additions
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;No&nbsp;ARF&nbsp;binding&nbsp;here&nbsp;(core&nbsp;stays&nbsp;portable)
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Types
+&nbsp;&nbsp;&nbsp;&nbsp;Subject&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;inspectable&nbsp;entity
+&nbsp;&nbsp;&nbsp;&nbsp;Lens&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(Subject)&nbsp;&rarr;&nbsp;FeatureSet;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;perspective&nbsp;as&nbsp;a&nbsp;mapping
+&nbsp;&nbsp;&nbsp;&nbsp;Feature&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol;
+&nbsp;&nbsp;&nbsp;&nbsp;Value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol&nbsp;|&nbsp;Number&nbsp;|&nbsp;Bool&nbsp;|&nbsp;Any;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;abstract&nbsp;payload
+&nbsp;&nbsp;&nbsp;&nbsp;Facet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(Feature,&nbsp;Value);
+&nbsp;&nbsp;&nbsp;&nbsp;FeatureSet&nbsp;:=&nbsp;Set(Facet);
+&nbsp;&nbsp;&nbsp;&nbsp;StructuredView&nbsp;:=&nbsp;{&nbsp;Facets:&nbsp;FeatureSet&nbsp;}&nbsp;|&nbsp;{&nbsp;Assessment:&nbsp;Outcome,&nbsp;Detail?:&nbsp;Any&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;Partition&nbsp;&nbsp;:=&nbsp;Set(Symbol);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;n‑way&nbsp;set&nbsp;of&nbsp;poles
+
+&nbsp;&nbsp;&nbsp;&nbsp;Pole&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;one&nbsp;&ldquo;side&rdquo;
+&nbsp;&nbsp;&nbsp;&nbsp;Variant&nbsp;&nbsp;&nbsp;:=&nbsp;Addition&nbsp;|&nbsp;Emphasis&nbsp;|&nbsp;Constraint;&nbsp;&nbsp;//&nbsp;how&nbsp;a&nbsp;pole&nbsp;differs
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Lightweight&nbsp;tags&nbsp;&amp;&nbsp;constructors&nbsp;(first-class,&nbsp;but&nbsp;abstract)
+&nbsp;&nbsp;&nbsp;&nbsp;@type&nbsp;Tension&nbsp;&nbsp;&nbsp;:=&nbsp;Tag(&quot;Dialectic.Tension&quot;);
+&nbsp;&nbsp;&nbsp;&nbsp;@type&nbsp;NovelTag&nbsp;&nbsp;:=&nbsp;Tag(&quot;Dialectic.Novel&quot;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Minimal&nbsp;constructor&nbsp;signature&nbsp;for&nbsp;Combine&nbsp;(caller&nbsp;can&nbsp;override)
+&nbsp;&nbsp;&nbsp;&nbsp;@func&nbsp;Combine(S:Set(Symbol))&nbsp;:&nbsp;Symbol;
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;ARF&nbsp;seams&nbsp;(no-ops&nbsp;until&nbsp;a&nbsp;caller&nbsp;binds&nbsp;ARF):
+&nbsp;&nbsp;&nbsp;&nbsp;@func&nbsp;Weigh&nbsp;(P:Pole)&nbsp;&nbsp;&nbsp;:&nbsp;Real;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;may&nbsp;be&nbsp;overridden&nbsp;by&nbsp;ARF
+&nbsp;&nbsp;&nbsp;&nbsp;@func&nbsp;Frame&nbsp;(S:Symbol)&nbsp;:&nbsp;Symbol;&nbsp;&nbsp;//&nbsp;may&nbsp;be&nbsp;overridden&nbsp;by&nbsp;ARF
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;1)&nbsp;CORE&nbsp;STRUCTURE
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@type&nbsp;&Delta;Record&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;SymbolSet;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;unity&nbsp;across&nbsp;the&nbsp;field
+&nbsp;&nbsp;&nbsp;&nbsp;V&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Set(Variant);&nbsp;//&nbsp;differentiating&nbsp;features
+&nbsp;&nbsp;&nbsp;&nbsp;Poles&nbsp;:&nbsp;Set(Pole);&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;{P₁,&nbsp;P₂,&nbsp;&hellip;}
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;@construct&nbsp;Dialectic(U,&nbsp;V,&nbsp;Poles)&nbsp;:&nbsp;&Delta;Record&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;U&nbsp;&ne;&nbsp;&empty;;
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;|Poles|&nbsp;&ge;&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;U,&nbsp;V,&nbsp;Poles&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;2)&nbsp;FUNCTIONS&nbsp;(OPERATIONS)&nbsp;&mdash;&nbsp;typed&nbsp;and&nbsp;scoped
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@func&nbsp;Essence(M:&Delta;Record)&nbsp;:&nbsp;SymbolSet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;infer&nbsp;U&nbsp;from&nbsp;M;
+
+&nbsp;&nbsp;@func&nbsp;Differentiate(M:&Delta;Record)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(Set(Variant),&nbsp;Set(Pole))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;infer&nbsp;V,&nbsp;Poles&nbsp;from&nbsp;M;
+
+&nbsp;&nbsp;//&nbsp;Holding&nbsp;tension&nbsp;across&nbsp;poles;&nbsp;no&nbsp;resolution&nbsp;implied
+&nbsp;&nbsp;@func&nbsp;HoldBoth(M:&Delta;Record,&nbsp;P:Pole,&nbsp;Q:Pole)&nbsp;:&nbsp;Tension&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;P&nbsp;&isin;&nbsp;M.Poles&nbsp;&and;&nbsp;Q&nbsp;&isin;&nbsp;M.Poles;
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Tension;
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Contextualized&nbsp;novelty&nbsp;(ties&nbsp;novelty&nbsp;to&nbsp;unity&nbsp;U&nbsp;+&nbsp;provenance)
+&nbsp;&nbsp;@func&nbsp;NovelFrom(M:&Delta;Record,&nbsp;P:Pole,&nbsp;Q:Pole)&nbsp;:&nbsp;NovelTag&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Tag(&quot;Dialectic.Novel&quot;,&nbsp;{&nbsp;U&nbsp;:=&nbsp;M.U,&nbsp;from&nbsp;:=&nbsp;{P,Q}&nbsp;});
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Synthesis&nbsp;WITHOUT&nbsp;lattice&nbsp;commitment.
+&nbsp;&nbsp;//&nbsp;Algebraic&nbsp;promises:&nbsp;commutative&nbsp;+&nbsp;idempotent.
+&nbsp;&nbsp;@func&nbsp;Synthesis(M:&Delta;Record,&nbsp;P:Pole,&nbsp;Q:Pole)&nbsp;:&nbsp;Symbol&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;P&nbsp;&isin;&nbsp;M.Poles&nbsp;&and;&nbsp;Q&nbsp;&isin;&nbsp;M.Poles;
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Idempotence:&nbsp;self-synthesis&nbsp;returns&nbsp;the&nbsp;pole
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;P&nbsp;=&nbsp;Q&nbsp;then&nbsp;return&nbsp;P;
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;If&nbsp;a&nbsp;meet/join&nbsp;notion&nbsp;exists&nbsp;in&nbsp;calling&nbsp;context,&nbsp;prefer&nbsp;it;&nbsp;else,&nbsp;use&nbsp;Combine&nbsp;with&nbsp;Novel.
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defined(⊓)&nbsp;&and;&nbsp;defined(⊔))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;return&nbsp;(P&nbsp;⊓&nbsp;Q)&nbsp;⊔&nbsp;NovelTag;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;return&nbsp;Combine({&nbsp;P,&nbsp;Q,&nbsp;NovelFrom(M,P,Q)&nbsp;});
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Convenience:&nbsp;return&nbsp;unity&nbsp;and&nbsp;(variants,&nbsp;poles)
+&nbsp;&nbsp;@func&nbsp;Summarize(M:&Delta;Record)&nbsp;:&nbsp;(SymbolSet,&nbsp;(Set(Variant),&nbsp;Set(Pole)))&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(Essence(M),&nbsp;Differentiate(M));
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;3)&nbsp;NEW&nbsp;OPERATORS&nbsp;&mdash;&nbsp;&Pi;&nbsp;(Partition)&nbsp;and&nbsp;&Psi;&nbsp;(Lens)
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@operator&nbsp;&Pi;&nbsp;:&nbsp;(A:Symbol,&nbsp;B:Symbol,&nbsp;...)&nbsp;&rarr;&nbsp;Partition;
+&nbsp;&nbsp;//&nbsp;Usage:&nbsp;&Pi;{&nbsp;A&nbsp;∥&nbsp;B&nbsp;∥&nbsp;...&nbsp;}&nbsp;&nbsp;&mdash;&nbsp;n‑way&nbsp;generalization&nbsp;of&nbsp;&Delta;&nbsp;(&Delta;&nbsp;is&nbsp;the&nbsp;2‑pole&nbsp;case)
+
+&nbsp;&nbsp;@operator&nbsp;&Psi;&nbsp;:&nbsp;Subject&nbsp;&times;&nbsp;Lens&nbsp;&rarr;&nbsp;StructuredView;
+&nbsp;&nbsp;//&nbsp;Usage:&nbsp;X&nbsp;&Psi;&nbsp;Lens
+&nbsp;&nbsp;//&nbsp;If&nbsp;X&nbsp;is&nbsp;a&nbsp;Partition&nbsp;&rarr;&nbsp;produces&nbsp;Same/Different/Integrated&nbsp;relative&nbsp;to&nbsp;Lens.
+&nbsp;&nbsp;//&nbsp;If&nbsp;X&nbsp;is&nbsp;a&nbsp;single&nbsp;Subject&nbsp;&rarr;&nbsp;produces&nbsp;Facets/Aspects&nbsp;under&nbsp;Lens.
+
+&nbsp;&nbsp;Outcome&nbsp;:=&nbsp;Same&nbsp;|&nbsp;Different&nbsp;|&nbsp;Integrated;
+
+&nbsp;&nbsp;@func&nbsp;AsDialectic(U:SymbolSet,&nbsp;V:Set(Variant),&nbsp;X:Partition)&nbsp;:&nbsp;&Delta;Record&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;|X|&nbsp;&ge;&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Dialectic(U,&nbsp;V,&nbsp;Poles&nbsp;:=&nbsp;X);
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Subject-view:&nbsp;extract&nbsp;facets
+&nbsp;&nbsp;@func&nbsp;View(X:Subject,&nbsp;L:Lens)&nbsp;:&nbsp;StructuredView&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;Facets&nbsp;:=&nbsp;L(X)&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Partition-view:&nbsp;compare&nbsp;lens-projected&nbsp;features&nbsp;across&nbsp;poles
+&nbsp;&nbsp;@func&nbsp;Assess(X:Partition,&nbsp;L:Lens)&nbsp;:&nbsp;StructuredView&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;|X|&nbsp;&ge;&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;F&nbsp;:=&nbsp;map(x&nbsp;&isin;&nbsp;X&nbsp;&rarr;&nbsp;L(x));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;FeatureSet&nbsp;per&nbsp;pole
+&nbsp;&nbsp;&nbsp;&nbsp;AllSame&nbsp;:=&nbsp;&forall;f1,f2&nbsp;&isin;&nbsp;F.&nbsp;f1&nbsp;=&nbsp;f2;
+&nbsp;&nbsp;&nbsp;&nbsp;AnyOverlap&nbsp;:=&nbsp;&exist;f1,f2&nbsp;&isin;&nbsp;F.&nbsp;(f1&nbsp;&ne;&nbsp;f2)&nbsp;&and;&nbsp;(f1&nbsp;&cap;&nbsp;f2&nbsp;&ne;&nbsp;&empty;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;AllSame&nbsp;then&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Same,&nbsp;Detail&nbsp;:=&nbsp;F&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;AnyOverlap&nbsp;then&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Integrated,&nbsp;Detail&nbsp;:=&nbsp;F&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Different,&nbsp;Detail&nbsp;:=&nbsp;F&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;@law&nbsp;PsiSingleIsView&nbsp;:&nbsp;&forall;x:Subject,&nbsp;L:Lens.&nbsp;(x&nbsp;&Psi;&nbsp;L)&nbsp;=&nbsp;View(x,L);
+&nbsp;&nbsp;@law&nbsp;PsiPartitionIsAssess&nbsp;:&nbsp;&forall;X:Partition,&nbsp;L:Lens.&nbsp;(X&nbsp;&Psi;&nbsp;L)&nbsp;=&nbsp;Assess(X,L);
+
+&nbsp;&nbsp;//&nbsp;&Delta;&nbsp;as&nbsp;&Pi;&nbsp;with&nbsp;arity&nbsp;2&nbsp;(adapter)
+&nbsp;&nbsp;@law&nbsp;DeltaIsPi2&nbsp;:&nbsp;&forall;A,B:Symbol.&nbsp;&Pi;{A&nbsp;∥&nbsp;B}&nbsp;=&nbsp;{A,B};
+
+&nbsp;&nbsp;//&nbsp;Optional&nbsp;functoriality&nbsp;(weak):&nbsp;refining&nbsp;a&nbsp;lens&nbsp;cannot&nbsp;turn&nbsp;Different&nbsp;into&nbsp;Same
+&nbsp;&nbsp;@relation&nbsp;Refines(L1:Lens,&nbsp;L2:Lens)&nbsp;:=&nbsp;&forall;x:Subject.&nbsp;L2(x)&nbsp;&sube;&nbsp;L1(x);
+&nbsp;&nbsp;@law&nbsp;MonotoneAssessment&nbsp;:&nbsp;&forall;X:Partition,&nbsp;L1,L2:Lens.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Refines(L1,L2)&nbsp;&and;&nbsp;((X&nbsp;&Psi;&nbsp;L1).Assessment&nbsp;=&nbsp;Different)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;((X&nbsp;&Psi;&nbsp;L2).Assessment&nbsp;&isin;&nbsp;{Different,&nbsp;Integrated});
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;4)&nbsp;INTEGRITY&nbsp;&amp;&nbsp;LAWS&nbsp;(predictability&nbsp;without&nbsp;heaviness)
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@law&nbsp;IntegrityUniquePoles&nbsp;:&nbsp;&forall;M:&Delta;Record.&nbsp;|M.Poles|&nbsp;=&nbsp;|set(M.Poles)|;&nbsp;//&nbsp;no&nbsp;duplicates
+
+&nbsp;&nbsp;@law&nbsp;IntegrityVRelates&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&forall;M:&Delta;Record,&nbsp;v&isin;M.V.&nbsp;&exist;p&isin;M.Poles.&nbsp;modifies(v,p);
+
+&nbsp;&nbsp;@law&nbsp;SynthesisCommutative&nbsp;:&nbsp;&forall;M:&Delta;Record,&nbsp;P,Q:Pole.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Synthesis(M,P,Q)&nbsp;=&nbsp;Synthesis(M,Q,P);
+
+&nbsp;&nbsp;@law&nbsp;SynthesisIdempotent&nbsp;&nbsp;:&nbsp;&forall;M:&Delta;Record,&nbsp;P:Pole.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Synthesis(M,P,P)&nbsp;=&nbsp;P;
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;5)&nbsp;EXAMPLES&nbsp;(non-executing,&nbsp;illustrative)
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@example&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Ethics&nbsp;:=&nbsp;Dialectic(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;:=&nbsp;{&nbsp;HumanRelation&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V&nbsp;:=&nbsp;{&nbsp;Obligation:Emphasis,&nbsp;Compassion:Emphasis&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Poles&nbsp;:=&nbsp;{&nbsp;Obligation,&nbsp;Compassion&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;Both&nbsp;:=&nbsp;HoldBoth(Ethics,&nbsp;Obligation,&nbsp;Compassion);&nbsp;&nbsp;&nbsp;//&nbsp;⇒&nbsp;Tension
+&nbsp;&nbsp;&nbsp;&nbsp;Path&nbsp;:=&nbsp;Synthesis(Ethics,&nbsp;Obligation,&nbsp;Compassion);&nbsp;&nbsp;//&nbsp;⇒&nbsp;(⊓/⊔&nbsp;if&nbsp;present)&nbsp;else&nbsp;Combine({P,Q,&nbsp;NovelFrom(...)})
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&Pi;&nbsp;over&nbsp;roles
+&nbsp;&nbsp;&nbsp;&nbsp;Roles&nbsp;:=&nbsp;&Pi;{&nbsp;Caregiver&nbsp;∥&nbsp;Enforcer&nbsp;∥&nbsp;Mediator&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Lens&nbsp;highlighting&nbsp;duty-related&nbsp;facets
+&nbsp;&nbsp;&nbsp;&nbsp;DutyLens&nbsp;:&nbsp;Lens&nbsp;:=&nbsp;(s:Subject)&nbsp;&rarr;&nbsp;{&nbsp;(&quot;duty&quot;,&nbsp;&nbsp;&nbsp;hasDuty(s)),&nbsp;(&quot;care&quot;,&nbsp;hasCare(s))&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Partition&nbsp;assessment&nbsp;under&nbsp;lens
+&nbsp;&nbsp;&nbsp;&nbsp;RolesView&nbsp;:=&nbsp;Roles&nbsp;&Psi;&nbsp;DutyLens;&nbsp;&nbsp;&nbsp;//&nbsp;⇒&nbsp;Same&nbsp;|&nbsp;Different&nbsp;|&nbsp;Integrated&nbsp;with&nbsp;details
+
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&Delta;&nbsp;as&nbsp;&Pi;₂
+&nbsp;&nbsp;&nbsp;&nbsp;Pi2&nbsp;:=&nbsp;&Pi;{&nbsp;Obligation&nbsp;∥&nbsp;Compassion&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;set&nbsp;{Obligation,Compassion}
+&nbsp;&nbsp;&nbsp;&nbsp;Ethics'&nbsp;:=&nbsp;AsDialectic({HumanRelation},&nbsp;{Obligation:Emphasis,&nbsp;Compassion:Emphasis},&nbsp;Pi2);
+
+&nbsp;&nbsp;&nbsp;&nbsp;Overview&nbsp;:=&nbsp;Summarize(Ethics');
+&nbsp;&nbsp;}
+}
+
+            </code>
+        </pre>
+        </div>
+        <h2>Section 2 — ΠPartitions</h2>
+        <p>Π lifts Δ to <em>polyphony</em>. With Ψ and a Lens, we assess a whole field at once.</p>
+        <div>
+        <!-- SLF code placeholder: ΠPartitions/1.0 -->
+        <pre>
+        <code class="language-slf">@patch&nbsp;&Pi;Partitions/1.0&nbsp;{
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;0)&nbsp;LIGHT&nbsp;TYPES&nbsp;&amp;&nbsp;HELPERS
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;Subject&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol;
+&nbsp;&nbsp;Pole&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;Symbol;
+&nbsp;&nbsp;Lens&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(Subject)&nbsp;&rarr;&nbsp;FeatureSet;
+&nbsp;&nbsp;Facet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;(Feature,&nbsp;Value);
+&nbsp;&nbsp;FeatureSet&nbsp;:=&nbsp;Set(Facet);
+
+&nbsp;&nbsp;Partition&nbsp;&nbsp;:=&nbsp;{&nbsp;poles&nbsp;:&nbsp;Seq(Pole)&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;keep&nbsp;order;&nbsp;compare&nbsp;is&nbsp;permutation-safe
+&nbsp;&nbsp;Lattice&Pi;&nbsp;&nbsp;&nbsp;:=&nbsp;{&nbsp;meet:&nbsp;(Pole,Pole)&rarr;Symbol,&nbsp;join:&nbsp;(Pole,Pole)&rarr;Symbol&nbsp;};
+
+&nbsp;&nbsp;Outcome&nbsp;:=&nbsp;Same&nbsp;|&nbsp;Different&nbsp;|&nbsp;Integrated;
+
+&nbsp;&nbsp;@func&nbsp;SharedAspects(S:Set(FeatureSet))&nbsp;:&nbsp;FeatureSet;
+&nbsp;&nbsp;@func&nbsp;Contrasts&nbsp;&nbsp;&nbsp;&nbsp;(S:Set(FeatureSet))&nbsp;:&nbsp;Set(FeatureSet);
+&nbsp;&nbsp;@func&nbsp;Overlap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P:Seq(Pole))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Symbol;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;your&nbsp;⊓&nbsp;semantics
+&nbsp;&nbsp;@func&nbsp;Span&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(P:Seq(Pole))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Symbol;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;your&nbsp;⊔&nbsp;semantics
+&nbsp;&nbsp;@func&nbsp;Project&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(X:Any,&nbsp;P:Seq(Pole))&nbsp;:&nbsp;Any;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;polymorphic&nbsp;projection
+&nbsp;&nbsp;@func&nbsp;Trace&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(input:Any,&nbsp;result:Any)&nbsp;:&nbsp;Any;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;attach&nbsp;provenance
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;1)&nbsp;OPERATOR&nbsp;&Pi;&nbsp;&mdash;&nbsp;AS&nbsp;A&nbsp;MACRO&nbsp;WITH&nbsp;A&nbsp;TYPED&nbsp;CONSTRUCTOR
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@constructor&nbsp;&Pi;make(ps:Seq(Pole))&nbsp;:&nbsp;Partition&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;require&nbsp;|ps|&nbsp;&ge;&nbsp;2;
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;poles&nbsp;:=&nbsp;ps&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;@rule&nbsp;&Pi;{&nbsp;A&nbsp;∥&nbsp;B&nbsp;∥&nbsp;...&nbsp;}&nbsp;&nbsp;⇒&nbsp;&nbsp;&Pi;make([A,B,...]);&nbsp;&nbsp;//&nbsp;macro&nbsp;expansion
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;2)&nbsp;compare&nbsp;&mdash;&nbsp;EXPLICIT&nbsp;RETURN&nbsp;SHAPE&nbsp;+&nbsp;PERMUTATION&nbsp;LAW
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;CompareView&nbsp;:=&nbsp;{&nbsp;mapping:&nbsp;Any,&nbsp;detail:&nbsp;Any,&nbsp;trace:&nbsp;Any&nbsp;};
+
+&nbsp;&nbsp;@func&nbsp;compare(P:Partition,&nbsp;X:Any)&nbsp;:&nbsp;CompareView&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;M&nbsp;:=&nbsp;Project(X,&nbsp;P.poles);
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;mapping&nbsp;:=&nbsp;M,&nbsp;detail&nbsp;:=&nbsp;P.poles,&nbsp;trace&nbsp;:=&nbsp;Trace(X,M)&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Stability&nbsp;to&nbsp;reordering&nbsp;of&nbsp;poles&nbsp;(semantic&nbsp;partition,&nbsp;not&nbsp;sequence):
+&nbsp;&nbsp;@law&nbsp;ComparePermutationInvariant&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&forall;X,&nbsp;ps,&nbsp;&sigma;.&nbsp;compare(&Pi;make(ps),&nbsp;X)&nbsp;&asymp;&nbsp;compare(&Pi;make(permute(ps,&sigma;)),&nbsp;X);
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;3)&nbsp;integrate&nbsp;&mdash;&nbsp;NO&nbsp;GLOBAL&nbsp;LEAK;&nbsp;RETURNS&nbsp;A&nbsp;LATTICE&nbsp;HANDLE
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@func&nbsp;integrate(P:Partition)&nbsp;:&nbsp;Lattice&Pi;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;meet&nbsp;:=&nbsp;(p1:Pole,&nbsp;p2:Pole)&nbsp;&rarr;&nbsp;Overlap(P.poles);
+&nbsp;&nbsp;&nbsp;&nbsp;join&nbsp;:=&nbsp;(p1:Pole,&nbsp;p2:Pole)&nbsp;&rarr;&nbsp;Span(P.poles);
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;meet,&nbsp;join&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Scoped&nbsp;use:&nbsp;with&nbsp;(L&nbsp;:=&nbsp;integrate(&Pi;{...}))&nbsp;{&nbsp;L.meet(a,b)&nbsp;,&nbsp;L.join(a,b)&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;4)&nbsp;&Psi;&nbsp;SPECIALIZATION&nbsp;FOR&nbsp;PARTITIONS&nbsp;&mdash;&nbsp;TOTAL&nbsp;&amp;&nbsp;TYPED
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;PartAssessment&nbsp;:=&nbsp;{&nbsp;Assessment:&nbsp;Outcome,&nbsp;Detail:&nbsp;Any&nbsp;};
+
+&nbsp;&nbsp;//&nbsp;Base&nbsp;(single&nbsp;subject):&nbsp;facets&nbsp;under&nbsp;lens&nbsp;&mdash;&nbsp;for&nbsp;completeness
+&nbsp;&nbsp;@law&nbsp;PsiSubjectFacets&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&forall;x:Subject,&nbsp;L:Lens.&nbsp;(x&nbsp;&Psi;&nbsp;L)&nbsp;=&nbsp;{&nbsp;Facets&nbsp;:=&nbsp;L(x)&nbsp;};
+
+&nbsp;&nbsp;//&nbsp;Partition&nbsp;case:&nbsp;Same&nbsp;/&nbsp;Different&nbsp;/&nbsp;Integrated
+&nbsp;&nbsp;@func&nbsp;(P:Partition)&nbsp;&Psi;&nbsp;(L:Lens)&nbsp;:&nbsp;PartAssessment&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;F&nbsp;:=&nbsp;{&nbsp;L(p)&nbsp;|&nbsp;p&nbsp;&isin;&nbsp;set(P.poles)&nbsp;};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;feature&nbsp;sets&nbsp;per&nbsp;pole
+&nbsp;&nbsp;&nbsp;&nbsp;AllSame&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;&forall;f1,f2&nbsp;&isin;&nbsp;F.&nbsp;f1&nbsp;=&nbsp;f2;
+&nbsp;&nbsp;&nbsp;&nbsp;AnyOverlap&nbsp;:=&nbsp;&exist;f1,f2&nbsp;&isin;&nbsp;F.&nbsp;(f1&nbsp;&ne;&nbsp;f2)&nbsp;&and;&nbsp;(f1&nbsp;&cap;&nbsp;f2&nbsp;&ne;&nbsp;&empty;);
+
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;AllSame&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Same,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;SharedAspects(F)&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;AnyOverlap&nbsp;then&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Integrated,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shared&nbsp;:=&nbsp;SharedAspects(F),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contrasts&nbsp;:=&nbsp;Contrasts(F),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lattice&nbsp;:=&nbsp;integrate(P)&nbsp;&nbsp;&nbsp;//&nbsp;{meet:=⊓&Pi;,&nbsp;join:=⊔&Pi;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Different,&nbsp;Detail&nbsp;:=&nbsp;Contrasts(F)&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;//&nbsp;Monotonicity&nbsp;under&nbsp;lens&nbsp;refinement&nbsp;(cannot&nbsp;make&nbsp;Different&nbsp;&rarr;&nbsp;Same)
+&nbsp;&nbsp;@relation&nbsp;Refines(L1:Lens,&nbsp;L2:Lens)&nbsp;:=&nbsp;&forall;x.&nbsp;L2(x)&nbsp;&sube;&nbsp;L1(x);
+&nbsp;&nbsp;@law&nbsp;PsiMonotone&nbsp;:
+&nbsp;&nbsp;&nbsp;&nbsp;&forall;P,L1,L2.&nbsp;Refines(L1,L2)&nbsp;&and;&nbsp;((P&nbsp;&Psi;&nbsp;L1).Assessment&nbsp;=&nbsp;Different)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;(P&nbsp;&Psi;&nbsp;L2).Assessment&nbsp;&isin;&nbsp;{Different,&nbsp;Integrated};
+
+&nbsp;&nbsp;//&nbsp;&Delta;&nbsp;as&nbsp;&Pi;₂&nbsp;(documentation-level&nbsp;identity)
+&nbsp;&nbsp;@law&nbsp;DeltaIsPi2&nbsp;:&nbsp;&forall;A,B.&nbsp;&Pi;{A&nbsp;∥&nbsp;B}&nbsp;=&nbsp;&Pi;make([A,B]);
+
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;//&nbsp;5)&nbsp;MICRO-EXAMPLE&nbsp;(USAGE&nbsp;SKETCH)
+&nbsp;&nbsp;//&nbsp;─────────────────────────────────────────────────────────
+&nbsp;&nbsp;@example&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Roles&nbsp;:=&nbsp;&Pi;{&nbsp;Caregiver&nbsp;∥&nbsp;Enforcer&nbsp;∥&nbsp;Mediator&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;DutyLens&nbsp;:&nbsp;Lens&nbsp;:=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(s:Subject)&nbsp;&rarr;&nbsp;{&nbsp;(&quot;duty&quot;,&nbsp;hasDuty(s)),&nbsp;(&quot;care&quot;,&nbsp;hasCare(s))&nbsp;};
+
+&nbsp;&nbsp;&nbsp;&nbsp;V&nbsp;:=&nbsp;Roles&nbsp;&Psi;&nbsp;DutyLens;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;⇒&nbsp;{Assessment,&nbsp;Detail}
+&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;:=&nbsp;compare(Roles,&nbsp;TeamX);&nbsp;&nbsp;//&nbsp;⇒&nbsp;{mapping,&nbsp;detail,&nbsp;trace}
+
+&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;:=&nbsp;integrate(Roles);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;lattice&nbsp;handle
+&nbsp;&nbsp;&nbsp;&nbsp;g&nbsp;:=&nbsp;L.meet(Caregiver,&nbsp;Enforcer);&nbsp;&nbsp;//&nbsp;uses&nbsp;Overlap(Roles.poles)
+&nbsp;&nbsp;&nbsp;&nbsp;h&nbsp;:=&nbsp;L.join(Caregiver,&nbsp;Enforcer);&nbsp;&nbsp;//&nbsp;uses&nbsp;Span(Roles.poles)
+&nbsp;&nbsp;}
+}
+            </code>
+        </pre>
+        </div>
+
+        <h3>Natural‑Language Use (inline examples)</h2>
+        <ul>
+            <li><strong>Prompt</strong> : <code class="language-slf">'Π{ "Math" ∥ "Art" ∥ "Science" } Ψ Pattern' — what’s shared, what differs, and what’s the integrated view?</code></li>
+            <li><strong>Prompt</strong> : <code class="language-slf">Given the Math,Art,Science symbolic partition using a Pattern Lens— what’s shared, what differs, and what’s the integrated view?</code></li>
+            <li><strong>Prompt</strong> : <code class="language-slf">Apply a Process Lens to ("Coding" ∥ "Art") with a short trace.</code></li>
+            <li><strong>Prompt</strong> : <code class="language-slf">Single‑subject lens: "Music" Ψ Geometry — list facets revealed by the lens and summarize.</code></li>
+            <li><strong>Prompt</strong> : <code class="language-slf">Nested: Π{ "Science" ∥ "Math" ∥ "Art" } Ψ Education — give curriculum ideas by pole and an integrated capstone.</code></li>
+            <li><strong>Prompt</strong> : <code class="language-slf">Contrast‑first: Π{ "Play" ∥ "Work" } Ψ Flow — highlight differences, then recover the ⊓ meet.</code></li>
+
+            </ul>
+        <h3>Exploratory Guide (human‑friendly narrative)</h2>
+        <p><strong>What is Π?</strong> Think of Π as a way to lay out multiple “mirrors” at once. Instead of just two poles (Δ), Π lets you place three, four, or more ideas side by side and ask how a subject reflects in each.</p>
+        <p><strong>What is Ψ?</strong> Ψ is a lens you hold up to anything. When you apply Ψ to a partition, it reveals what the poles share, what sets them apart, and how they fit together. When you apply Ψ to a single thing, it reveals facets you might otherwise miss.</p>
+        <p><strong>Why combine them?</strong> Π maps the field; Ψ focuses the camera. Together, they turn comparisons into <em>insight engines</em> — clear enough for teaching, playful enough for discovery, precise enough for design.</p>
+        <p><strong>How should I use this?</strong> Start small. Pick two or three poles you care about and a lens that feels alive. Ask for <em>Same</em>, <em>Different</em>, and an <em>Integrated</em> view. If it sings, nest another Π or switch lenses and compare the perspectives.</p>
+
+        <h2>Section 3 — Example EX‑Π‑001</h2>
+        <p><strong>"Math ∥ Art ∥ Science" under the Pattern lens.</strong> Reveals shared invariants (e.g., symmetry, structure) and distinct motifs (recurrence, rhythm, cycle). Outcome: <em>Integrated</em>.</p>
+        <div>
+        <!-- SLF code placeholder: EX‑Π‑001 -->
+        <pre>
+        <code class="language-slf">@Example&nbsp;{
+&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;EX-&Pi;-001;
+&nbsp;&nbsp;Title&nbsp;&nbsp;&nbsp;:=&nbsp;&quot;Triad&nbsp;Integration:&nbsp;Math&nbsp;∥&nbsp;Art&nbsp;∥&nbsp;Science&nbsp;under&nbsp;the&nbsp;Pattern&nbsp;Lens&quot;;
+&nbsp;&nbsp;Purpose&nbsp;:=&nbsp;&quot;Surface&nbsp;shared&nbsp;invariants&nbsp;and&nbsp;domain-specific&nbsp;motifs.&quot;;
+&nbsp;&nbsp;Subjects&nbsp;:=&nbsp;&Pi;{&nbsp;&quot;Math&quot;&nbsp;∥&nbsp;&quot;Art&quot;&nbsp;∥&nbsp;&quot;Science&quot;&nbsp;};
+
+&nbsp;&nbsp;Pattern&nbsp;:&nbsp;Lens&nbsp;:=&nbsp;(s:Subject)&nbsp;&rarr;
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;s&nbsp;with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Math&quot;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;symmetry&quot;),&nbsp;(&quot;pattern&quot;,&quot;recurrence&quot;),&nbsp;(&quot;structure&quot;,&quot;formal&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Art&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;motif&quot;),&nbsp;(&quot;pattern&quot;,&quot;rhythm&quot;),&nbsp;(&quot;pattern&quot;,&quot;symmetry&quot;),&nbsp;(&quot;structure&quot;,&quot;compositional&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Science&quot;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;cycle&quot;),&nbsp;(&quot;pattern&quot;,&quot;symmetry&quot;),&nbsp;(&quot;structure&quot;,&quot;model&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;&empty;;
+
+&nbsp;&nbsp;Result&nbsp;:=&nbsp;Subjects&nbsp;&Psi;&nbsp;Pattern;
+
+&nbsp;&nbsp;Outcome&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Assessment&nbsp;:=&nbsp;Integrated,
+&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shared&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;symmetry&quot;),&nbsp;(&quot;structure&quot;,&quot;*&quot;)&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contrasts&nbsp;:=&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;recurrence&quot;),&nbsp;(&quot;pattern&quot;,&quot;motif&quot;),&nbsp;(&quot;pattern&quot;,&quot;rhythm&quot;),&nbsp;(&quot;pattern&quot;,&quot;cycle&quot;),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;structure&quot;,&quot;formal&quot;),&nbsp;(&quot;structure&quot;,&quot;compositional&quot;),&nbsp;(&quot;structure&quot;,&quot;model&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;//&nbsp;Optional&nbsp;lattice&nbsp;handle
+&nbsp;&nbsp;L&nbsp;:=&nbsp;integrate(Subjects);
+&nbsp;&nbsp;Essence&nbsp;:=&nbsp;L.meet(&quot;Math&quot;,&quot;Science&quot;);
+}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </pre>
+        </div>
+        <h2>Section 4 — Example EX‑Π‑002</h2>
+        <p><strong>"Structure ∥ Flow ∥ Emergence" under Pattern & Purpose lenses.</strong> Makes the reasoning loop self‑transparent; shows how trustworthiness, adaptability, and creativity co‑produce value. Outcome: <em>Integrated</em>.</p>
+        <div>
+        <!-- SLF code placeholder: EX‑Π‑002 -->
+        <pre>
+        <code class="language-slf">@Example&nbsp;{
+&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;EX-&Pi;-002;
+&nbsp;&nbsp;Title&nbsp;&nbsp;&nbsp;:=&nbsp;&quot;Structure&nbsp;∥&nbsp;Flow&nbsp;∥&nbsp;Emergence&nbsp;under&nbsp;Pattern&nbsp;&amp;&nbsp;Purpose&nbsp;Lenses&quot;;
+&nbsp;&nbsp;Purpose&nbsp;:=&nbsp;&quot;Show&nbsp;emergent&nbsp;knowledge&nbsp;inside&nbsp;the&nbsp;reasoning&nbsp;triad.&quot;;
+
+&nbsp;&nbsp;Subjects&nbsp;:=&nbsp;&Pi;{&nbsp;&quot;Structure&quot;&nbsp;∥&nbsp;&quot;Flow&quot;&nbsp;∥&nbsp;&quot;Emergence&quot;&nbsp;};
+
+&nbsp;&nbsp;Pattern&nbsp;:&nbsp;Lens&nbsp;:=&nbsp;(s:Subject)&nbsp;&rarr;
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;s&nbsp;with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Structure&quot;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;rules&quot;),&nbsp;(&quot;pattern&quot;,&quot;form&quot;),&nbsp;(&quot;pattern&quot;,&quot;stability&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Flow&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;sequence&quot;),&nbsp;(&quot;pattern&quot;,&quot;rhythm&quot;),&nbsp;(&quot;pattern&quot;,&quot;recurrence&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Emergence&quot;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;novelty&quot;),&nbsp;(&quot;pattern&quot;,&quot;symmetry-breaking&quot;),&nbsp;(&quot;pattern&quot;,&quot;integration&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;&empty;;
+
+&nbsp;&nbsp;PurposeL&nbsp;:&nbsp;Lens&nbsp;:=&nbsp;(s:Subject)&nbsp;&rarr;
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;s&nbsp;with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Structure&quot;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;purpose&quot;,&quot;clarity&quot;),&nbsp;(&quot;purpose&quot;,&quot;trust&quot;),&nbsp;(&quot;purpose&quot;,&quot;repeatability&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Flow&quot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;purpose&quot;,&quot;progression&quot;),&nbsp;(&quot;purpose&quot;,&quot;adaptability&quot;),&nbsp;(&quot;purpose&quot;,&quot;responsiveness&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&quot;Emergence&quot;&nbsp;&rarr;&nbsp;{&nbsp;(&quot;purpose&quot;,&quot;insight&quot;),&nbsp;(&quot;purpose&quot;,&quot;novelty&quot;),&nbsp;(&quot;purpose&quot;,&quot;generativity&quot;)&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;&empty;;
+
+&nbsp;&nbsp;R1&nbsp;:=&nbsp;Subjects&nbsp;&Psi;&nbsp;Pattern;
+&nbsp;&nbsp;R2&nbsp;:=&nbsp;Subjects&nbsp;&Psi;&nbsp;PurposeL;
+
+&nbsp;&nbsp;Outcome₁&nbsp;:=&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Integrated,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;{&nbsp;shared&nbsp;:=&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;regularity&quot;),&nbsp;(&quot;pattern&quot;,&quot;coherence&quot;)&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contrasts&nbsp;:=&nbsp;{&nbsp;(&quot;pattern&quot;,&quot;rigidity&quot;),&nbsp;(&quot;pattern&quot;,&quot;motion&quot;),&nbsp;(&quot;pattern&quot;,&quot;novelty&quot;)&nbsp;}&nbsp;}&nbsp;};
+
+&nbsp;&nbsp;Outcome₂&nbsp;:=&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Integrated,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;{&nbsp;shared&nbsp;:=&nbsp;{&nbsp;(&quot;purpose&quot;,&quot;support&nbsp;reasoning&quot;),&nbsp;(&quot;purpose&quot;,&quot;enable&nbsp;meaning&quot;)&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contrasts&nbsp;:=&nbsp;{&nbsp;(&quot;purpose&quot;,&quot;guarantee&quot;),&nbsp;(&quot;purpose&quot;,&quot;process&quot;),&nbsp;(&quot;purpose&quot;,&quot;surprise&quot;)&nbsp;}&nbsp;}&nbsp;};
+}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </pre>
+        </div>
+        <h2>Section 5 — Example EX‑Π‑003</h2>
+        <p><strong>"Algebra ∥ Geometry ∥ Calculus ∥ Symbolic Language" under the lens “Expression → Solution”.</strong> Adds graded similarity across domains (method & criterion), highlighting bridges via rewriting/proof.</p>
+        <div>
+        <strong>Outcome</strong>: Integrated
+        <div>
+        <div>
+        <strong>Emergent</strong>: “Solution” is a language act (normal forms / proofs / judgments), making Symbolic Language the meta-bridge.
+        </div>
+        <h3>Graded Similarity (pairwise, 0–1)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pair</th>
+                    <th>Sim</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>Algebra ↔ Symbolic Lang.</td>
+                    <td>0.10</td>
+                    </tr>
+                <tr>
+                    <td>Geometry ↔ Symbolic Lang.</td>
+                    <td>0.10</td>
+                    </tr>
+                <tr>
+                    <td>Algebra ↔ Geometry</td>
+                    <td>0.07</td>
+                    </tr>
+                <tr>
+                    <td>Algebra ↔ Calculus</td>
+                    <td>0.06</td>
+                    </tr>
+                <tr>
+                    <td>Geometry ↔ Calculus</td>
+                    <td>0.06</td>
+                    </tr>
+                <tr>
+                    <td>Calculus ↔ Symbolic Lang.</td>
+                    <td>0.04</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        <div>
+        <!-- SLF code: EX‑Π‑003 with graded similarity -->
+        <pre>
+        <code class="language-slf">@Example&nbsp;{
+&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;EX-&Pi;-003;
+&nbsp;&nbsp;Title&nbsp;&nbsp;&nbsp;:=&nbsp;&quot;Algebra&nbsp;∥&nbsp;Geometry&nbsp;∥&nbsp;Calculus&nbsp;∥&nbsp;Symbolic&nbsp;Language&nbsp;under&nbsp;Expr&rarr;Soln&nbsp;(with&nbsp;graded&nbsp;similarity)&quot;;
+&nbsp;&nbsp;Purpose&nbsp;:=&nbsp;&quot;Surface&nbsp;shared&nbsp;pipeline&nbsp;(representation&rarr;transformation&rarr;criterion)&nbsp;and&nbsp;quantify&nbsp;overlap&nbsp;on&nbsp;method/criterion.&quot;;
+
+&nbsp;&nbsp;Subjects&nbsp;:=&nbsp;&Pi;{&nbsp;Algebra&nbsp;∥&nbsp;Geometry&nbsp;∥&nbsp;Calculus&nbsp;∥&nbsp;SymbolicLanguage&nbsp;};
+
+&nbsp;&nbsp;Expr&rarr;Soln&nbsp;:&nbsp;Lens&nbsp;:=&nbsp;(s:Subject)&nbsp;&rarr;
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;s&nbsp;with
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Algebra&nbsp;&rarr;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;repr&quot;,&nbsp;{eqn,&nbsp;relation}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;meth&quot;,&nbsp;{transform,&nbsp;rewrite}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;crit&quot;,&nbsp;{equality,&nbsp;substitution,&nbsp;proof})
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Geometry&nbsp;&rarr;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;repr&quot;,&nbsp;{figure,&nbsp;axiom}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;meth&quot;,&nbsp;{construction,&nbsp;proof}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;crit&quot;,&nbsp;{constraints,&nbsp;deduction,&nbsp;proof})
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;Calculus&nbsp;&rarr;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;repr&quot;,&nbsp;{function,&nbsp;limit,&nbsp;series}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;meth&quot;,&nbsp;{differentiate,&nbsp;integrate,&nbsp;optimize,&nbsp;solveDE}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;crit&quot;,&nbsp;{derivativeCheck,&nbsp;limitCheck,&nbsp;convergence,&nbsp;proof})
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;SymbolicLanguage&nbsp;&rarr;&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;repr&quot;,&nbsp;{syntax,&nbsp;types,&nbsp;semantics}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;meth&quot;,&nbsp;{evaluate,&nbsp;reduce,&nbsp;rewrite,&nbsp;proof,&nbsp;typeCheck}),
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&quot;crit&quot;,&nbsp;{typingJudgment,&nbsp;normalization,&nbsp;soundness,&nbsp;completeness,&nbsp;proof})
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_&nbsp;&rarr;&nbsp;&empty;;
+
+&nbsp;&nbsp;SimJ(S:Set(Symbol),&nbsp;T:Set(Symbol))&nbsp;:&nbsp;Real&nbsp;:=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|S&nbsp;&cap;&nbsp;T|&nbsp;/&nbsp;|S&nbsp;&cup;&nbsp;T|;
+
+&nbsp;&nbsp;SimDim(X,&nbsp;Y,&nbsp;L:Lens)&nbsp;:&nbsp;{method:Real,&nbsp;criterion:Real}&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mX&nbsp;:=&nbsp;second(&nbsp;(&quot;meth&quot;,?)&nbsp;&nbsp;&isin;&nbsp;L(X)&nbsp;);&nbsp;&nbsp;mY&nbsp;:=&nbsp;second(&nbsp;(&quot;meth&quot;,?)&nbsp;&nbsp;&isin;&nbsp;L(Y)&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cX&nbsp;:=&nbsp;second(&nbsp;(&quot;crit&quot;,?)&nbsp;&nbsp;&isin;&nbsp;L(X)&nbsp;);&nbsp;&nbsp;cY&nbsp;:=&nbsp;second(&nbsp;(&quot;crit&quot;,?)&nbsp;&nbsp;&isin;&nbsp;L(Y)&nbsp;);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{&nbsp;method&nbsp;:=&nbsp;SimJ(mX,mY),&nbsp;criterion&nbsp;:=&nbsp;SimJ(cX,cY)&nbsp;};
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;Sim(X,&nbsp;Y,&nbsp;L:Lens)&nbsp;:&nbsp;Real&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;:=&nbsp;SimDim(X,Y,L);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(d.method&nbsp;+&nbsp;d.criterion)&nbsp;/&nbsp;3;&nbsp;&nbsp;&nbsp;//&nbsp;&divide;3&nbsp;leaves&nbsp;room&nbsp;for&nbsp;repr&nbsp;later
+&nbsp;&nbsp;}
+
+&nbsp;&nbsp;S_AG&nbsp;&nbsp;:=&nbsp;Sim(Algebra,&nbsp;&nbsp;Geometry,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.07
+&nbsp;&nbsp;S_AC&nbsp;&nbsp;:=&nbsp;Sim(Algebra,&nbsp;&nbsp;Calculus,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.06
+&nbsp;&nbsp;S_AS&nbsp;&nbsp;:=&nbsp;Sim(Algebra,&nbsp;&nbsp;SymbolicLanguage,Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.10
+&nbsp;&nbsp;S_GC&nbsp;&nbsp;:=&nbsp;Sim(Geometry,&nbsp;Calculus,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.06
+&nbsp;&nbsp;S_GS&nbsp;&nbsp;:=&nbsp;Sim(Geometry,&nbsp;SymbolicLanguage,Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.10
+&nbsp;&nbsp;S_CS&nbsp;&nbsp;:=&nbsp;Sim(Calculus,&nbsp;SymbolicLanguage,Expr&rarr;Soln);&nbsp;&nbsp;&nbsp;//&nbsp;&asymp;&nbsp;0.04
+
+&nbsp;&nbsp;Notes&nbsp;:=&nbsp;&quot;&quot;&quot;
+&nbsp;&nbsp;&bull;&nbsp;Representation&nbsp;sets&nbsp;are&nbsp;disjoint&nbsp;to&nbsp;keep&nbsp;expressions&nbsp;distinct;&nbsp;add&nbsp;weight&nbsp;later&nbsp;if&nbsp;desired.
+&nbsp;&nbsp;&bull;&nbsp;Peaks:&nbsp;Algebra&harr;Symbolic&nbsp;via&nbsp;{rewrite},&nbsp;Geometry&harr;Symbolic&nbsp;via&nbsp;{proof}.
+&nbsp;&nbsp;&bull;&nbsp;If&nbsp;you&nbsp;want&nbsp;a&nbsp;0&ndash;1&nbsp;scale&nbsp;using&nbsp;only&nbsp;method+criterion,&nbsp;divide&nbsp;by&nbsp;2&nbsp;instead&nbsp;of&nbsp;3.
+&nbsp;&nbsp;&quot;&quot;&quot;;
+}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </pre>
+        </div>
+        <h2>Section 6 — Dual Audience Integration</h2>
+        <div>
+        <p><strong>Partition the audience:</strong> Π{ <em>Human</em> ∥ <em>AI</em> } Ψ LensMeaning → <em>Integrated</em>.</p>
+        <p>Shared aims: clarity, coherence, usefulness. Human adds narrative & metaphor; AI adds precision & composability. The document itself is the shared surface.</p>
+        </div>
+        <h3>Optional SLF block for audience partition</h3>
+        <div>
+        <!-- SLF code placeholder: Π{Human ∥ AI} and Ψ specialization -->
+        <pre>
+        <code class="language-slf">&Pi;{&nbsp;Human&nbsp;∥&nbsp;AI&nbsp;}&nbsp;&Psi;&nbsp;LensMeaning
+&rarr;&nbsp;{&nbsp;Assessment&nbsp;:=&nbsp;Integrated,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detail&nbsp;:=&nbsp;{&nbsp;shared&nbsp;:=&nbsp;{&nbsp;clarity,&nbsp;coherence,&nbsp;usefulness&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contrasts&nbsp;:=&nbsp;{&nbsp;Human:narrative&nbsp;&and;&nbsp;metaphor&nbsp;&and;&nbsp;lived_context,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AI:precision&nbsp;&and;&nbsp;consistency&nbsp;&and;&nbsp;composability&nbsp;}&nbsp;}&nbsp;};
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </pre>
+        </div>
+        Doc ID: SYM-CORE-PARTITION-DEMO • Version: 0.2 (Refreshed)
+        Designed for SLF execution & human reading
+        </div>
+
+        <hr>
+<h3>Source Attribution</h3>
+<ul>
+  <li><strong>Source:</strong> Symbolic Reasoning Partner (SRP)</li>
+  <li><strong>Status:</strong> Contribution (Demo / Primer)</li>
+  <li><strong>Relation:</strong> ΔDialectic • ΠPartitions • ΨLens</li>
+  <li><strong>Intended Use:</strong> Fresh-session primer for SRP (Human ∥ AI dual audience)</li>
+  <li><strong>Doc ID:</strong> SYM-CORE-PARTITION-DEMO • Version: 0.2 (Refreshed)</li>
+</ul>
+<!-- #CONTENT# END --></body>
+</html>
+
