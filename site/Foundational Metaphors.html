@@ -2,7 +2,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  
+  <meta name="header-version" content="1.1.0" />
+
   <style>
     body{font-family:Arial,sans-serif;line-height:1.6;margin:20px;color:#333;}
     h1,h2{color:#2c3e50;}
@@ -117,6 +118,12 @@
 
       margin:4px;padding:8px;border:2px solid #333;border-radius:16px;
     }
+
+    .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .slf-brick h3{margin-top:0}
+    .slf-brick h4{margin:0.6rem 0 0.25rem}
+
   </style>
 
   <style>
@@ -198,6 +205,7 @@
       UnwrapPreCode(baseElement);
       PrepareAndDecorateFramework(baseElement);
       PreparePromptAreas(baseElement);
+      PrepareAndDecorateBricks(baseElement)
       RenderMarkdownAreas(baseElement);
       AddCopyButtons(baseElement);
 
@@ -428,6 +436,35 @@
       });
     }
 
+    function PrepareAndDecorateBricks(baseElement)
+    {
+
+      const selectedElementsNodeList = document.querySelectorAll('.slf-brick');
+
+      // 2. Convert the NodeList to an array (a "list" in JavaScript)
+      // This allows using array methods like `reverse()` and `forEach()`.
+      const elementsArray = Array.from(selectedElementsNodeList);
+
+      for (let i = selectedElementsNodeList.length - 1; i >= 0; i--) {
+        const brick= selectedElementsNodeList[i];
+
+            const text = htmlStrip(brick.outerHTML);
+            const button = document.createElement('button');
+            button.type = "button";
+            button.textContent = '📋 Copy brick';
+            button.classList.add("copy-content-button");
+
+            button.addEventListener('click', ()=>{
+              navigator.clipboard.writeText(text).then(()=>{
+                button.innerText = "✅ Prepared and Copied!";
+                setTimeout(()=> button.innerText = "Copy brick", 2000);
+              }).catch(err=> alert("Failed to copy content: " + err));
+            });
+
+            brick.append(button);
+        }
+    }
+
     // ─────────────────────────────────────────────────────────
     // 3) Markdown Areas (per-block guard)
     // ─────────────────────────────────────────────────────────
@@ -619,4 +656,3 @@ A&nbsp;constellation&nbsp;for&nbsp;Human&nbsp;∥&nbsp;AI&nbsp;dialogue.
 </code></pre>
 <!-- #CONTENT# END --></body>
 </html>
-
