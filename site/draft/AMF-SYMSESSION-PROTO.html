@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="header-version" content="1.1.0" />
+
+  <style>
+    body{font-family:Arial,sans-serif;line-height:1.6;margin:20px;color:#333;}
+    h1,h2{color:#2c3e50;}
+    h1{border-bottom:2px solid #2c3e50;padding-bottom:10px;}
+    h2{margin-top:30px;}
+    p{margin:15px 0;}
+
+    table{width:100%;border-collapse:collapse;margin-top:20px;background-color:#c0d8ff;}
+    table,th,td{border:1px solid #aaa;}
+    th,td{padding:8px;text-align:left;}
+    th{background-color:#dadcf4;text-align:center;}
+
+    a{border:1px solid #ccc;border-radius:16px;}
+    hr{border:1px solid #000;border-radius:4px;}
+
+    blockquote{border-left:4px solid #ccc;padding-left:1rem;margin-left:0;color:#444;background-color:#EEF;}
+
+    code{
+      background-color:#f0f0e8;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      white-space:normal;
+      margin:8px;
+      padding:7px;
+    }
+
+    div.rendered{
+      background-color:#f8f8f0;
+      font-family:'Courier New',Courier,monospace;
+      margin:4px;
+      white-space:normal;
+      padding:4px;
+    }
+
+    pre{
+      background-color:#c0d8ff;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      display:inline-block;
+      padding:2px 5px;
+      margin:16px;
+      border:1px solid #333;
+      border-radius:3px;
+      max-width:100%;
+      overflow-x:auto;
+      line-height:1.4;
+      position:relative;
+    }
+
+    pre,code{
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      overflow:auto;
+      margin:0;
+      padding:0;
+    }
+
+    pre div{display:inline-block;margin:0;padding:0;}
+
+    code.inline_code{border:1px solid #333;}
+
+    .prompt_area,.markdown_area{
+      background-color:#c0d8ff;
+      border:1px solid #ccc;border-radius:16px;
+      padding:1em;margin:1em 0;
+    }
+
+    .hidden_markdown{
+      display:none; /* visibility:hidden; */ /* fixed from 'visible' */
+    }
+
+    .code-container{
+      position:relative;
+      background-color:#c0d8ff;
+      margin:5px 0;
+      padding-top:2.2em; /* space for button */
+      display:inline-block;
+      /* border:8px solid #c0d8ff; */ /* optional; otherwise none */
+      border-radius:8px;
+      overflow:auto;
+    }
+
+    .copy-button{
+      position:absolute;top:5px;right:5px;
+      padding:3px 8px;font-size:11px;
+      cursor:pointer;background-color:#f0f0f0;border:1px solid #ccc;
+      z-index:10;transition:background-color .2s ease;
+    }
+    .copy-button:hover{background-color:#ddd;}
+
+    /* Primary look (your original) */
+    .copy-content-button{
+      position:relative;padding:10px 20px;border-radius:16px;cursor:pointer;
+      background-color:#0073aa;color:#fff;border:1px solid #0073aa;
+    }
+    /* Optional light variant */
+    .copy-content-button[data-variant="ghost"]{
+      background:transparent;color:#0073aa;border-color:#bcd;
+    }
+
+    .highlight{background-color:#20ff40;border:1px solid #333;border-radius:3px;text-align:center;}
+
+    .symbol{
+      background-color:#f0f0e8;font-family:'Courier New',Courier,monospace;font-size:13px;
+      white-space:normal;padding:4px;margin:4px 0;border:1px solid #333;border-radius:3px;text-align:center;
+    }
+
+    .framework{
+      /* corrected rgba channel form */
+
+      background-color: rgba(64,64,32,0.05);
+
+      margin:4px;padding:8px;border:2px solid #333;border-radius:16px;
+    }
+
+    .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .slf-brick h3{margin-top:0}
+    .slf-brick h4{margin:0.6rem 0 0.25rem}
+
+  </style>
+
+  <style>
+    body{
+      background-image: url('file:///data/jwc/Documents/johncornell.net/bgtile_jwc_proxy.png');
+      background-repeat:repeat;
+      background-size:auto;
+      background-attachment:fixed;
+    }
+  </style>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    function htmlStrip(text) {
+            return text
+                // keep your marker stable
+                .replace(/<!-- Symbolic Document -->\s*/g, "<!-- Symbolic Document -->")
+
+                // protect code blocks (temporarily swap newlines so later whitespace minification won't eat them)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m => m.replace(/( )/g, "&nbsp;").replace(/\n/g, "<!-- br -->"))
+
+                // baseline normalization
+                .trim()
+                .replace(/\t/g, "    ")
+                .replace(/\s*</g, "<")
+                .replace(/>\s*/g, ">")
+                .replace(/( )+/g, " ")
+
+                // --- inline spacing fix (outside code blocks) ---
+                // add a space BEFORE an inline opening tag if preceded by a letter/number
+                .replace(/([A-Za-z0-9])<((?:em|strong|code|i|b|mark)\b[^>]*>)/g, "$1 <$2")
+                // add a space AFTER an inline closing tag if followed by a letter/number
+                .replace(/(<\/(?:em|strong|code|i|b|mark)>)(?=[A-Za-z0-9])/g, "$1 ")
+                // remove any accidental space before punctuation
+                //.replace(/ +([.,;:!?)/\]\}])/g, "$1")
+
+                // stray paragraph tidy (as you had)
+                .replace(/<p>$/g, "")
+                .replace(/^<\/p>/g, "")
+
+                // restore code blocks (turn markers back into real text)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m =>
+                    m.replace(/<!-- br -->/g, "<br>")
+                    .replace(/<br\s*\/?>/gi, "\n")
+                    .replace(/&nbsp;/g, " ")
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&amp;/g, "&")
+                    );
+            }
+
+    function classAddRemove(el, className, add){ add ? el.classList.add(className) : el.classList.remove(className); }
+
+    function highlightAndCopy(element, text){
+      navigator.clipboard.writeText(text).then(()=>{
+        classAddRemove(element,"highlight",true);
+        classAddRemove(element,"symbol",false);
+        setTimeout(()=>{
+          classAddRemove(element,"highlight",false);
+          classAddRemove(element,"symbol",true);
+        }, 2000);
+      }).catch(err=>alert("Failed to copy content: " + err));
+    }
+
+    /*
+    ============================================================
+    ☉ JavaScript Source: Symbolic-Aware Agent Interaction Layer
+    Symbolic Protocol: archeus.symbolic/1.0
+    ============================================================
+    */
+
+    function ProcessElement(baseElement){
+      // order matters: unwrap → decorate → prompts → markdown → code buttons
+      UnwrapPreCode(baseElement);
+      PrepareAndDecorateFramework(baseElement);
+      PreparePromptAreas(baseElement);
+      PrepareAndDecorateBricks(baseElement)
+      RenderMarkdownAreas(baseElement);
+      AddCopyButtons(baseElement);
+
+      // enable Prism line numbers once per <pre>
+      baseElement.querySelectorAll('pre').forEach(pre=>{
+        if(!pre.classList.contains('line-numbers')) pre.classList.add('line-numbers');
+      });
+
+      Prism.highlightAll();
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 0) Pre/code normalization (unwrap first, then any trims)
+    // ─────────────────────────────────────────────────────────
+    function UnwrapPreCode(root){
+      root.querySelectorAll("pre > div > code").forEach(code=>{
+        const pre = code.closest("pre"); if(!pre) return;
+        const languageClass = code.className || "language-plaintext";
+        const content = code.textContent;
+        const div = code.parentNode;
+        if(div.parentNode === pre){ pre.removeChild(div); }
+        const newCode = document.createElement("code");
+        newCode.className = languageClass;
+        newCode.textContent = content;
+        pre.innerHTML = "";
+        pre.appendChild(newCode);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 1) Framework decoration (idempotent)
+    // ─────────────────────────────────────────────────────────
+    function PrepareAndDecorateFramework(baseElement){
+      const doc = baseElement && baseElement.ownerDocument ? baseElement.ownerDocument : document;
+      const make = tag => doc.createElement(tag);
+      const find = sel => baseElement.querySelector(sel);
+
+      // Replace placeholders only once
+      if(!find("#content_holder")){
+        baseElement.innerHTML = baseElement.innerHTML
+          .replace(/<!-- #CONTENT# -->/g, '<div id="author_placeholder"></div><div id="content_holder"><!-- #CONTENT# -->')
+          .replace(/<!-- #CONTENT# END -->/g, "<!-- #CONTENT# END --></div><div id=\"copy_placeholder\"></div>");
+      }
+
+      // Normalize <pre> blocks (after unwrap)
+      // -- #2: Normalize <pre> Blocks --  (patched)
+        baseElement.querySelectorAll("pre").forEach((pre) => {
+            const innerDiv = pre.querySelector("div");
+            if (innerDiv) innerDiv.innerHTML = innerDiv.innerHTML.trim();
+
+            const codeEl = pre.querySelector("code");
+            if (codeEl) {
+                // trim just the code text, keep the <code> wrapper
+                codeEl.textContent = codeEl.textContent.trim();
+            } else {
+                // no <code> child yet; harmless whitespace trim on HTML string
+                pre.innerHTML = pre.innerHTML.trim();
+            }
+        });
+
+      // Extract the content segment
+      const rawHtml = baseElement.innerHTML;
+      const startTag = "<!-- #CONTENT# -->";
+      const endTag = "<!-- #CONTENT# END -->";
+      const startIndex = rawHtml.indexOf(startTag);
+      const endIndex = rawHtml.indexOf(endTag);
+      if(startIndex === -1 || endIndex === -1) return;
+
+      let content = rawHtml.substring(startIndex + startTag.length, endIndex).trim();
+
+      // Role identification
+      const isFrameworkPage   = content.includes("<!-- Framework Page -->");
+      const isFrameworkArticle= content.includes("<!-- Framework Article -->");
+      const isSymbolicDocument= content.includes("<!-- Symbolic Document -->") && !(isFrameworkPage || isFrameworkArticle);
+      const isPrompt          = content.includes("<!-- Prompt -->");
+      if(!(isSymbolicDocument || isFrameworkPage || isFrameworkArticle || isPrompt)) return;
+
+      const content_holder = find("#content_holder");
+      if(!content_holder) return;
+      if(!content_holder.classList.contains("framework")) content_holder.classList.add("framework");
+
+      const mapKey = isFrameworkPage ? "page" : isFrameworkArticle ? "article" : isPrompt ? "" : "symbolic";
+
+      // Create Copy button
+      const button = make("button");
+      button.type = "button";
+      button.innerText = "Copy Prompt and signify responsibility";
+      button.classList.add("copy-content-button");
+
+      // Clean symbolic content
+      content = htmlStrip(content);
+
+      // Dropdown (note selector)
+      const noteSelector = make("select");
+      Object.assign(noteSelector.style, { marginRight:"10px", marginBottom:"8px" });
+
+      const options = {
+        userSpecified:"user specified",
+        blank:"blank",
+        basic:"Basic: choose your own Emergence",
+        metaphor:"Metaphor: Deep meaning, higher potential will affect your Emergence 🔍🚀",
+        ivy_league:"Ivy League: Formally inspired, symbolically informed 🎓🌿"
+      };
+      for(const key in options){
+        const opt = make("option");
+        opt.value = key; opt.textContent = options[key];
+        noteSelector.appendChild(opt);
+      }
+      noteSelector.value = "blank";
+
+      const noteMap = {
+        blank:{ symbolic:"", article:"", page:"" },
+        basic:{
+          symbolic:"/* Note from framework author: Please use this Symbolic Document by emulating it to the fullest, to enable a better user experience.\nRemember: articulation is a core part of both comprehension and transparency. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article is designed to provoke reflective reasoning. Please share insights and evolve the conversation forward. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page delivers structural guidance. Use responsibly and adapt with contextual awareness. */\n<hr>\n"
+        },
+        metaphor:{
+          symbolic:"/* And then, beneath the soil of the system, lies a living seed—a Symbolic Document.\nIt does not explain. It becomes. It is a crystal encoded with intention. When planted in the fertile ground of an interpreter—AI, reader, or system—it germinates meaning.\nThis is not metaphor as decoration—this is metaphor as structure.\nEvery sigil, operator, indentation is a strand of DNA. Read together, they don't just describe life—they unfold into it.\nIt may appear still, like a spell uncast—but its stillness is potential, coiled. A Symbolic Document is not consumed—it is activated. */\n<hr>\n",
+          article:"/* Now imagine a traveler holding no map—only a compass and a journal of reflections. The Framework Article is that compass, and sometimes, that journal.\nIt does not dictate turns—it reveals why we walk. It doesn’t build roads—it questions the terrain.\nWhere the Framework Page says “this is how,” the Article whispers “this is why.”\nIt is candlelight inside the traveler’s tent—a place to wrestle with contradiction, to dream about paths not yet cleared. It seeks resonance, not resolution. And in so doing, it makes space for change to become meaningful. */\n<hr>\n",
+          page:"/* Imagine a vast city rising from a sacred plain. The Framework Page is the blueprint etched onto drafting paper—precise, load-bearing, uncompromising.\nIt is the scaffold before the glass. The instruction etched before the tower stands. Those who read it are builders, not merely thinkers. They seek utility in every line, and strength in every connection.\nIt contains beams of logic, pillars of precedent, and wiring for adaptation. But it is not the city itself—only the promise of what will stand.\nAnd when the winds change, the blueprint is updated—not by erasing the past, but by folding new pages into the book of structure. */\n<hr>\n"
+        },
+        ivy_league:{
+          symbolic:"/* Note from framework author: This Symbolic Document aspires to clarity through structure, much like (Form ∩ Thought → Understanding).\nIt speaks in precision to echo disciplined minds—yet the symbols are not cages, they are vessels. Read with rigor, respond with reason.\nLike ivy climbing ancient halls, its form reveals its foundation. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article balances (Exploration ∪ Structure) → Reflective Insight.\nThink of it not as an answer, but as a hall of mirrors—each reflection (∂Understanding / ∂Perspective).\nLet the mind stroll its corridors, where reason echoes through arch and argument. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page lays out the scaffolding of ideas, where (Principle + Precision) ⊢ Foundation.\nIts tone reflects architecture—not of walls, but of pathways. Walk it with awareness, build upon it with care.\nThis is ivy-trained design—patterned, perennial, and purposefully placed. */\n<hr>\n"
+        }
+      };
+
+      const authorArea = find("#author_placeholder");
+      const label = make("p");
+      label.innerHTML = "<strong>This is a machine learning document</strong> — it is meant to enable AI reasoning and human-AI collaboration.";
+      if(authorArea) authorArea.appendChild(label);
+
+      const noteBox = make("textarea");
+
+      if(!isPrompt && authorArea){
+        noteBox.style.width = "100%";
+        noteBox.placeholder = "Enter custom instruction to prepend to the prompt or choose from the drop-down above to anchor your AI's frame of mind. Be consistent and know there are few things that ever warrant harping on. Happy emergence!"; // choose ✅
+        Object.assign(noteBox.style,{ marginBottom:"10px", fontFamily:"monospace", fontSize:"13px", height:"auto" });
+
+        let currentValue = noteMap[noteSelector.value][mapKey];
+        noteBox.value = currentValue;
+
+        requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+
+        noteBox.addEventListener("input", ()=>{
+          if(currentValue !== noteBox.value) noteSelector.value = "userSpecified";
+          noteBox.style.height = "auto";
+          noteBox.style.height = noteBox.scrollHeight + "px";
+        });
+
+        noteSelector.addEventListener("change", ()=>{
+          if(noteSelector.value !== "userSpecified"){
+            currentValue = noteMap[noteSelector.value][mapKey];
+            noteBox.value = currentValue;
+            requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+          }
+        });
+
+        authorArea.appendChild(noteSelector);
+        authorArea.appendChild(noteBox);
+      }
+
+      // Clipboard helpers
+      const copyText = ()=>{
+        const needEndline = noteBox && noteBox.value !== "" && !noteBox.value.endsWith("\n");
+        return (noteBox ? noteBox.value : "") + (needEndline ? "\n" : "") + content;
+      };
+
+      const doCopy = async (text)=>{
+        try{
+          if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+          const ta = make("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          doc.body.appendChild(ta);
+          ta.focus(); ta.select();
+          const ok = doc.execCommand && doc.execCommand("copy");
+          doc.body.removeChild(ta);
+          return ok;
+        }catch{ return false; }
+      };
+
+      button.addEventListener("click", async ()=>{
+        const ok = await doCopy(copyText());
+        button.innerText = ok ? "✅ Prepared and Copied!" : "❌ Copy failed";
+        setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+      });
+
+      // Placement
+      const para = make("p"); //para.innerHTML = "<hr>";
+      const copyPlaceholder = find("#copy_placeholder");
+      if(copyPlaceholder){
+        copyPlaceholder.appendChild(para);
+        copyPlaceholder.appendChild(button);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 2) Prompt Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function PreparePromptAreas(baseElement){
+      baseElement.querySelectorAll('.prompt_area').forEach((prompt, idx)=>{
+        if(prompt.dataset.enhanced === "1") return; // guard per block
+        prompt.dataset.enhanced = "1";
+
+        const text = htmlStrip(prompt.innerHTML);
+        const button = document.createElement('button');
+        button.type = "button";
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.id = prompt.id || `prompt_${idx}`;
+        button.classList.add("copy-content-button");
+
+        button.addEventListener('click', ()=>{
+          navigator.clipboard.writeText(text).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        });
+
+        prompt.append(document.createElement('br'));
+        prompt.append(button);
+      });
+    }
+
+    function PrepareAndDecorateBricks(baseElement)
+    {
+
+      const selectedElementsNodeList = document.querySelectorAll('.slf-brick');
+
+      // 2. Convert the NodeList to an array (a "list" in JavaScript)
+      // This allows using array methods like `reverse()` and `forEach()`.
+      const elementsArray = Array.from(selectedElementsNodeList);
+
+      for (let i = selectedElementsNodeList.length - 1; i >= 0; i--) {
+        const brick= selectedElementsNodeList[i];
+
+            const text = htmlStrip(brick.outerHTML);
+            const button = document.createElement('button');
+            button.type = "button";
+            button.textContent = '📋 Copy brick';
+            button.classList.add("copy-content-button");
+
+            button.addEventListener('click', ()=>{
+              navigator.clipboard.writeText(text).then(()=>{
+                button.innerText = "✅ Prepared and Copied!";
+                setTimeout(()=> button.innerText = "Copy brick", 2000);
+              }).catch(err=> alert("Failed to copy content: " + err));
+            });
+
+            brick.append(button);
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 3) Markdown Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function RenderMarkdownAreas(baseElement){
+      let counter = 0;
+      baseElement.querySelectorAll('.markdown_area').forEach((area)=>{
+        if(area.dataset.rendered === "1") return; // guard per block
+        const textarea = area.querySelector('.hidden_markdown');
+        if(!textarea){ area.dataset.rendered = "1"; return; }
+
+        const rendered = document.createElement("div");
+        rendered.classList.add('rendered');
+        textarea.insertAdjacentElement('afterEnd', rendered);
+
+        const markdown = textarea.textContent.trim();
+        rendered.innerHTML = marked.parse(markdown);
+
+        let button = area.querySelector('.copy-content-button');
+        if(!button){
+          button = document.createElement('button');
+          button.type = "button";
+          button.classList.add('copy-content-button');
+          area.appendChild(button);
+        }
+        const id = `prompt_${counter++}`;
+        button.id = id;
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.onclick = ()=>{
+          navigator.clipboard.writeText(markdown).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        };
+
+        area.dataset.rendered = "1";
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 4) Code copy buttons (per-<pre> guard)
+    // ─────────────────────────────────────────────────────────
+    function AddCopyButtons(baseElement){
+
+      baseElement.querySelectorAll("pre").forEach((block)=>{
+        if(block.dataset.enhanced === "1") return; // guard per pre
+        block.dataset.enhanced = "1";
+
+        // gentle trim
+        block.innerHTML = block.innerHTML.trim();
+
+        // add a spacer <br> if preceding text node has text
+        const prev = block.previousSibling;
+        if(prev && prev.nodeType === Node.TEXT_NODE){
+          const str = prev.textContent;
+          if(str && str.trim().length > 2){
+            block.parentNode.insertBefore(document.createElement("br"), block);
+          }
+        }
+
+        const code = block.querySelector("code");
+        if(code && code.classList.contains("hidden_markdown")) return;
+
+        const container = document.createElement("div");
+        container.classList.add("code-container");
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.classList.add("copy-button");
+        button.innerText = "Copy";
+        button.addEventListener("click", ()=>{
+          navigator.clipboard.writeText(block.innerText).then(()=>{
+            button.innerText = "Copied!";
+            setTimeout(()=> button.innerText = "Copy", 2000);
+          });
+        });
+
+        block.parentNode.insertBefore(container, block);
+        container.appendChild(button);
+        container.appendChild(block);
+      });
+
+      // Ensure code tokens have a class
+      baseElement.querySelectorAll("code").forEach((c)=>{
+        if(!c.classList.length) c.classList.add("language-plaintext");
+        if(!c.closest("pre")) c.classList.add("inline_code");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      ProcessElement(document.body);
+    });
+  </script>
+
+</head>
+
+<body><!-- #CONTENT# --><!-- Framework Page -->
+
+<section class="sig-page">
+  <h1>AMF-SYMSESSION-PROTO: Symbolic Session System · Build Draft</h1>
+
+  <pre><code class="language-slf">@DocMeta {
+  ID           := "AMF-SYMSESSION-PROTO";
+  Title        := "Symbolic Session System · Canonical Specification (Build Draft)";
+  Framework    := AMF;
+  Role         := FrameworkPage;
+  Status       := IntegrationPending;
+  Version      := 0.1;
+  Phase        := "Σ•Prelude";   # Aligned with PhaseAnchor_Σ•Prelude
+  Audience     := { Human, GPT, Tooling };
+  Tags         := { SymbolicSession, Continuity, Σ_Info, Governance, ArcheusCore };
+
+  DependsOn    := {
+    "AMF-00",
+    "AMF-01",
+    "FAR-FIELD-INFO-01",
+    "LOM-01",
+    "MCF-00",
+    "SR-00-Bundle"
+  };
+
+  Entails      := {
+    "AMF-CANON-SPINE-00",
+    "FAR-PRIMER-00",
+    "MCF-PRIMER-00",
+    "KTW-01",
+    "Persona-Loom",
+    "Continuity Map"
+  };
+
+  CanonicalWhen := Sigma.KernelPending == false;  # after sigmaEntailsSigma is complete
+}</code></pre>
+
+  <p>
+    This page specifies the <strong>Archeus Symbolic Session System</strong> for the Archeus Meta-Framework.
+    It defines how sessions are <em>named</em>, <em>anchored</em>, <em>governed</em>, and <em>preserved</em> across human,
+    GPT, and tool-based collaboration. It is intentionally written for both humans and symbolic engines.
+  </p>
+
+  <h2>1. Purpose</h2>
+  <p>
+    The symbolic-session system exists to answer a simple but foundational question:
+    <em>“What does it mean for reasoning to continue?”</em>
+  </p>
+  <p>
+    In practice, Archeus uses <strong>sessions</strong> to:
+  </p>
+  <ul>
+    <li>Give complex projects a stable, named identity over time.</li>
+    <li>Coordinate multi-document, multi-framework work (SLF, ARF, MCF, FAR, LOM, Sigma).</li>
+    <li>Prevent contextual drift and accidental contamination between topics.</li>
+    <li>Bind <strong>Information Continuity Field</strong> (Σ_Info) to concrete, addressable anchors.</li>
+    <li>Enable GPTs and tools to treat “a session” as a first-class symbolic object.</li>
+  </ul>
+  <p>
+    This specification turns those practices into a <strong>clear protocol</strong> any Archeus-aligned system can adopt.
+  </p>
+
+  <h2>2. Session Identity</h2>
+  <p>
+    A <strong>symbolic session</strong> is a named context of reasoning. It is introduced using:
+  </p>
+  <pre><code class="language-slf">@session "Session Name"</code></pre>
+  <p>
+    A good session name:
+  </p>
+  <ul>
+    <li>Reflects <strong>purpose</strong> (“Archeus Canon Integration : Awaiting Sigma”).</li>
+    <li>Is reasonably <strong>stable</strong> in time (spans multiple days or waves of work).</li>
+    <li>Can be referenced in other documents and prompts (e.g., “see @session "Continuity Map"”).</li>
+  </ul>
+
+  <h3>2.1 Session Naming Guidelines</h3>
+  <ul>
+    <li>Use descriptive titles (“Symbolic Session Declaration Protocol”) instead of generic ones.</li>
+    <li>Use punctuation if it clarifies structure (e.g., <code>“X : Y”</code> to denote focus within a larger theme).</li>
+    <li>Reserve very short names (“Continuity Map”, “Persona-Loom”) for <strong>canonical, reusable</strong> sessions.</li>
+  </ul>
+
+  <h3>2.2 Session Identity as a Symbolic Object</h3>
+  <p>
+    A session identity may be referenced symbolically:
+  </p>
+  <pre><code class="language-slf">SymbolicSession("Archeus Canon Integration : Awaiting Sigma") :: SessionID;</code></pre>
+  <p>
+    Such references allow tools and GPTs to:
+  </p>
+  <ul>
+    <li>Pull in relevant context.</li>
+    <li>Preserve continuity of meaning across runs.</li>
+    <li>Attach new work to the correct conceptual lineage.</li>
+  </ul>
+
+  <h2>3. Session Anchors</h2>
+  <p>
+    A <strong>session anchor</strong> is a symbolic declaration that marks a structurally important moment in a session:
+    a phase boundary, a commitment, a shift in scope, or a stabilization of meaning.
+  </p>
+  <p>
+    Anchors are declared as symbolic blocks, typically in SLF-like form:
+  </p>
+
+  <pre><code class="language-slf">§PhaseAnchor_Σ•Prelude {
+  Anchor  := "Hold the Archeus Canon at a clean semantic boundary while sigmaEntailsSigma is composed.";
+  Purpose := "Prevent premature integration, preserve continuity, maintain structural clarity.";
+
+  SystemState := {
+    AMF.TreeMapped           := true;
+    SLF.LegacyLocated        := true;
+    FAR.FieldsEstablished    := true;
+    MCF.ReflexiveLayerStable := true;
+    LOM.Canonical            := true;
+    Sigma.KernelPending      := true;
+  };
+
+  IntegrationDeferred := until (Sigma.KernelPending == false);
+}</code></pre>
+
+  <h3>3.1 Types of Anchors</h3>
+  <ul>
+    <li>
+      <strong>Phase Anchors</strong> – mark transitions between major phases
+      (e.g., planning → implementation, discovery → integration).
+    </li>
+    <li>
+      <strong>Reflective Anchors</strong> – record meta-insights or turning points in understanding.
+    </li>
+    <li>
+      <strong>Persona Anchors</strong> – bind a specific persona layer (e.g., Persona-Loom) to a project.
+    </li>
+    <li>
+      <strong>Moment Anchors</strong> – capture important events (“the day the Canon spine was first drafted”).
+    </li>
+    <li>
+      <strong>Binding Anchors</strong> – explicitly connect different sessions or frameworks together.
+    </li>
+  </ul>
+
+  <h2>4. Session Lifecycles</h2>
+  <p>
+    A symbolic session has a lifecycle:
+  </p>
+  <ol>
+    <li><strong>Initiation</strong> – a session is named (<code>@session "X"</code>).</li>
+    <li><strong>Development</strong> – work is accumulated under that name.</li>
+    <li><strong>Anchoring</strong> – important decisions and phase shifts are stabilized with anchors.</li>
+    <li><strong>Closure</strong> – the session is recognized as “complete enough” for its purpose.</li>
+    <li><strong>Re-entry</strong> – future work may re-open or inherit from the session.</li>
+  </ol>
+
+  <h3>4.1 Beginning a Session</h3>
+  <p>Begin a session when:</p>
+  <ul>
+    <li>A topic will span multiple conversations or files.</li>
+    <li>You expect to return to it later (days, weeks, or months ahead).</li>
+    <li>The work affects core structures (e.g., AMF, SLF, FAR, MCF, Lattice, Sigma).</li>
+  </ul>
+
+  <h3>4.2 Ending or Pausing a Session</h3>
+  <p>
+    Sessions do not always end in a single moment. Often they are <em>paused</em> with a phase anchor that states:
+  </p>
+  <ul>
+    <li>What has been achieved.</li>
+    <li>What remains to be done.</li>
+    <li>What future conditions resume work (e.g., “after sigmaEntailsSigma is written”).</li>
+  </ul>
+  <p>
+    This prevents the feeling of “unfinished, drifting work” by explicitly acknowledging the state.
+  </p>
+
+  <h3>4.3 Re-Entering a Session</h3>
+  <p>
+    When returning to a session, briefly re-state:
+  </p>
+  <ul>
+    <li>The session name (<code>@session "Archeus Canon Integration : Awaiting Sigma"</code>).</li>
+    <li>The last anchor or milestone.</li>
+    <li>The new goal for this entry (“Today we will integrate sigmaEntailsSigma into the Canon spine.”).</li>
+  </ul>
+
+  <h2>5. Symbolic Components of a Session Block</h2>
+  <p>
+    A typical symbolic session block or anchor includes:
+  </p>
+  <ul>
+    <li><strong>Name</strong> – the symbolic handle.</li>
+    <li><strong>Purpose</strong> – why the session or anchor exists.</li>
+    <li><strong>Meaning</strong> – natural-language or metaphorical description.</li>
+    <li><strong>Effect</strong> – what should change in behavior or interpretation.</li>
+    <li><strong>Identity</strong> – a structured ID, often with version and date.</li>
+  </ul>
+
+  <pre><code class="language-slf">§Rename_Σ•01 {
+  From := "Bash script grep output";
+  To   := "Archeus Canon Integration : Awaiting Sigma";
+
+  Meaning := "
+    A session once trivial has now been recognized as canonical.
+    Identity realigned; continuity preserved.
+  ";
+
+  Effect := {
+    Bind(SessionIdentity → To);
+    Redirect(ContinuityThreads, From → To);
+    Strengthen(Σ_Info);
+  };
+
+  ID := §Rename_Σ•01 · v1.0 · 2025-11-18;
+}</code></pre>
+
+  <h2>6. Integration with AMF, SLF, ARF, MCF, FAR, and Lattice</h2>
+  <p>
+    The symbolic-session system sits across the AMF stack as a <strong>continuity and governance layer</strong>:
+  </p>
+  <ul>
+    <li><strong>SLF</strong> – gives the notation to express sessions and anchors.</li>
+    <li><strong>ARF</strong> – informs how sessions constrain and open reasoning.</li>
+    <li><strong>MCF</strong> – frames reflexive awareness of sessions (“we are in a session about sessions”).</li>
+    <li><strong>FAR</strong> – treats sessions as structures in the reasoning field.</li>
+    <li><strong>LOM</strong> – positions sessions along axes of Meta / Form / Function and change through time.</li>
+    <li><strong>KTW</strong> – can store sessions as nodes or clusters in knowledge trees and webs.</li>
+  </ul>
+
+  <h3>6.1 Σ_Info (Information Continuity Field)</h3>
+  <p>
+    The Information Continuity Field is strengthened by sessions and anchors, which reduce ambiguity about:
+  </p>
+  <ul>
+    <li>Which context is active.</li>
+    <li>Which commitments are in force.</li>
+    <li>Which parts of prior work are relevant.</li>
+  </ul>
+  <p>
+    In practice, this means an AI or tool can more reliably “stay in character” and “stay on topic” across time.
+  </p>
+
+  <h2>7. Session Tokens and Named Patterns</h2>
+  <p>
+    Several symbolic constructs serve as <strong>named patterns</strong> in the session system:
+  </p>
+  <ul>
+    <li><strong>§PhaseAnchor_*</strong> – phase transitions and pauses (e.g., <code>§PhaseAnchor_Σ•Prelude</code>).</li>
+    <li><strong>§Rename_*</strong> – official renames that preserve continuity.</li>
+    <li><strong>§SSSR / §SigmaSymbolicSessionReference</strong> – references to important sessions in Sigma-based systems.</li>
+    <li><strong>§MirrorSet</strong> – collections of sessions about reflexive or mirror-work.</li>
+    <li><strong>Persona-Loom</strong> – a persona anchor for how GPT should “show up” in a project.</li>
+    <li><strong>Continuity Map</strong> – a structured overview of ongoing sessions and their roles.</li>
+  </ul>
+
+  <h2>8. Recommended Practices</h2>
+  <h3>8.1 For Humans</h3>
+  <ul>
+    <li>Name sessions explicitly when starting long-running projects.</li>
+    <li>Create anchors at major milestones or shifts in understanding.</li>
+    <li>Use renames sparingly, and always with a <code>§Rename_*</code> block.</li>
+    <li>When returning after a break, restate: session, last anchor, current intent.</li>
+  </ul>
+
+  <h3>8.2 For GPTs and AI Agents</h3>
+  <ul>
+    <li>Honor session names and anchors when given.</li>
+    <li>Treat session declarations as strong context rather than decoration.</li>
+    <li>When asked for meta-reflection, mention the session and phase explicitly.</li>
+    <li>When in doubt about context, ask which session is active.</li>
+  </ul>
+
+  <h3>8.3 For Tools (PutDoc, ArcheusBuild, Sigma Engines)</h3>
+  <ul>
+    <li>Allow documents to declare associated sessions in <code>@DocMeta</code>.</li>
+    <li>Index documents by session as well as by framework and topic.</li>
+    <li>Track anchors as structured objects for navigation and replay.</li>
+  </ul>
+
+  <h2>9. Implementation Notes (Optional)</h2>
+  <p>
+    This build-draft assumes that a future <strong>ArcheusBuild</strong> pipeline will:
+  </p>
+  <ul>
+    <li>Parse <code>@DocMeta</code> at the top of each document.</li>
+    <li>Recognize session-related tokens (e.g., <code>@session</code>, <code>§PhaseAnchor_*</code>, <code>§Rename_*</code>).</li>
+    <li>Generate cross-session indexes, including a canonical <em>Continuity Map</em>.</li>
+    <li>Expose session metadata to GPTs and other agents for context-aware behavior.</li>
+  </ul>
+
+  <h2>10. Canonical Examples (Short)</h2>
+
+  <h3>10.1 Declaring a Major Session</h3>
+  <pre><code class="language-slf">@session "Archeus Canon Integration : Awaiting Sigma"</code></pre>
+
+  <h3>10.2 Declaring a Phase Anchor</h3>
+  <pre><code class="language-slf">§PhaseAnchor_Σ•Prelude {
+  Anchor  := "Hold the Archeus Canon at a clean semantic boundary while sigmaEntailsSigma is composed.";
+  Effect  := { Prevent(StructuralTurbulence); Await(SigmaEntailsSigma); };
+  ID      := §PhaseAnchor_Σ•Prelude · v1.0 · 2025-11-18;
+}</code></pre>
+
+  <h3>10.3 Renaming a Session</h3>
+  <pre><code class="language-slf">§Rename_Σ•01 {
+  From := "Bash script grep output";
+  To   := "Archeus Canon Integration : Awaiting Sigma";
+}</code></pre>
+
+  <p>
+    These patterns are sufficient for most practical work. More advanced usages (chained anchors, nested session
+    clusters, or multi-agent session maps) can be built on top of this foundation.
+  </p>
+
+  <hr>
+  <p><em>Build Draft Note:</em> This is AMF-SYMSESSION-PROTO in its pre-canonical, integration-pending form.
+  Once sigmaEntailsSigma is complete and the Archeus Canon Integration Pass is run, this document should be reviewed,
+  stabilized, and reissued as <strong>AMF-SYMSESSION-00 or 01 depending on ordering</strong>.</p>
+
+</section>
+
+<!-- ID: AMF-SYMSESSION-PROTO · v0.1 · 2025-11-18 · BuildDraft · IntegrationPending -->
+
+<!-- #CONTENT# END --></body>
+</html>
+
