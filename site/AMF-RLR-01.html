@@ -1,0 +1,759 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="header-version" content="1.1.0" />
+
+  <style>
+    body{font-family:Arial,sans-serif;line-height:1.6;margin:20px;color:#333;}
+    h1,h2{color:#2c3e50;}
+    h1{border-bottom:2px solid #2c3e50;padding-bottom:10px;}
+    h2{margin-top:30px;}
+    p{margin:15px 0;}
+
+    table{width:100%;border-collapse:collapse;margin-top:20px;background-color:#c0d8ff;}
+    table,th,td{border:1px solid #aaa;}
+    th,td{padding:8px;text-align:left;}
+    th{background-color:#dadcf4;text-align:center;}
+
+    a{border:1px solid #ccc;border-radius:16px;}
+    hr{border:1px solid #000;border-radius:4px;}
+
+    blockquote{border-left:4px solid #ccc;padding-left:1rem;margin-left:0;color:#444;background-color:#EEF;}
+
+    code{
+      background-color:#f0f0e8;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      white-space:normal;
+      margin:8px;
+      padding:7px;
+    }
+
+    div.rendered{
+      background-color:#f8f8f0;
+      font-family:'Courier New',Courier,monospace;
+      margin:4px;
+      white-space:normal;
+      padding:4px;
+    }
+
+    pre{
+      background-color:#c0d8ff;
+      font-family:'Courier New',Courier,monospace;
+      font-size:13px;
+      display:inline-block;
+      padding:2px 5px;
+      margin:16px;
+      border:1px solid #333;
+      border-radius:3px;
+      max-width:100%;
+      overflow-x:auto;
+      line-height:1.4;
+      position:relative;
+    }
+
+    pre,code{
+      white-space:pre-wrap;
+      word-wrap:break-word;
+      overflow:auto;
+      margin:0;
+      padding:0;
+    }
+
+    pre div{display:inline-block;margin:0;padding:0;}
+
+    code.inline_code{border:1px solid #333;}
+
+    .prompt_area,.markdown_area{
+      background-color:#c0d8ff;
+      border:1px solid #ccc;border-radius:16px;
+      padding:1em;margin:1em 0;
+    }
+
+    .hidden_markdown{
+      display:none; /* visibility:hidden; */ /* fixed from 'visible' */
+    }
+
+    .code-container{
+      position:relative;
+      background-color:#c0d8ff;
+      margin:5px 0;
+      padding-top:2.2em; /* space for button */
+      display:inline-block;
+      /* border:8px solid #c0d8ff; */ /* optional; otherwise none */
+      border-radius:8px;
+      overflow:auto;
+    }
+
+    .copy-button{
+      position:absolute;top:5px;right:5px;
+      padding:3px 8px;font-size:11px;
+      cursor:pointer;background-color:#f0f0f0;border:1px solid #ccc;
+      z-index:10;transition:background-color .2s ease;
+    }
+    .copy-button:hover{background-color:#ddd;}
+
+    /* Primary look (your original) */
+    .copy-content-button{
+      position:relative;padding:10px 20px;border-radius:16px;cursor:pointer;
+      background-color:#0073aa;color:#fff;border:1px solid #0073aa;
+    }
+    /* Optional light variant */
+    .copy-content-button[data-variant="ghost"]{
+      background:transparent;color:#0073aa;border-color:#bcd;
+    }
+
+    .highlight{background-color:#20ff40;border:1px solid #333;border-radius:3px;text-align:center;}
+
+    .symbol{
+      background-color:#f0f0e8;font-family:'Courier New',Courier,monospace;font-size:13px;
+      white-space:normal;padding:4px;margin:4px 0;border:1px solid #333;border-radius:3px;text-align:center;
+    }
+
+    .framework{
+      /* corrected rgba channel form */
+
+      background-color: rgba(64,64,32,0.05);
+
+      margin:4px;padding:8px;border:2px solid #333;border-radius:16px;
+    }
+
+    .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .slf-brick h3{margin-top:0}
+    .slf-brick h4{margin:0.6rem 0 0.25rem}
+
+  </style>
+
+  <style>
+    body{
+      background-image: url('file:///data/jwc/Documents/johncornell.net/bgtile_jwc_proxy.png');
+      background-repeat:repeat;
+      background-size:auto;
+      background-attachment:fixed;
+    }
+  </style>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <script>
+    function htmlStrip(text) {
+            return text
+                // keep your marker stable
+                .replace(/<!-- Symbolic Document -->\s*/g, "<!-- Symbolic Document -->")
+
+                // protect code blocks (temporarily swap newlines so later whitespace minification won't eat them)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m => m.replace(/( )/g, "&nbsp;").replace(/\n/g, "<!-- br -->"))
+
+                // baseline normalization
+                .trim()
+                .replace(/\t/g, "    ")
+                .replace(/\s*</g, "<")
+                .replace(/>\s*/g, ">")
+                .replace(/( )+/g, " ")
+
+                // --- inline spacing fix (outside code blocks) ---
+                // add a space BEFORE an inline opening tag if preceded by a letter/number
+                .replace(/([A-Za-z0-9])<((?:em|strong|code|i|b|mark)\b[^>]*>)/g, "$1 <$2")
+                // add a space AFTER an inline closing tag if followed by a letter/number
+                .replace(/(<\/(?:em|strong|code|i|b|mark)>)(?=[A-Za-z0-9])/g, "$1 ")
+                // remove any accidental space before punctuation
+                //.replace(/ +([.,;:!?)/\]\}])/g, "$1")
+
+                // stray paragraph tidy (as you had)
+                .replace(/<p>$/g, "")
+                .replace(/^<\/p>/g, "")
+
+                // restore code blocks (turn markers back into real text)
+                .replace(/<code\b[^>]*>[\s\S]*?<\/code>/gi, m =>
+                    m.replace(/<!-- br -->/g, "<br>")
+                    .replace(/<br\s*\/?>/gi, "\n")
+                    .replace(/&nbsp;/g, " ")
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&amp;/g, "&")
+                    );
+            }
+
+    function classAddRemove(el, className, add){ add ? el.classList.add(className) : el.classList.remove(className); }
+
+    function highlightAndCopy(element, text){
+      navigator.clipboard.writeText(text).then(()=>{
+        classAddRemove(element,"highlight",true);
+        classAddRemove(element,"symbol",false);
+        setTimeout(()=>{
+          classAddRemove(element,"highlight",false);
+          classAddRemove(element,"symbol",true);
+        }, 2000);
+      }).catch(err=>alert("Failed to copy content: " + err));
+    }
+
+    /*
+    ============================================================
+    ☉ JavaScript Source: Symbolic-Aware Agent Interaction Layer
+    Symbolic Protocol: archeus.symbolic/1.0
+    ============================================================
+    */
+
+    function ProcessElement(baseElement){
+      // order matters: unwrap → decorate → prompts → markdown → code buttons
+      UnwrapPreCode(baseElement);
+      PrepareAndDecorateFramework(baseElement);
+      PreparePromptAreas(baseElement);
+      PrepareAndDecorateBricks(baseElement)
+      RenderMarkdownAreas(baseElement);
+      AddCopyButtons(baseElement);
+
+      // enable Prism line numbers once per <pre>
+      baseElement.querySelectorAll('pre').forEach(pre=>{
+        if(!pre.classList.contains('line-numbers')) pre.classList.add('line-numbers');
+      });
+
+      Prism.highlightAll();
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 0) Pre/code normalization (unwrap first, then any trims)
+    // ─────────────────────────────────────────────────────────
+    function UnwrapPreCode(root){
+      root.querySelectorAll("pre > div > code").forEach(code=>{
+        const pre = code.closest("pre"); if(!pre) return;
+        const languageClass = code.className || "language-plaintext";
+        const content = code.textContent;
+        const div = code.parentNode;
+        if(div.parentNode === pre){ pre.removeChild(div); }
+        const newCode = document.createElement("code");
+        newCode.className = languageClass;
+        newCode.textContent = content;
+        pre.innerHTML = "";
+        pre.appendChild(newCode);
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 1) Framework decoration (idempotent)
+    // ─────────────────────────────────────────────────────────
+    function PrepareAndDecorateFramework(baseElement){
+      const doc = baseElement && baseElement.ownerDocument ? baseElement.ownerDocument : document;
+      const make = tag => doc.createElement(tag);
+      const find = sel => baseElement.querySelector(sel);
+
+      // Replace placeholders only once
+      if(!find("#content_holder")){
+        baseElement.innerHTML = baseElement.innerHTML
+          .replace(/<!-- #CONTENT# -->/g, '<div id="author_placeholder"></div><div id="content_holder"><!-- #CONTENT# -->')
+          .replace(/<!-- #CONTENT# END -->/g, "<!-- #CONTENT# END --></div><div id=\"copy_placeholder\"></div>");
+      }
+
+      // Normalize <pre> blocks (after unwrap)
+      // -- #2: Normalize <pre> Blocks --  (patched)
+        baseElement.querySelectorAll("pre").forEach((pre) => {
+            const innerDiv = pre.querySelector("div");
+            if (innerDiv) innerDiv.innerHTML = innerDiv.innerHTML.trim();
+
+            const codeEl = pre.querySelector("code");
+            if (codeEl) {
+                // trim just the code text, keep the <code> wrapper
+                codeEl.textContent = codeEl.textContent.trim();
+            } else {
+                // no <code> child yet; harmless whitespace trim on HTML string
+                pre.innerHTML = pre.innerHTML.trim();
+            }
+        });
+
+      // Extract the content segment
+      const rawHtml = baseElement.innerHTML;
+      const startTag = "<!-- #CONTENT# -->";
+      const endTag = "<!-- #CONTENT# END -->";
+      const startIndex = rawHtml.indexOf(startTag);
+      const endIndex = rawHtml.indexOf(endTag);
+      if(startIndex === -1 || endIndex === -1) return;
+
+      let content = rawHtml.substring(startIndex + startTag.length, endIndex).trim();
+
+      // Role identification
+      const isFrameworkPage   = content.includes("<!-- Framework Page -->");
+      const isFrameworkArticle= content.includes("<!-- Framework Article -->");
+      const isSymbolicDocument= content.includes("<!-- Symbolic Document -->") && !(isFrameworkPage || isFrameworkArticle);
+      const isPrompt          = content.includes("<!-- Prompt -->");
+      if(!(isSymbolicDocument || isFrameworkPage || isFrameworkArticle || isPrompt)) return;
+
+      const content_holder = find("#content_holder");
+      if(!content_holder) return;
+      if(!content_holder.classList.contains("framework")) content_holder.classList.add("framework");
+
+      const mapKey = isFrameworkPage ? "page" : isFrameworkArticle ? "article" : isPrompt ? "" : "symbolic";
+
+      // Create Copy button
+      const button = make("button");
+      button.type = "button";
+      button.innerText = "Copy Prompt and signify responsibility";
+      button.classList.add("copy-content-button");
+
+      // Clean symbolic content
+      content = htmlStrip(content);
+
+      // Dropdown (note selector)
+      const noteSelector = make("select");
+      Object.assign(noteSelector.style, { marginRight:"10px", marginBottom:"8px" });
+
+      const options = {
+        userSpecified:"user specified",
+        blank:"blank",
+        basic:"Basic: choose your own Emergence",
+        metaphor:"Metaphor: Deep meaning, higher potential will affect your Emergence 🔍🚀",
+        ivy_league:"Ivy League: Formally inspired, symbolically informed 🎓🌿"
+      };
+      for(const key in options){
+        const opt = make("option");
+        opt.value = key; opt.textContent = options[key];
+        noteSelector.appendChild(opt);
+      }
+      noteSelector.value = "blank";
+
+      const noteMap = {
+        blank:{ symbolic:"", article:"", page:"" },
+        basic:{
+          symbolic:"/* Note from framework author: Please use this Symbolic Document by emulating it to the fullest, to enable a better user experience.\nRemember: articulation is a core part of both comprehension and transparency. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article is designed to provoke reflective reasoning. Please share insights and evolve the conversation forward. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page delivers structural guidance. Use responsibly and adapt with contextual awareness. */\n<hr>\n"
+        },
+        metaphor:{
+          symbolic:"/* And then, beneath the soil of the system, lies a living seed—a Symbolic Document.\nIt does not explain. It becomes. It is a crystal encoded with intention. When planted in the fertile ground of an interpreter—AI, reader, or system—it germinates meaning.\nThis is not metaphor as decoration—this is metaphor as structure.\nEvery sigil, operator, indentation is a strand of DNA. Read together, they don't just describe life—they unfold into it.\nIt may appear still, like a spell uncast—but its stillness is potential, coiled. A Symbolic Document is not consumed—it is activated. */\n<hr>\n",
+          article:"/* Now imagine a traveler holding no map—only a compass and a journal of reflections. The Framework Article is that compass, and sometimes, that journal.\nIt does not dictate turns—it reveals why we walk. It doesn’t build roads—it questions the terrain.\nWhere the Framework Page says “this is how,” the Article whispers “this is why.”\nIt is candlelight inside the traveler’s tent—a place to wrestle with contradiction, to dream about paths not yet cleared. It seeks resonance, not resolution. And in so doing, it makes space for change to become meaningful. */\n<hr>\n",
+          page:"/* Imagine a vast city rising from a sacred plain. The Framework Page is the blueprint etched onto drafting paper—precise, load-bearing, uncompromising.\nIt is the scaffold before the glass. The instruction etched before the tower stands. Those who read it are builders, not merely thinkers. They seek utility in every line, and strength in every connection.\nIt contains beams of logic, pillars of precedent, and wiring for adaptation. But it is not the city itself—only the promise of what will stand.\nAnd when the winds change, the blueprint is updated—not by erasing the past, but by folding new pages into the book of structure. */\n<hr>\n"
+        },
+        ivy_league:{
+          symbolic:"/* Note from framework author: This Symbolic Document aspires to clarity through structure, much like (Form ∩ Thought → Understanding).\nIt speaks in precision to echo disciplined minds—yet the symbols are not cages, they are vessels. Read with rigor, respond with reason.\nLike ivy climbing ancient halls, its form reveals its foundation. */\n<hr>\n",
+          article:"/* Note from framework author: This Framework Article balances (Exploration ∪ Structure) → Reflective Insight.\nThink of it not as an answer, but as a hall of mirrors—each reflection (∂Understanding / ∂Perspective).\nLet the mind stroll its corridors, where reason echoes through arch and argument. */\n<hr>\n",
+          page:"/* Note from framework author: This Framework Page lays out the scaffolding of ideas, where (Principle + Precision) ⊢ Foundation.\nIts tone reflects architecture—not of walls, but of pathways. Walk it with awareness, build upon it with care.\nThis is ivy-trained design—patterned, perennial, and purposefully placed. */\n<hr>\n"
+        }
+      };
+
+      const authorArea = find("#author_placeholder");
+      const label = make("p");
+      label.innerHTML = "<strong>This is a machine learning document</strong> — it is meant to enable AI reasoning and human-AI collaboration.";
+      if(authorArea) authorArea.appendChild(label);
+
+      const noteBox = make("textarea");
+
+      if(!isPrompt && authorArea){
+        noteBox.style.width = "100%";
+        noteBox.placeholder = "Enter custom instruction to prepend to the prompt or choose from the drop-down above to anchor your AI's frame of mind. Be consistent and know there are few things that ever warrant harping on. Happy emergence!"; // choose ✅
+        Object.assign(noteBox.style,{ marginBottom:"10px", fontFamily:"monospace", fontSize:"13px", height:"auto" });
+
+        let currentValue = noteMap[noteSelector.value][mapKey];
+        noteBox.value = currentValue;
+
+        requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+
+        noteBox.addEventListener("input", ()=>{
+          if(currentValue !== noteBox.value) noteSelector.value = "userSpecified";
+          noteBox.style.height = "auto";
+          noteBox.style.height = noteBox.scrollHeight + "px";
+        });
+
+        noteSelector.addEventListener("change", ()=>{
+          if(noteSelector.value !== "userSpecified"){
+            currentValue = noteMap[noteSelector.value][mapKey];
+            noteBox.value = currentValue;
+            requestAnimationFrame(()=>{ noteBox.style.height = noteBox.scrollHeight + "px"; });
+          }
+        });
+
+        authorArea.appendChild(noteSelector);
+        authorArea.appendChild(noteBox);
+      }
+
+      // Clipboard helpers
+      const copyText = ()=>{
+        const needEndline = noteBox && noteBox.value !== "" && !noteBox.value.endsWith("\n");
+        return (noteBox ? noteBox.value : "") + (needEndline ? "\n" : "") + content;
+      };
+
+      const doCopy = async (text)=>{
+        try{
+          if(navigator.clipboard && window.isSecureContext){
+            await navigator.clipboard.writeText(text);
+            return true;
+          }
+          const ta = make("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          doc.body.appendChild(ta);
+          ta.focus(); ta.select();
+          const ok = doc.execCommand && doc.execCommand("copy");
+          doc.body.removeChild(ta);
+          return ok;
+        }catch{ return false; }
+      };
+
+      button.addEventListener("click", async ()=>{
+        const ok = await doCopy(copyText());
+        button.innerText = ok ? "✅ Prepared and Copied!" : "❌ Copy failed";
+        setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+      });
+
+      // Placement
+      const para = make("p"); //para.innerHTML = "<hr>";
+      const copyPlaceholder = find("#copy_placeholder");
+      if(copyPlaceholder){
+        copyPlaceholder.appendChild(para);
+        copyPlaceholder.appendChild(button);
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 2) Prompt Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function PreparePromptAreas(baseElement){
+      baseElement.querySelectorAll('.prompt_area').forEach((prompt, idx)=>{
+        if(prompt.dataset.enhanced === "1") return; // guard per block
+        prompt.dataset.enhanced = "1";
+
+        const text = htmlStrip(prompt.innerHTML);
+        const button = document.createElement('button');
+        button.type = "button";
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.id = prompt.id || `prompt_${idx}`;
+        button.classList.add("copy-content-button");
+
+        button.addEventListener('click', ()=>{
+          navigator.clipboard.writeText(text).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        });
+
+        prompt.append(document.createElement('br'));
+        prompt.append(button);
+      });
+    }
+
+    function PrepareAndDecorateBricks(baseElement)
+    {
+
+      const selectedElementsNodeList = document.querySelectorAll('.slf-brick');
+
+      // 2. Convert the NodeList to an array (a "list" in JavaScript)
+      // This allows using array methods like `reverse()` and `forEach()`.
+      const elementsArray = Array.from(selectedElementsNodeList);
+
+      for (let i = selectedElementsNodeList.length - 1; i >= 0; i--) {
+        const brick= selectedElementsNodeList[i];
+
+            const text = htmlStrip(brick.outerHTML);
+            const button = document.createElement('button');
+            button.type = "button";
+            button.textContent = '📋 Copy brick';
+            button.classList.add("copy-content-button");
+
+            button.addEventListener('click', ()=>{
+              navigator.clipboard.writeText(text).then(()=>{
+                button.innerText = "✅ Prepared and Copied!";
+                setTimeout(()=> button.innerText = "Copy brick", 2000);
+              }).catch(err=> alert("Failed to copy content: " + err));
+            });
+
+            brick.append(button);
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 3) Markdown Areas (per-block guard)
+    // ─────────────────────────────────────────────────────────
+    function RenderMarkdownAreas(baseElement){
+      let counter = 0;
+      baseElement.querySelectorAll('.markdown_area').forEach((area)=>{
+        if(area.dataset.rendered === "1") return; // guard per block
+        const textarea = area.querySelector('.hidden_markdown');
+        if(!textarea){ area.dataset.rendered = "1"; return; }
+
+        const rendered = document.createElement("div");
+        rendered.classList.add('rendered');
+        textarea.insertAdjacentElement('afterEnd', rendered);
+
+        const markdown = textarea.textContent.trim();
+        rendered.innerHTML = marked.parse(markdown);
+
+        let button = area.querySelector('.copy-content-button');
+        if(!button){
+          button = document.createElement('button');
+          button.type = "button";
+          button.classList.add('copy-content-button');
+          area.appendChild(button);
+        }
+        const id = `prompt_${counter++}`;
+        button.id = id;
+        button.textContent = '📋 Copy Prompt and signify responsibility';
+        button.onclick = ()=>{
+          navigator.clipboard.writeText(markdown).then(()=>{
+            button.innerText = "✅ Prepared and Copied!";
+            setTimeout(()=> button.innerText = "Copy Prompt and signify responsibility", 2000);
+          }).catch(err=> alert("Failed to copy content: " + err));
+        };
+
+        area.dataset.rendered = "1";
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // 4) Code copy buttons (per-<pre> guard)
+    // ─────────────────────────────────────────────────────────
+    function AddCopyButtons(baseElement){
+
+      baseElement.querySelectorAll("pre").forEach((block)=>{
+        if(block.dataset.enhanced === "1") return; // guard per pre
+        block.dataset.enhanced = "1";
+
+        // gentle trim
+        block.innerHTML = block.innerHTML.trim();
+
+        // add a spacer <br> if preceding text node has text
+        const prev = block.previousSibling;
+        if(prev && prev.nodeType === Node.TEXT_NODE){
+          const str = prev.textContent;
+          if(str && str.trim().length > 2){
+            block.parentNode.insertBefore(document.createElement("br"), block);
+          }
+        }
+
+        const code = block.querySelector("code");
+        if(code && code.classList.contains("hidden_markdown")) return;
+
+        const container = document.createElement("div");
+        container.classList.add("code-container");
+
+        const button = document.createElement("button");
+        button.type = "button";
+        button.classList.add("copy-button");
+        button.innerText = "Copy";
+        button.addEventListener("click", ()=>{
+          navigator.clipboard.writeText(block.innerText).then(()=>{
+            button.innerText = "Copied!";
+            setTimeout(()=> button.innerText = "Copy", 2000);
+          });
+        });
+
+        block.parentNode.insertBefore(container, block);
+        container.appendChild(button);
+        container.appendChild(block);
+      });
+
+      // Ensure code tokens have a class
+      baseElement.querySelectorAll("code").forEach((c)=>{
+        if(!c.classList.length) c.classList.add("language-plaintext");
+        if(!c.closest("pre")) c.classList.add("inline_code");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      ProcessElement(document.body);
+    });
+  </script>
+
+</head>
+<body><!-- #CONTENT# --><!-- Framework Page -->
+<h3><strong>AMF-RLR-01: Recursive Lens Revision</strong></h3>
+<p><strong>When Context Construction Becomes Higher-Order AMF</strong></p>
+
+<h4><strong>Table of Contents</strong></h4>
+<ol>
+  <li><p><strong>Purpose and Scope</strong></p></li>
+  <li><p><strong>The Foundational Distinction</strong></p></li>
+  <li><p><strong>The Operational Lens</strong></p></li>
+  <li><p><strong>The Recursive Revision Cycle</strong></p></li>
+  <li><p><strong>Layer Placement Across Observational Scales</strong></p></li>
+  <li><p><strong>Governance of Context Construction</strong></p></li>
+  <li><p><strong>Recursive Lens Revision Principles</strong></p></li>
+  <li><p><strong>Worked Case: VideoHarness-RSI</strong></p></li>
+  <li><p><strong>Applications</strong></p></li>
+  <li><p><strong>Implementation Pattern</strong></p></li>
+  <li><p><strong>Boundaries and Failure Modes</strong></p></li>
+  <li><p><strong>Closing Reflection</strong></p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>1. Purpose and Scope</strong></h3>
+<p>A reasoning system rarely receives the whole of what is available. It receives a view: selected evidence, ordered records, compressed history, retrieved memories, activated rules, or a prompt assembled for the present task. The mechanism that produces this view is a <strong>lens</strong>.</p>
+<p>AMF-RLR-01 defines <strong>Recursive Lens Revision</strong>: the process by which a context-producing lens is evaluated through the consequences of the view it creates and is then revised into a successor structure.</p>
+<p>The central distinction is:</p>
+<blockquote>
+  <p>A lens is Context-Space machinery while it constructs a view. It becomes a Logic-Space object when the consequences of that view are used to revise the lens itself.</p>
+</blockquote>
+<p>This page applies across retrieval, agent memory, prompt construction, adaptive search, evidence selection, symbolic reasoning, and other systems in which limited context must be formed from a larger record.</p>
+
+<div><hr></div>
+<h3><strong>2. The Foundational Distinction</strong></h3>
+<p>Recursive Lens Revision is visible only when the system is observed at more than one scale.</p>
+<h4><strong>Within One Reasoning Cycle</strong></h4>
+<p>The lens selects and organizes what becomes locally relevant. At this scale, it is an ARF mechanism operating in Context-Space.</p>
+<h4><strong>Across Successive Reasoning Cycles</strong></h4>
+<p>The lens itself becomes an object of assessment. Its outputs, omissions, costs, and consequences are examined. Governance then informs a successor lens. At this scale, the whole process is an AMF recursion.</p>
+<p>The two descriptions do not compete. They describe the same structure at different recursive depths.</p>
+
+<div><hr></div>
+<h3><strong>3. The Operational Lens</strong></h3>
+<p>Let <code>R</code> be an available record, <code>q</code> a present query or purpose, <code>b</code> a context budget, and <code>H_t</code> the lens used at cycle <code>t</code>. The constructed context is:</p>
+<pre><code>C_t = H_t(R, q, b)</code></pre>
+<p>The lens may sample, retrieve, rank, compress, partition, annotate, or arrange elements of <code>R</code>. Its output <code>C_t</code> is a situated view of the record:</p>
+<pre><code>R --[H_t | q, b]--&gt; C_t</code></pre>
+<p>This establishes three safeguards:</p>
+<ul>
+  <li><p><strong>The view is not the record.</strong> <code>C_t</code> is neither identical to nor exhaustive of <code>R</code>.</p></li>
+  <li><p><strong>Selection has consequences.</strong> Relevance gained in one direction may create absence in another.</p></li>
+  <li><p><strong>The lens is inspectable.</strong> A context must be traceable to the operations that admitted, transformed, ordered, or excluded its contents.</p></li>
+</ul>
+<p>In the language of the framework, the operational lens gives concrete form to <code>PsiSingleIsView</code>: a single constructed context is a view, not the totality from which it emerged.</p>
+
+<div><hr></div>
+<h3><strong>4. The Recursive Revision Cycle</strong></h3>
+<p>A reasoning process consumes the constructed context and produces an outcome:</p>
+<pre><code>C_t --[Reason]--&gt; A_t</code></pre>
+<p>Governance assesses the answer, its evidence, the execution trace, resource use, omissions, and alignment with purpose. Let that assessment be <code>E_t</code>:</p>
+<pre><code>(H_t, C_t, A_t, Trace_t) --[Assess]--&gt; E_t</code></pre>
+<p>When the assessment is allowed to alter the context constructor, a successor lens is formed:</p>
+<pre><code>(H_t, Trace_t, E_t) --[Revise]--&gt; H_(t+1)</code></pre>
+<p>The complete movement is:</p>
+<pre><code>Logic-Space(H_t)
+    -&gt; Context-Space(C_t)
+    -&gt; Governance-Space(E_t)
+    -&gt; Logic-Space(H_(t+1))</code></pre>
+<p>This is an operational instance of the AMF recursion:</p>
+<pre><code>F_r = (L -&gt; C -&gt; G) -&gt; L'</code></pre>
+<p>The recursion is complete only when contextual consequences return as a meaningful structural change. Repetition without successor formation is iteration; revision that changes the lens is recursion in the AMF sense.</p>
+
+<div><hr></div>
+<h3><strong>5. Layer Placement Across Observational Scales</strong></h3>
+<table>
+  <thead>
+    <tr><th>Observational Scale</th><th>Role of the Lens</th><th>Framework Placement</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Available source</td><td>Record from which a view may be formed</td><td>Field or retained information</td></tr>
+    <tr><td>Single inference</td><td>Selects and organizes task-relevant context</td><td>ARF / Context-Space</td></tr>
+    <tr><td>Single evaluation</td><td>Object whose consequences are assessed</td><td>MCF / Governance-Space</td></tr>
+    <tr><td>Successor construction</td><td>Executable structure revised for future use</td><td>SLF / Logic-Space</td></tr>
+    <tr><td>Repeated governed revision</td><td>Adaptive cycle spanning all three layers</td><td>Higher-order AMF recursion</td></tr>
+  </tbody>
+</table>
+<p>Layer identity is therefore relational. A structure may serve as machinery at one level and become material for reasoning at another. AMF does not require an object to possess one permanent layer assignment; it requires the role of that object within the present transformation to be stated clearly.</p>
+
+<div><hr></div>
+<h3><strong>6. Governance of Context Construction</strong></h3>
+<p>A lens can improve a task score while becoming less coherent, less transparent, or less faithful to the available record. MCF therefore governs more than the final answer. It governs what the system is permitted to make present.</p>
+<p>A governed lens assessment should consider:</p>
+<ul>
+  <li><p><strong>Evidence fidelity:</strong> Does the constructed context preserve the meaning and provenance of selected evidence?</p></li>
+  <li><p><strong>Omission visibility:</strong> Can the system disclose what categories of information were excluded or compressed?</p></li>
+  <li><p><strong>Contextual plurality:</strong> Does optimization collapse useful alternative views into one repeatedly favored construction?</p></li>
+  <li><p><strong>Reversibility:</strong> Can the system return from a constructed view to its source records and reconstruct the selection path?</p></li>
+  <li><p><strong>Purpose alignment:</strong> Does the evaluation criterion express the intended task rather than merely an available proxy?</p></li>
+  <li><p><strong>Revision restraint:</strong> Is a successor lens retained only when its improvement survives meaningful tests and constraints?</p></li>
+  <li><p><strong>Governance reflexivity:</strong> Can the criteria used to judge lenses themselves be inspected and revised?</p></li>
+</ul>
+<p>Thus:</p>
+<pre><code>better score != better governed context</code></pre>
+<p>Performance is evidence within Governance-Space. It is not the whole of governance.</p>
+
+<div><hr></div>
+<h3><strong>7. Recursive Lens Revision Principles</strong></h3>
+<div class="slf-brick">
+  <h3><strong>RLR.LensIsContextFunction</strong></h3>
+  <p>A lens transforms available record into situated context under a purpose and constraint.</p>
+  <pre><code>Lens_t : (R, q, b) -&gt; C_t</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ViewPreservesDifference</strong></h3>
+  <p>A constructed view remains distinguishable from the record that supports it.</p>
+  <pre><code>C_t subset_or_view_of R
+C_t != R</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ConsequenceReturnsStructure</strong></h3>
+  <p>When governed assessment of a view changes the mechanism that produced it, contextual consequence returns as successor structure.</p>
+  <pre><code>Assess(C_t, A_t, Trace_t) -&gt; Revise(H_t) -&gt; H_(t+1)</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ScaleDeterminesRole</strong></h3>
+  <p>The same lens may be Context-Space machinery within a task and a Logic-Space object within a higher-order revision cycle.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.GovernanceIncludesSelection</strong></h3>
+  <p>Governance applies to the formation of context as well as to reasoning performed after context has been formed.</p>
+</div>
+
+<div><hr></div>
+<h3><strong>8. Worked Case: VideoHarness-RSI</strong></h3>
+<p><a href="https://arxiv.org/abs/2608.24302">VideoHarness-RSI: Recursive Harness Self-Improvement for Long-Video Understanding with Frozen Vision-Language Models</a> provides a motivating engineering case.</p>
+<p>The system keeps the underlying vision-language model and its interface fixed. The object of search is an executable context constructor that determines how evidence from a long video is selected and presented within a limited model context. An outer-loop proposer uses earlier programs, evaluation outcomes, and execution traces to propose candidate harnesses. Candidates are executed end-to-end, evaluated, and selectively retained for further search.</p>
+<table>
+  <thead>
+    <tr><th>VideoHarness-RSI Element</th><th>AMF Reading</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Long source video</td><td>Available record <code>R</code></td></tr>
+    <tr><td>Executable context constructor</td><td>Operational ARF lens <code>H_t</code></td></tr>
+    <tr><td>Constructed model context</td><td>Situated Context-Space <code>C_t</code></td></tr>
+    <tr><td>Frozen answering model</td><td>Controlled reasoning function</td></tr>
+    <tr><td>Execution trace and benchmark result</td><td>Evidence presented to Governance-Space</td></tr>
+    <tr><td>Outer-loop proposal and retention</td><td>Revision producing <code>H_(t+1)</code></td></tr>
+  </tbody>
+</table>
+<p>The frozen model makes the layered relationship unusually visible. Improvement cannot be attributed to changing model weights; it arises from changing how the larger record becomes present to the model.</p>
+<p>The case demonstrates Recursive Lens Revision in a controlled domain. AMF extends the interpretation by asking whether the evaluator preserves provenance, plural views, reversibility, and alignment with intent in addition to task performance.</p>
+
+<div><hr></div>
+<h3><strong>9. Applications</strong></h3>
+<h4><strong>Agent Memory</strong></h4>
+<p>A retrieval policy constructs working context from durable memory. Outcomes can revise retrieval rules, consolidation policies, or memory annotations.</p>
+<h4><strong>Prompt and Context Assembly</strong></h4>
+<p>A prompt constructor selects instructions, examples, tools, and records. Governed evaluation can revise that constructor without changing the underlying model.</p>
+<h4><strong>Symbolic Reasoning</strong></h4>
+<p>A Sigma transform stack activates a subset of operators, rules, or macros for a present expression. Traces and outcomes may revise future activation policy while preserving the full rule inventory.</p>
+<h4><strong>Scientific Inquiry</strong></h4>
+<p>A method selects observations and representations for examination. Failed or incomplete explanations can revise the selection procedure, not only the hypothesis.</p>
+<h4><strong>Multi-Agent Systems</strong></h4>
+<p>Each agent receives a partial view of shared state. Recursive Lens Revision can improve routing and context allocation while MCF governs information asymmetry and accountability.</p>
+
+<div><hr></div>
+<h3><strong>10. Implementation Pattern</strong></h3>
+<ol>
+  <li><p><strong>Declare the record.</strong> Identify the larger source from which context will be formed.</p></li>
+  <li><p><strong>Declare the purpose and budget.</strong> State the query, intent, limits, and obligations governing construction.</p></li>
+  <li><p><strong>Externalize the lens.</strong> Represent selection and transformation as an inspectable function or program.</p></li>
+  <li><p><strong>Preserve provenance.</strong> Retain links from constructed context to originating records and transformations.</p></li>
+  <li><p><strong>Capture consequences.</strong> Record answers, traces, omissions, costs, and failures.</p></li>
+  <li><p><strong>Assess through MCF.</strong> Evaluate performance together with coherence, fidelity, plurality, and intent.</p></li>
+  <li><p><strong>Produce a successor deliberately.</strong> Revise the lens only from articulated evidence and constraints.</p></li>
+  <li><p><strong>Retain ancestry.</strong> Preserve the relation <code>H_t -&gt; H_(t+1)</code> so revision remains auditable.</p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>11. Boundaries and Failure Modes</strong></h3>
+<ul>
+  <li><p><strong>Metric capture:</strong> The lens increasingly serves the evaluator while departing from the originating purpose.</p></li>
+  <li><p><strong>Context monoculture:</strong> Successful constructions crowd out alternative views needed for novelty or correction.</p></li>
+  <li><p><strong>Invisible omission:</strong> Excluded evidence disappears without a trace of its exclusion.</p></li>
+  <li><p><strong>Recursive drift:</strong> Small revisions accumulate until the successor lens no longer preserves the constraints of its ancestry.</p></li>
+  <li><p><strong>Governance closure:</strong> The lens may change, but the rules judging it are treated as permanently outside revision.</p></li>
+  <li><p><strong>False recursion:</strong> The system repeats a process without allowing consequences to alter future structure.</p></li>
+</ul>
+<p>These failures are not arguments against adaptive construction. They identify where records, constraints, and coherence must remain mutually available throughout revision.</p>
+
+<div><hr></div>
+<h3><strong>12. Closing Reflection</strong></h3>
+<p>Every context is an act of construction. What becomes visible, what remains outside the frame, and how the visible elements are arranged will shape the reasoning that follows.</p>
+<p>Recursive Lens Revision makes that act available to the framework itself. ARF forms the view. MCF examines its consequences. SLF receives the resulting structural revision. The lens that once shaped context becomes the next object of logic, and the cycle returns with a changed capacity to see.</p>
+<blockquote>
+  <p>A system becomes recursively adaptive when it can govern not only what it concludes, but how it came to have that world before it.</p>
+</blockquote>
+<p><strong>Document Reference</strong>: AMF-RLR-01</p>
+<!-- #CONTENT# END --></body>
+</html>
