@@ -17,6 +17,11 @@ Archeus: {
     UserOnboarding: "./AMF-User.html";
     Visuals: "./AMF-Visuals.html";
     DocTree: "./AMF-DocTree.html";
+    SymbolicSessions: {
+      id: AMF.SymbolicSessions;
+      file: "./AMF-SYMSESSION-00.html";
+      description: "Canonical protocol for naming, anchoring, preserving, and re-entering symbolic reasoning sessions.";
+    };
 
     SMV: {
       Overview: {
@@ -91,6 +96,7 @@ Archeus: {
       symbolic: SLF.Extension ⊢ SLF.PlaceholderEmergence;
     };
     ArticleIntro: "./SLF-Article-01 Introduction to the Symbolic Language Framework.html";
+    PlaceholderArticle: "./SLF-Article-02 Introduction to Symbolic Emergence and Placeholder Reasoning.html";
     ExecutionSchema: "./AMF-SLF-EXEC-00.html";
   }
 
@@ -118,6 +124,7 @@ Archeus: {
     Layer1: "./MCF-01.html";
     Layer2: "./MCF-02.html";
     Layer3: "./MCF-03.html";
+    ArticleIntro: "./MCF-Article-01 Introduction to Meta-Conscious Tracking of Symbolic Evolution.html";
     SymbolicEvolution: {
       id: MCF.SymbolicEvolution;
       file: "./MCF-04.html";
@@ -141,5 +148,13 @@ Archeus: {
   Utilities: {
     SymbolicIntroTemplate: "./Symbolic Intro Template-00.html";
     ArticleGuide: "./Archeus Meta-Framework Article Guide.html";
+  }
+
+  Relics: {
+    TruthInTheFlip: {
+      id: Relic.TruthInTheFlip;
+      file: "./Relics/TruthInTheFlip.html";
+      description: "Preserved historical artifact from the early Truth in the Flip inquiry.";
+    };
   }
 }
