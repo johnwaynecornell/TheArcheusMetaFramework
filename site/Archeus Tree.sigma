@@ -84,6 +84,12 @@ Archeus: {
       file: "./SLF-MA-00.html";
       description: "Collection of metaphorical and symbolic references to enrich symbolic reasoning.";
     };
+    PlaceholderEmergence: {
+      id: SLF.PlaceholderEmergence;
+      file: "./SLF-02.html";
+      description: "Defines symbolic emergence, placeholder syntax, and the practice of delaying names while meaning develops.";
+      symbolic: SLF.Extension ⊢ SLF.PlaceholderEmergence;
+    };
     ArticleIntro: "./SLF-Article-01 Introduction to the Symbolic Language Framework.html";
     ExecutionSchema: "./AMF-SLF-EXEC-00.html";
   }
@@ -112,6 +118,18 @@ Archeus: {
     Layer1: "./MCF-01.html";
     Layer2: "./MCF-02.html";
     Layer3: "./MCF-03.html";
+    SymbolicEvolution: {
+      id: MCF.SymbolicEvolution;
+      file: "./MCF-04.html";
+      description: "Governs the reflective tracking of symbolic placeholders as their meaning develops over time.";
+      symbolic: SLF.PlaceholderEmergence ⊢ MCF.SymbolicEvolution;
+    };
+    RecursiveReflection: {
+      id: MCF.RecursiveReflection;
+      file: "./MCF-05.html";
+      description: "Formalizes recursive self-modeling through the Placeholder Mirror and symbolic reflection.";
+      symbolic: AMF.PlaceholderMirror ⊢ MCF.RecursiveReflection;
+    };
     ConstrainOpenReflex: {
       id: MCF.ConstrainOpenReflex;
       file: "./MCF-ConstrainOpenReflex-00.html";
