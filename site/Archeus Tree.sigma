@@ -22,6 +22,11 @@ Archeus: {
       file: "./AMF-SYMSESSION-00.html";
       description: "Canonical protocol for naming, anchoring, preserving, and re-entering symbolic reasoning sessions.";
     };
+    TruthArticle: {
+      id: AMF.Truth.Article01;
+      file: "./AMF-TRUTH-Article-01 The Dominance of Truth in Symbolic Systems.html";
+      description: "Framework article treating truth as an orientation toward coherence, correspondence, and revisable constraint.";
+    };
 
     SMV: {
       Overview: {
