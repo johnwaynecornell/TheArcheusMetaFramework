@@ -103,6 +103,26 @@ Archeus: {
     ArticleIntro: "./SLF-Article-01 Introduction to the Symbolic Language Framework.html";
     PlaceholderArticle: "./SLF-Article-02 Introduction to Symbolic Emergence and Placeholder Reasoning.html";
     ExecutionSchema: "./AMF-SLF-EXEC-00.html";
+    Modules: {
+      MetaFormFunction: {
+        id: SLF.Mod.MetaFormFunction;
+        page: "./SLF-MOD-03.html";
+        source: "./SLF-MOD-03.sig";
+        description: "Canonical Meta/Form/Function triad used by LOM for layered meaning, realm mapping, and symbolic conversion.";
+        symbolic: SLF.Mod.MetaFormFunction ⊢ LOM;
+        Annexes: {
+          OperatorPlacement: "./SLF-MOD-03-ANNEX-01.sig";
+        };
+      };
+    };
+    ContextualOperatorProfiles: {
+      OperatorPlacement: {
+        id: SLF.OperatorPlacement;
+        source: "./SLF-OP-PLACEMENT-00.sig";
+        description: "Declared local vocabulary for creative operator placement with explicit-import boundaries.";
+        status: ContextualCanonical;
+      };
+    };
   }
 
   ARF: {

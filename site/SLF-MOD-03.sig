@@ -1,3 +1,13 @@
+@DocMeta {
+  ID        := "SLF-MOD-03";
+  Title     := "Mod.MetaFormFunction";
+  Role      := SymbolicModuleSource;
+  Status    := Canonical;
+  Extends   := "SLF-00";
+  Supports  := { "LOM-01", "SLF-02", "MCF-04", "MCF-05" };
+  Annexes   := { "SLF-MOD-03-ANNEX-01" };
+}
+
 // Module: Mod.MetaFormFunction
 // Symbolic Core: Meta ↔ Form ↔ Function
 // Triadic structure representing layered reality, cognition, and system design.

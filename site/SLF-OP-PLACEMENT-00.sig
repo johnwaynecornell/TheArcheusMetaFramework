@@ -1,7 +1,22 @@
+@DocMeta {
+  ID        := "SLF-OP-PLACEMENT-00";
+  Title     := "Contextual Operator Placement Theory";
+  Role      := ContextualOperatorProfile;
+  Status    := ContextualCanonical;
+  Extends   := "SLF-00";
+  Governs   := { "SLF-MOD-03-ANNEX-01" };
+}
+
+@OperatorContext {
+  Creativity := Encouraged;
+  Constraint := MeaningMustBeDeclared;
+  Leakage    := ExplicitImportOnly;
+}
+
 // OperatorPlacementTheory.sig
 // Foundations of Operator Placement in Sigma-Based Symbolic Reasoning
 
-// Section 1: Fundamental Operators
+// Section 1: Contextually Declared Operators
 
 Operator(Composition, "⊕"); // Composition operator: Contextual binds (A ⊕ B)
 Operator(Relation, "⇄");    // Relation operator: Triadic/Dyadic relation (A ⇄ B ⇄ C)

@@ -1,3 +1,13 @@
+@DocMeta {
+  ID        := "SLF-MOD-03-ANNEX-01";
+  Title     := "Operator Placement in MetaFormFunction";
+  Role      := SymbolicModuleAnnex;
+  Status    := ContextualCanonical;
+  Extends   := "SLF-MOD-03";
+  Imports   := "SLF-OP-PLACEMENT-00";
+  Supports  := { "LOM-01" };
+}
+
 // OperatorPlacementInMetaFormFunction.sig
 // Specialized Operator Placement in Meta ↔ Form ↔ Function Frames
 
@@ -55,4 +65,3 @@ In Meta ↔ Form ↔ Function:
 
 Operators gain new semantic force in frames, supporting cognitive lattice traversal and meta-reasoning construction.
 */
-
