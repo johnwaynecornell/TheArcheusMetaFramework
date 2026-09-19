@@ -590,7 +590,9 @@
     }
 
     document.addEventListener("DOMContentLoaded", function(){
-      ProcessElement(document.body);
+      // The viewer injects fragments asynchronously. Processing the entire viewer
+      // shell would reparse its own scripts because they contain content markers.
+      if(!document.body.classList.contains("viewer-page")) ProcessElement(document.body);
     });
   </script>
 
