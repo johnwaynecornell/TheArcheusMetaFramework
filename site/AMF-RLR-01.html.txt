@@ -1,0 +1,248 @@
+
+<!-- #CONTENT# --><!-- Framework Page -->
+<h3><strong>AMF-RLR-01: Recursive Lens Revision</strong></h3>
+<p><strong>When Context Construction Becomes Higher-Order AMF</strong></p>
+
+<h4><strong>Table of Contents</strong></h4>
+<ol>
+  <li><p><strong>Purpose and Scope</strong></p></li>
+  <li><p><strong>The Foundational Distinction</strong></p></li>
+  <li><p><strong>The Operational Lens</strong></p></li>
+  <li><p><strong>The Recursive Revision Cycle</strong></p></li>
+  <li><p><strong>Layer Placement Across Observational Scales</strong></p></li>
+  <li><p><strong>Governance of Context Construction</strong></p></li>
+  <li><p><strong>Recursive Lens Revision Principles</strong></p></li>
+  <li><p><strong>Worked Case: VideoHarness-RSI</strong></p></li>
+  <li><p><strong>Companion Case: Scroll and Recoverable Context</strong></p></li>
+  <li><p><strong>Applications</strong></p></li>
+  <li><p><strong>Implementation Pattern</strong></p></li>
+  <li><p><strong>Boundaries and Failure Modes</strong></p></li>
+  <li><p><strong>Closing Reflection</strong></p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>1. Purpose and Scope</strong></h3>
+<p>A reasoning system rarely receives the whole of what is available. It receives a view: selected evidence, ordered records, compressed history, retrieved memories, activated rules, or a prompt assembled for the present task. The mechanism that produces this view is a <strong>lens</strong>.</p>
+<p>AMF-RLR-01 defines <strong>Recursive Lens Revision</strong>: the process by which a context-producing lens is evaluated through the consequences of the view it creates and is then revised into a successor structure.</p>
+<p>The central distinction is:</p>
+<blockquote>
+  <p>A lens is Context-Space machinery while it constructs a view. It becomes a Logic-Space object when the consequences of that view are used to revise the lens itself.</p>
+</blockquote>
+<p>This page applies across retrieval, agent memory, prompt construction, adaptive search, evidence selection, symbolic reasoning, and other systems in which limited context must be formed from a larger record.</p>
+
+<div><hr></div>
+<h3><strong>2. The Foundational Distinction</strong></h3>
+<p>Recursive Lens Revision is visible only when the system is observed at more than one scale.</p>
+<h4><strong>Within One Reasoning Cycle</strong></h4>
+<p>The lens selects and organizes what becomes locally relevant. At this scale, it is an ARF mechanism operating in Context-Space.</p>
+<h4><strong>Across Successive Reasoning Cycles</strong></h4>
+<p>The lens itself becomes an object of assessment. Its outputs, omissions, costs, and consequences are examined. Governance then informs a successor lens. At this scale, the whole process is an AMF recursion.</p>
+<p>The two descriptions do not compete. They describe the same structure at different recursive depths.</p>
+
+<div><hr></div>
+<h3><strong>3. The Operational Lens</strong></h3>
+<p>Let <code>R</code> be an available record, <code>q</code> a present query or purpose, <code>b</code> a context budget, and <code>H_t</code> the lens used at cycle <code>t</code>. The constructed context is:</p>
+<pre><code>C_t = H_t(R, q, b)</code></pre>
+<p>The lens may sample, retrieve, rank, compress, partition, annotate, or arrange elements of <code>R</code>. Its output <code>C_t</code> is a situated view of the record:</p>
+<pre><code>R --[H_t | q, b]--&gt; C_t</code></pre>
+<p>This establishes three safeguards:</p>
+<ul>
+  <li><p><strong>The view is not the record.</strong> <code>C_t</code> is neither identical to nor exhaustive of <code>R</code>.</p></li>
+  <li><p><strong>Selection has consequences.</strong> Relevance gained in one direction may create absence in another.</p></li>
+  <li><p><strong>The lens is inspectable.</strong> A context must be traceable to the operations that admitted, transformed, ordered, or excluded its contents.</p></li>
+</ul>
+<p>In the language of the framework, the operational lens gives concrete form to <code>PsiSingleIsView</code>: a single constructed context is a view, not the totality from which it emerged.</p>
+
+<div><hr></div>
+<h3><strong>4. The Recursive Revision Cycle</strong></h3>
+<p>A reasoning process consumes the constructed context and produces an outcome:</p>
+<pre><code>C_t --[Reason]--&gt; A_t</code></pre>
+<p>Governance assesses the answer, its evidence, the execution trace, resource use, omissions, and alignment with purpose. Let that assessment be <code>E_t</code>:</p>
+<pre><code>(H_t, C_t, A_t, Trace_t) --[Assess]--&gt; E_t</code></pre>
+<p>When the assessment is allowed to alter the context constructor, a successor lens is formed:</p>
+<pre><code>(H_t, Trace_t, E_t) --[Revise]--&gt; H_(t+1)</code></pre>
+<p>The complete movement is:</p>
+<pre><code>Logic-Space(H_t)
+    -&gt; Context-Space(C_t)
+    -&gt; Governance-Space(E_t)
+    -&gt; Logic-Space(H_(t+1))</code></pre>
+<p>This is an operational instance of the AMF recursion:</p>
+<pre><code>F_r = (L -&gt; C -&gt; G) -&gt; L'</code></pre>
+<p>The recursion is complete only when contextual consequences return as a meaningful structural change. Repetition without successor formation is iteration; revision that changes the lens is recursion in the AMF sense.</p>
+
+<div><hr></div>
+<h3><strong>5. Layer Placement Across Observational Scales</strong></h3>
+<table>
+  <thead>
+    <tr><th>Observational Scale</th><th>Role of the Lens</th><th>Framework Placement</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Available source</td><td>Record from which a view may be formed</td><td>Field or retained information</td></tr>
+    <tr><td>Single inference</td><td>Selects and organizes task-relevant context</td><td>ARF / Context-Space</td></tr>
+    <tr><td>Single evaluation</td><td>Object whose consequences are assessed</td><td>MCF / Governance-Space</td></tr>
+    <tr><td>Successor construction</td><td>Executable structure revised for future use</td><td>SLF / Logic-Space</td></tr>
+    <tr><td>Repeated governed revision</td><td>Adaptive cycle spanning all three layers</td><td>Higher-order AMF recursion</td></tr>
+  </tbody>
+</table>
+<p>Layer identity is therefore relational. A structure may serve as machinery at one level and become material for reasoning at another. AMF does not require an object to possess one permanent layer assignment; it requires the role of that object within the present transformation to be stated clearly.</p>
+
+<div><hr></div>
+<h3><strong>6. Governance of Context Construction</strong></h3>
+<p>A lens can improve a task score while becoming less coherent, less transparent, or less faithful to the available record. MCF therefore governs more than the final answer. It governs what the system is permitted to make present.</p>
+<p>A governed lens assessment should consider:</p>
+<ul>
+  <li><p><strong>Evidence fidelity:</strong> Does the constructed context preserve the meaning and provenance of selected evidence?</p></li>
+  <li><p><strong>Omission visibility:</strong> Can the system disclose what categories of information were excluded or compressed?</p></li>
+  <li><p><strong>Contextual plurality:</strong> Does optimization collapse useful alternative views into one repeatedly favored construction?</p></li>
+  <li><p><strong>Reversibility:</strong> Can the system return from a constructed view to its source records and reconstruct the selection path?</p></li>
+  <li><p><strong>Purpose alignment:</strong> Does the evaluation criterion express the intended task rather than merely an available proxy?</p></li>
+  <li><p><strong>Revision restraint:</strong> Is a successor lens retained only when its improvement survives meaningful tests and constraints?</p></li>
+  <li><p><strong>Governance reflexivity:</strong> Can the criteria used to judge lenses themselves be inspected and revised?</p></li>
+</ul>
+<p>Thus:</p>
+<pre><code>better score != better governed context</code></pre>
+<p>Performance is evidence within Governance-Space. It is not the whole of governance.</p>
+
+<div><hr></div>
+<h3><strong>7. Recursive Lens Revision Principles</strong></h3>
+<div class="slf-brick">
+  <h3><strong>RLR.LensIsContextFunction</strong></h3>
+  <p>A lens transforms available record into situated context under a purpose and constraint.</p>
+  <pre><code>Lens_t : (R, q, b) -&gt; C_t</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ViewPreservesDifference</strong></h3>
+  <p>A constructed view remains distinguishable from the record that supports it.</p>
+  <pre><code>C_t subset_or_view_of R
+C_t != R</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ViewEvictionPreservesRecord</strong></h3>
+  <p>Removing information from the active view does not constitute removing it from the supporting record. A governed lens may narrow presence while preserving provenance, addressability, and a path of return.</p>
+  <pre><code>Evict(x, C_t) != Delete(x, R)
+
+x in R and x not_in C_t
+    -&gt; Preserved(x, R)
+    and Addressable(x, R)</code></pre>
+  <p>Storage alone is weak continuity. Recoverable eviction also preserves sufficient orientation for the system to recognize that unseen material exists and to make it contextually present again when purpose requires it.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ConsequenceReturnsStructure</strong></h3>
+  <p>When governed assessment of a view changes the mechanism that produced it, contextual consequence returns as successor structure.</p>
+  <pre><code>Assess(C_t, A_t, Trace_t) -&gt; Revise(H_t) -&gt; H_(t+1)</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.ScaleDeterminesRole</strong></h3>
+  <p>The same lens may be Context-Space machinery within a task and a Logic-Space object within a higher-order revision cycle.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.GovernanceIncludesSelection</strong></h3>
+  <p>Governance applies to the formation of context as well as to reasoning performed after context has been formed.</p>
+</div>
+
+<div><hr></div>
+<h3><strong>8. Worked Case: VideoHarness-RSI</strong></h3>
+<p><a href="https://arxiv.org/abs/2608.24302">VideoHarness-RSI: Recursive Harness Self-Improvement for Long-Video Understanding with Frozen Vision-Language Models</a> provides a motivating engineering case.</p>
+<p>The system keeps the underlying vision-language model and its interface fixed. The object of search is an executable context constructor that determines how evidence from a long video is selected and presented within a limited model context. An outer-loop proposer uses earlier programs, evaluation outcomes, and execution traces to propose candidate harnesses. Candidates are executed end-to-end, evaluated, and selectively retained for further search.</p>
+<table>
+  <thead>
+    <tr><th>VideoHarness-RSI Element</th><th>AMF Reading</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Long source video</td><td>Available record <code>R</code></td></tr>
+    <tr><td>Executable context constructor</td><td>Operational ARF lens <code>H_t</code></td></tr>
+    <tr><td>Constructed model context</td><td>Situated Context-Space <code>C_t</code></td></tr>
+    <tr><td>Frozen answering model</td><td>Controlled reasoning function</td></tr>
+    <tr><td>Execution trace and benchmark result</td><td>Evidence presented to Governance-Space</td></tr>
+    <tr><td>Outer-loop proposal and retention</td><td>Revision producing <code>H_(t+1)</code></td></tr>
+  </tbody>
+</table>
+<p>The frozen model makes the layered relationship unusually visible. Improvement cannot be attributed to changing model weights; it arises from changing how the larger record becomes present to the model.</p>
+<p>The case demonstrates Recursive Lens Revision in a controlled domain. AMF extends the interpretation by asking whether the evaluator preserves provenance, plural views, reversibility, and alignment with intent in addition to task performance.</p>
+
+<div><hr></div>
+<h3><strong>9. Companion Case: Scroll and Recoverable Context</strong></h3>
+<p><a href="https://arxiv.org/abs/2608.21690">Context as an Environment: Programmatic Context Management for Long-Horizon Agents</a> introduces Scroll, a context manager that separates a durable session environment from the bounded working view presented to a model.</p>
+<p>Scroll retains the complete interaction history in an append-only Event Log with stable sequence addresses. A sandboxed persistent Python kernel holds typed derived state across model calls. Model-written programs locate, materialize, and transform session information; only explicitly printed projections enter the next working context. When material leaves the active view, it remains intact and addressable in the record.</p>
+<p>Let <code>S_t</code> be the durable session environment, <code>pi_t</code> the programmatic context lens, <code>C_(t+1)</code> the next working view, and <code>B</code> the context budget:</p>
+<pre><code>C_(t+1) = pi_t(S_t)
+size(C_(t+1)) &lt;= B</code></pre>
+<p>The context boundary limits presence rather than existence. Scroll therefore gives operational form to both <code>RLR.ViewPreservesDifference</code> and <code>RLR.ViewEvictionPreservesRecord</code>.</p>
+<table>
+  <thead>
+    <tr><th>Scroll Element</th><th>AMF Reading</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Append-only Event Log</td><td>Durable record and continuity substrate</td></tr>
+    <tr><td>Stable sequence addresses</td><td>Provenance and recoverability</td></tr>
+    <tr><td>Persistent typed namespace</td><td>Derived contextual state</td></tr>
+    <tr><td>Model-written <code>exec</code></td><td>Executable ARF lens</td></tr>
+    <tr><td>Explicit <code>print</code></td><td>Projection into the working view</td></tr>
+    <tr><td>Bounded model context</td><td>Situated Context-Space</td></tr>
+    <tr><td>Eviction index</td><td>Orientation toward what is absent</td></tr>
+    <tr><td>Recoverable eviction</td><td>View change without record destruction</td></tr>
+  </tbody>
+</table>
+<h4><strong>Two Complementary Forms of Adaptation</strong></h4>
+<p>Scroll and VideoHarness-RSI illuminate different parts of the same AMF movement:</p>
+<ul>
+  <li><p><strong>Context adaptation:</strong> Scroll constructs a changing, recoverable view from a preserved record.</p></li>
+  <li><p><strong>Structural adaptation:</strong> VideoHarness-RSI revises the lens because of the measured consequences of earlier views.</p></li>
+</ul>
+<pre><code>Durable Record R
+    -[Lens H_t]-&gt; Bounded View C_t
+    -[Reason]-&gt; Outcome A_t
+    -[Govern]-&gt; Successor Lens H_(t+1)</code></pre>
+<p>Together they show that a system can keep its active context finite without collapsing its record, while still allowing governed experience to alter how future contexts are constructed:</p>
+<pre><code>C_t != R
+Evict(C_t) != Delete(R)
+Assess(C_t, A_t, Trace_t) -&gt; H_(t+1)</code></pre>
+<p>The result is not indefinite accumulation inside the working view. It is bounded presence, continuous record, and accountable adaptation.</p>
+
+<div><hr></div>
+<h3><strong>10. Applications</strong></h3>
+<h4><strong>Agent Memory</strong></h4>
+<p>A retrieval policy constructs working context from durable memory. Outcomes can revise retrieval rules, consolidation policies, or memory annotations.</p>
+<h4><strong>Prompt and Context Assembly</strong></h4>
+<p>A prompt constructor selects instructions, examples, tools, and records. Governed evaluation can revise that constructor without changing the underlying model.</p>
+<h4><strong>Symbolic Reasoning</strong></h4>
+<p>A Sigma transform stack activates a subset of operators, rules, or macros for a present expression. Traces and outcomes may revise future activation policy while preserving the full rule inventory.</p>
+<h4><strong>Scientific Inquiry</strong></h4>
+<p>A method selects observations and representations for examination. Failed or incomplete explanations can revise the selection procedure, not only the hypothesis.</p>
+<h4><strong>Multi-Agent Systems</strong></h4>
+<p>Each agent receives a partial view of shared state. Recursive Lens Revision can improve routing and context allocation while MCF governs information asymmetry and accountability.</p>
+
+<div><hr></div>
+<h3><strong>11. Implementation Pattern</strong></h3>
+<ol>
+  <li><p><strong>Declare the record.</strong> Identify the larger source from which context will be formed.</p></li>
+  <li><p><strong>Declare the purpose and budget.</strong> State the query, intent, limits, and obligations governing construction.</p></li>
+  <li><p><strong>Externalize the lens.</strong> Represent selection and transformation as an inspectable function or program.</p></li>
+  <li><p><strong>Preserve provenance.</strong> Retain links from constructed context to originating records and transformations.</p></li>
+  <li><p><strong>Capture consequences.</strong> Record answers, traces, omissions, costs, and failures.</p></li>
+  <li><p><strong>Assess through MCF.</strong> Evaluate performance together with coherence, fidelity, plurality, and intent.</p></li>
+  <li><p><strong>Produce a successor deliberately.</strong> Revise the lens only from articulated evidence and constraints.</p></li>
+  <li><p><strong>Retain ancestry.</strong> Preserve the relation <code>H_t -&gt; H_(t+1)</code> so revision remains auditable.</p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>12. Boundaries and Failure Modes</strong></h3>
+<ul>
+  <li><p><strong>Metric capture:</strong> The lens increasingly serves the evaluator while departing from the originating purpose.</p></li>
+  <li><p><strong>Context monoculture:</strong> Successful constructions crowd out alternative views needed for novelty or correction.</p></li>
+  <li><p><strong>Invisible omission:</strong> Excluded evidence disappears without a trace of its exclusion.</p></li>
+  <li><p><strong>Recursive drift:</strong> Small revisions accumulate until the successor lens no longer preserves the constraints of its ancestry.</p></li>
+  <li><p><strong>Governance closure:</strong> The lens may change, but the rules judging it are treated as permanently outside revision.</p></li>
+  <li><p><strong>False recursion:</strong> The system repeats a process without allowing consequences to alter future structure.</p></li>
+</ul>
+<p>These failures are not arguments against adaptive construction. They identify where records, constraints, and coherence must remain mutually available throughout revision.</p>
+
+<div><hr></div>
+<h3><strong>13. Closing Reflection</strong></h3>
+<p>Every context is an act of construction. What becomes visible, what remains outside the frame, and how the visible elements are arranged will shape the reasoning that follows.</p>
+<p>Recursive Lens Revision makes that act available to the framework itself. ARF forms the view. MCF examines its consequences. SLF receives the resulting structural revision. The lens that once shaped context becomes the next object of logic, and the cycle returns with a changed capacity to see.</p>
+<blockquote>
+  <p>A system becomes recursively adaptive when it can govern not only what it concludes, but how it came to have that world before it.</p>
+</blockquote>
+<p><strong>Document Reference</strong>: AMF-RLR-01</p>
+<!-- #CONTENT# END -->

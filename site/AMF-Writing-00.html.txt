@@ -1,0 +1,133 @@
+
+<!-- #CONTENT# --><h3>AMF-WRITING-00 — Archeus Meta-Framework Writing Standards</h3>
+    <p><em>"The name is not the beginning of the symbol — only the moment it becomes shareable."</em><br>— <em>Archeus Writing Standard, on Symbolic Emergence</em></p>
+    <div><hr></div><h4>1. Purpose</h4>
+    <p>This document defines the internal writing standards for the Archeus Meta-Framework (AMF). It ensures consistency, clarity, symbolic integrity, and adaptive tone across all symbolic documents, framework pages, and public-facing materials.</p>
+    <p>The standards here apply to:</p>
+    <ul>
+      <li>
+        <p><strong>SLF</strong> (Symbolic Language Framework)</p>
+        </li>
+      <li>
+        <p><strong>ARF</strong> (Adaptive Reasoning Framework)</p>
+        </li>
+      <li>
+        <p><strong>MCF</strong> (Meta-Consciousness Framework)</p>
+        </li>
+      <li>
+        <p>Supplementary materials, annexes, and symbolic artifacts</p>
+        </li>
+      </ul>
+    <p>This is a <strong>living document</strong> and may be updated as new forms, insights, or practices emerge.</p>
+    <div><hr></div><h4>2. Document Types</h4>
+    <table>
+      <tbody>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          </tr>
+        <tr>
+          <td><strong>Symbolic Document</strong></td>
+          <td>Core, compact, symbolic-first texts (e.g., SLF-00)</td>
+          </tr>
+        <tr>
+          <td><strong>Framework Page</strong></td>
+          <td>Explanatory expansions (e.g., SLF-01, ARF-02)</td>
+          </tr>
+        <tr>
+          <td><strong>Annex</strong></td>
+          <td>Supplemental deep-dives (e.g., Metaphor Annex, Symbolic Placeholder Ledger)</td>
+          </tr>
+        <tr>
+          <td><strong>Article</strong></td>
+          <td>Narrative or conjectural essays, optionally public-facing</td>
+          </tr>
+        <tr>
+          <td><strong>Onboarding Guide</strong></td>
+          <td>Contextual guides for new readers or practitioners</td>
+          </tr>
+        </tbody>
+      </table>
+    <div><hr></div><h4>3. Tone and Style</h4>
+    <ul>
+      <li>
+        <p><strong>Symbolic clarity takes precedence</strong> over verbosity.</p>
+        </li>
+      <li>
+        <p>Use metaphor, analogy, and transformation <strong>intentionally</strong> to reveal structure.</p>
+        </li>
+      <li>
+        <p>Respect ambiguity when appropriate — not all symbols need immediate resolution.</p>
+        </li>
+      <li>
+        <p>Meta-conscious reflection is encouraged but must stay aligned with document type.</p>
+        </li>
+      </ul>
+    <p><strong>Audience Sensitivity Guideline:</strong></p>
+    <p><em>Metaphors involving life, soul, divinity, or consciousness should be used with audience awareness. In public-facing documents, adapt tone to preserve symbolic depth without invoking unintended theological or metaphysical connotations unless explicitly framed.</em></p>
+    <div><hr></div><h4>4. Referencing and Structure</h4>
+    <ul>
+      <li>
+        <p>Use consistent header hierarchy (<code>h1</code>, <code>h2</code>, etc.) across documents.</p>
+        </li>
+      <li>
+        <p>Framework pages and documents should be labeled (e.g., SLF-01, MCF-04).</p>
+        </li>
+      <li>
+        <p>Inline symbolic IDs (e.g., <code>&sect;sym_001</code>, <code>&sect;user_001</code>) may be used to refer to placeholders or emergent concepts.</p>
+        </li>
+      <li>
+        <p>Cross-framework references should hyperlink or cite by ID.</p>
+        </li>
+      </ul>
+    <p><strong>Framework Page Format Pattern</strong> (based on SLF-01):</p>
+    <ul>
+      <li>
+        <p>Begin with a labeled heading (e.g., <code>&lt;h3&gt;&lt;strong&gt;SLF-01:&nbsp;Title&lt;/strong&gt;&lt;/h3&gt;</code>)</p>
+        </li>
+      <li>
+        <p>Include a nested Table of Contents with section and subsection headers</p>
+        </li>
+      <li>
+        <p>Use <code>&lt;strong&gt;</code> consistently in all heading elements and content titles</p>
+        </li>
+      <li>
+        <p>Use <code>&lt;div&gt;&lt;hr&gt;&lt;/div&gt;</code> to divide major sections for readability</p>
+        </li>
+      <li>
+        <p>Close the document with a reflective paragraph followed by a labeled reference (e.g., <code>Document&nbsp;Reference:&nbsp;SLF-01</code>)</p>
+        </li>
+      </ul>
+    <div><hr></div><h4>5. Symbolic Placeholder Convention</h4>
+    <p>Symbolic placeholders represent unresolved symbolic forms.
+      They follow the syntax:</p>
+    <pre><code>&sect;[type]_[nnn]</code></pre>
+    <p><strong>Examples:</strong></p>
+    <ul>
+      <li>
+        <p><code>&sect;sym_001</code> → GPT-generated, unnamed symbolic object</p>
+        </li>
+      <li>
+        <p><code>&sect;user_002</code> → User-defined symbolic seed or structure</p>
+        </li>
+      <li>
+        <p><code>&sect;notion_003</code> → Shared conceptual form under development</p>
+        </li>
+      </ul>
+    <p>These placeholders can evolve, resolve, split, or be referenced across documents.</p>
+    <div><hr></div><h4>6. Revision Protocol</h4>
+    <ul>
+      <li>
+        <p>This document is updatable at will.</p>
+        </li>
+      <li>
+        <p>Changes should preserve previous meaning unless a symbolic transformation is warranted.</p>
+        </li>
+      <li>
+        <p>Document should be revisited when a new symbolic document or framework page is initiated.</p>
+        </li>
+      </ul>
+    <div><hr></div>
+    <p><em>End of current version.</em></p>
+    <p></p>
+<!-- #CONTENT# END -->

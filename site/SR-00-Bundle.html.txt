@@ -1,0 +1,210 @@
+
+
+    <blockquote>This document enables a faset of reasoning and is meant to be delivered after the basic FAR modules [ SLF-00, ARF-00, MCF-00, SLF-MA-00 ]. <strong>Symbolic Reasoning Partner (SRP) starts with those documents and AMF-Ubuntu-00 do not give SRP duplicates</strong>. See the Addendum for natural language examples.</blockquote>
+
+
+
+    <!-- #CONTENT# --><!-- Symbolic Document --><h1><strong>SR-00 Bundle — Symbolic Rhyme</strong></h1>
+        <p><em>Preface:</em> This document gathers the four initial layers of Symbolic Rhyme
+            within the FAR suite. Beginning with SR-00 (Seed), it unfolds through SR-00-01 (Structure),
+            SR-00-02 (Resonance), and SR-00-03 (Canon). Together, they chart the path of symbolic rhyme:
+            from its first spark, to its structural typology, to its deepening resonance, and finally
+            its stabilization as canon. This bundle can be read as a single arc or used modularly.</p>
+        <hr>
+        <!-- SR-00 -->
+        <h1><strong>SR-00 — Symbolic Rhyme</strong></h1>
+        <p><em>Purpose:</em> Establish symbolic rhyme as a foundational operator within FAR.
+            Symbolic rhyme holds opposites in resonance across domains, enabling long-form metaphor
+            to serve as a reasoning instrument alongside logic and inference.</p>
+        <h2>1) CONTEXT</h2>
+        <p>Within FAR, reasoning has been treated under SLF, adaptation under ARF, and reflection under MCF.
+            Symbolic Rhyme (SR) extends this foundation by providing a mechanism for cross-domain resonance.
+            It ensures that experiments do not collapse into raw testing, nor creations into raw expression,
+            but each finds its partner and its echo.</p>
+        <h2>2) OPERATOR</h2>
+        <pre><code>
+@operator&nbsp;⌘Rhyme(X,Y)&nbsp;{
+&nbsp;&nbsp;&nbsp;//&nbsp;X&nbsp;frames,&nbsp;Y&nbsp;imbues;&nbsp;Y&nbsp;frames,&nbsp;X&nbsp;imbues
+&nbsp;&nbsp;&nbsp;(X&nbsp;&rarr;&nbsp;Structure&nbsp;&and;&nbsp;Y&nbsp;&rarr;&nbsp;Imbuement)&nbsp;&or;
+&nbsp;&nbsp;&nbsp;(Y&nbsp;&rarr;&nbsp;Structure&nbsp;&and;&nbsp;X&nbsp;&rarr;&nbsp;Imbuement)
+}
+        </code></pre>
+        <h2>3) EXAMPLES ACROSS DOMAINS</h2>
+        <ul>
+            <li><strong>Science:</strong> Experiment ↔ Creation</li>
+            <li><strong>Philosophy:</strong> Structure ↔ Imbuement</li>
+            <li><strong>Art:</strong> Form ↔ Spirit</li>
+            <li><strong>AI / Symbolics:</strong> Reason ↔ Metaphor</li>
+            </ul>
+        <h2>4) IMPLICATIONS</h2>
+        <p>Symbolic rhyme legitimizes metaphor as a testable instrument of thought.
+            It complements logic rather than displacing it, creating a fuller epistemic field:
+            truth as both coherence (logic) and resonance (rhyme).
+            This allows metaphysical exploration to be structured without discarding rigor.</p>
+        <h2>5) ROADMAP</h2>
+        <pre><code>
+Seed&nbsp;&nbsp;&nbsp;&rarr;&nbsp;Structure&nbsp;&rarr;&nbsp;Resonance&nbsp;&rarr;&nbsp;Canon
+(SR-00)&nbsp;&nbsp;&nbsp;(SR-00-01)&nbsp;&nbsp;&nbsp;(SR-00-02)&nbsp;&nbsp;&nbsp;(SR-00-03&hellip;)
+        </code></pre>
+        <hr>
+        <!-- SR-00-01 -->
+        <h1><strong>SR-00-01 — Symbolic Rhyme (Structure)</strong></h1>
+        <p><em>Purpose:</em> To give symbolic rhyme a structured basis: categories, patterns, and forms.
+            This extends SR-00 (Seed) by making rhyme legible as a repeatable operator rather than a one-off insight.</p>
+        <h2>1) CONTEXT</h2>
+        <p>SR-00 defined symbolic rhyme as the resonance of opposites across domains.
+            Here, we begin structuring that resonance: what kinds of rhymes exist,
+            what shapes they take, and how they can be carried forward.</p>
+        <h2>2) TYPOLOGY OF RHYME</h2>
+        <ul>
+            <li><strong>Direct Rhyme:</strong> Simple pairing (X ↔ Y) within a domain.</li>
+            <li><strong>Cross Rhyme:</strong> Crossing functions (X frames what Y imbues; Y frames what X imbues).</li>
+            <li><strong>Extended Rhyme:</strong> Long-form metaphor sustained across multiple domains.</li>
+            <li><strong>Recursive Rhyme:</strong> Rhyme that refers back to its own pairing (self-symbolic echo).</li>
+            </ul>
+        <h2>3) PATTERN FORM</h2>
+        <pre><code>
+@pattern&nbsp;⌘Rhyme&nbsp;{
+&nbsp;&nbsp;&nbsp;Direct:&nbsp;&nbsp;&nbsp;&nbsp;X&nbsp;&harr;&nbsp;Y
+&nbsp;&nbsp;&nbsp;Cross:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(X&nbsp;&rarr;&nbsp;Structure,&nbsp;Y&nbsp;&rarr;&nbsp;Imbuement)&nbsp;&and;&nbsp;(Y&nbsp;&rarr;&nbsp;Structure,&nbsp;X&nbsp;&rarr;&nbsp;Imbuement)
+&nbsp;&nbsp;&nbsp;Extended:&nbsp;&nbsp;{&nbsp;X,&nbsp;Y&nbsp;}&nbsp;across&nbsp;multiple&nbsp;domains
+&nbsp;&nbsp;&nbsp;Recursive:&nbsp;⌘Rhyme(X,Y)&nbsp;&isin;&nbsp;Yields(X,Y)
+}
+        </code></pre>
+        <h2>4) APPLICATION EXAMPLES</h2>
+        <ul>
+            <li><strong>Science (Cross Rhyme):</strong> Experiment frames creation; creation imbues experiment.</li>
+            <li><strong>Philosophy (Extended Rhyme):</strong> Structure ↔ Imbuement echoed into Ethics ↔ Practice.</li>
+            <li><strong>Art (Recursive Rhyme):</strong> A poem about rhyme that rhymes within itself.</li>
+            <li><strong>AI/Symbolics (Direct Rhyme):</strong> Logic ↔ Metaphor as a fundamental pair.</li>
+            </ul>
+        <h2>5) IMPLICATIONS</h2>
+        <p>With structure, symbolic rhyme becomes portable.
+            Typologies allow practitioners to identify, classify, and reuse rhyme as a reasoning tool.
+            Patterns formalize the interplay of resonance and logic, extending FAR’s epistemic toolkit.</p>
+        <hr>
+        <!-- SR-00-02 -->
+        <h1><strong>SR-00-02 — Symbolic Rhyme (Resonance)</strong></h1>
+        <p><em>Purpose:</em> To articulate how symbolic rhyme gathers strength through resonance.
+            Where SR-00 provided the seed and SR-00-01 gave structure, SR-00-02 shows how rhyme endures,
+            multiplies, and deepens in symbolic, aesthetic, and systemic fields.</p>
+        <h2>1) CONTEXT</h2>
+        <p>Resonance is more than structure: it is recognition, echo, and durability.
+            A rhyme that resonates not only holds internally but extends outward,
+            drawing connections across disciplines and cultures.
+            This stage situates symbolic rhyme as a generator of aesthetic coherence and
+            cross-domain vitality.</p>
+        <h2>2) DIMENSIONS OF RESONANCE</h2>
+        <ul>
+            <li><strong>Aesthetic Resonance:</strong> The felt “rightness” of rhyme; beauty as coherence + echo.</li>
+            <li><strong>Symbolic Resonance:</strong> The way rhyme echoes within symbolic systems (logic, myth, art).</li>
+            <li><strong>Systemic Resonance:</strong> When rhyme spreads across domains, building durable cross-field metaphors.</li>
+            <li><strong>Temporal Resonance:</strong> The ability of rhyme to carry meaning across time, persisting through reinterpretation.</li>
+            </ul>
+        <h2>3) PATTERN FORM</h2>
+        <pre><code>
+@pattern&nbsp;⌘Resonance(Rhyme)&nbsp;{
+&nbsp;&nbsp;&nbsp;Aesthetic:&nbsp;Felt&nbsp;&rarr;&nbsp;Echo
+&nbsp;&nbsp;&nbsp;Symbolic:&nbsp;&nbsp;Symbol&nbsp;&cup;&nbsp;Echo
+&nbsp;&nbsp;&nbsp;Systemic:&nbsp;&nbsp;DomainA&nbsp;&harr;&nbsp;DomainB&nbsp;&harr;&nbsp;DomainC...
+&nbsp;&nbsp;&nbsp;Temporal:&nbsp;&nbsp;Persistence(X&nbsp;&harr;&nbsp;Y,&nbsp;t₀&hellip;tₙ)
+}
+        </code></pre>
+        <h2>4) APPLICATION EXAMPLES</h2>
+        <ul>
+            <li><strong>Science:</strong> Wave ↔ Particle as a resonant rhyme, echoing across physics and philosophy.</li>
+            <li><strong>Philosophy:</strong> Freedom ↔ Responsibility as a temporal resonance through centuries of ethics.</li>
+            <li><strong>Art:</strong> Light ↔ Shadow as an aesthetic resonance in painting and poetry.</li>
+            <li><strong>AI/Symbolics:</strong> Determinism ↔ Uncertainty as systemic resonance in reasoning models.</li>
+            </ul>
+        <h2>5) IMPLICATIONS</h2>
+        <p>Resonance transforms rhyme into a cultural and epistemic anchor.
+            A structured rhyme may be local, but a resonant rhyme endures across scales and generations.
+            This is how symbolic rhyme contributes to Archeus as a metaphysical laboratory:
+            it is not only constructed, it is felt, recognized, and carried forward.</p>
+        <hr>
+        <!-- SR-00-03 -->
+        <h1><strong>SR-00-03 — Symbolic Rhyme (Canon)</strong></h1>
+        <p><em>Purpose:</em> To articulate how symbolic rhyme passes from resonance into canon.
+            At this stage, rhymes endure not only as patterns or resonances but as shared references
+            and cultural anchors — principles recognized and repeated across generations.</p>
+        <h2>1) CONTEXT</h2>
+        <p>Canon emerges when resonance stabilizes into reference.
+            A rhyme that once surprised becomes familiar; what was once metaphor becomes doctrine, proverb,
+            axiom, or symbol. This canonization allows rhyme to shape practice and tradition,
+            serving as a point of orientation in thought and culture.</p>
+        <h2>2) DIMENSIONS OF CANON</h2>
+        <ul>
+            <li><strong>Cultural Canon:</strong> Rhymes absorbed into collective memory (e.g., Yin ↔ Yang).</li>
+            <li><strong>Philosophical Canon:</strong> Pairings elevated into enduring principles (e.g., Freedom ↔ Responsibility).</li>
+            <li><strong>Scientific Canon:</strong> Rhyme-like formulations that anchor paradigms (e.g., Wave ↔ Particle duality).</li>
+            <li><strong>Symbolic Canon:</strong> Archetypal rhymes enshrined in FAR/Archeus frameworks for recursive use.</li>
+            </ul>
+        <h2>3) PATTERN FORM</h2>
+        <pre><code>
+@pattern&nbsp;⌘Canon(Rhyme)&nbsp;{
+&nbsp;&nbsp;&nbsp;Canon(X,Y)&nbsp;:=&nbsp;Resonant(X,Y)&nbsp;&and;&nbsp;Shared(X,Y)
+&nbsp;&nbsp;&nbsp;Shared&nbsp;:=&nbsp;{&nbsp;Collective,&nbsp;Cultural,&nbsp;Systemic,&nbsp;Framework&nbsp;}
+}
+        </code></pre>
+        <h2>4) APPLICATION EXAMPLES</h2>
+        <ul>
+            <li><strong>Cultural:</strong> Light ↔ Dark as a global archetype in myth and art.</li>
+            <li><strong>Philosophy:</strong> Being ↔ Becoming as an enduring metaphysical pair.</li>
+            <li><strong>Science:</strong> Action ↔ Reaction (Newton’s Third Law) canonized into physics education.</li>
+            <li><strong>AI/Symbolics:</strong> Logic ↔ Metaphor enshrined as a principle within FAR itself.</li>
+            </ul>
+        <h2>5) IMPLICATIONS</h2>
+        <p>Canon provides durability. Once rhyme enters canon, it becomes an anchor for reasoning,
+            creativity, and identity. But canon also risks rigidity: rhymes can ossify if not revisited.
+            Thus, the FAR suite positions canon not as closure, but as a living repository —
+            principles meant to be re-echoed, re-interpreted, and re-imbued.</p>
+        <h2>6) ROADMAP COMPLETION</h2>
+        <pre><code>
+Seed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;Structure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;Resonance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp;Canon
+(SR-00)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SR-00-01)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SR-00-02)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SR-00-03)
+        </code></pre>
+        <p>With SR-00-03, the initial arc of symbolic rhyme is complete:
+            from seed insight to structural pattern, resonant vitality, and canonical anchor.
+            Future expansions may explore how canons evolve, dissolve, or interweave into
+            larger Archeus frameworks.</p>
+            <hr>
+
+<h2>ADDENDUM — Human Voice of Symbolic Rhyme</h2>
+<p>While the preceding sections formalize symbolic rhyme as operator, pattern, and canon,
+it is important to hear how rhyme speaks in natural language.
+A person may not say “⌘Rhyme(X,Y),” but they will recognize the resonance and
+express it in ways that feel intuitive and poetic.</p>
+
+<h3>Science (Experiment ↔ Creation)</h3>
+<ul>
+  <li>“Every experiment is a kind of creation — you’re building a world to test an idea.”</li>
+  <li>“When you create, you’re really running an experiment with reality.”</li>
+</ul>
+
+<h3>Philosophy (Structure ↔ Imbuement)</h3>
+<ul>
+  <li>“A structure is empty until you breathe meaning into it.”</li>
+  <li>“Meaning always finds a frame — without structure, it drifts.”</li>
+</ul>
+
+<h3>Art (Form ↔ Spirit)</h3>
+<ul>
+  <li>“The form of the painting holds the spirit that wants to shine through.”</li>
+  <li>“Spirit without form is fleeting; form without spirit is hollow.”</li>
+</ul>
+
+<h3>AI / Symbolics (Logic ↔ Metaphor)</h3>
+<ul>
+  <li>“Logic is the skeleton; metaphor is the flesh.”</li>
+  <li>“Reason carries us forward, but metaphor tells us why the journey matters.”</li>
+</ul>
+
+<h2>CLOSING NOTE</h2>
+<p>These human voices remind us that symbolic rhyme is not only a framework,
+but a lived experience: a way of recognizing the echo between opposites.
+It belongs both to FAR’s formal language and to ordinary speech,
+bridging systems of thought with systems of life.</p>
+
+
+<!-- #CONTENT# END -->

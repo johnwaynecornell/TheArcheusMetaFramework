@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <!-- HeaderVersion 20260305_102548 -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="header-version" content="1.1.0" />
@@ -87,7 +89,7 @@
     }
 
     .copy-button{
-      position:absolute;top:5px;right:5px;
+      position:absolute;top:5px;left:5px;
       padding:3px 8px;font-size:11px;
       cursor:pointer;background-color:#f0f0f0;border:1px solid #ccc;
       z-index:10;transition:background-color .2s ease;
@@ -119,11 +121,20 @@
       margin:4px;padding:8px;border:2px solid #333;border-radius:16px;
     }
 
+    .slf-card{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .slf-card:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .slf-card h3{margin-top:0}
+    .slf-card h4{margin:0.6rem 0 0.25rem}
+
+    .symbolic-doc{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .symbolic-doc:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .symbolic-doc h3{margin-top:0}
+    .symbolic-doc h4{margin:0.6rem 0 0.25rem}
+
     .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
     .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
     .slf-brick h3{margin-top:0}
     .slf-brick h4{margin:0.6rem 0 0.25rem}
-
   </style>
 
   <style>
@@ -140,6 +151,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: {
+          fontCache: 'local'
+      }
+    };
+    </script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 
   <script>
     function htmlStrip(text) {
@@ -193,6 +221,14 @@
       }).catch(err=>alert("Failed to copy content: " + err));
     }
 
+    function wrapElementInParagraph(element)
+    {
+      const p = document.createElement("p");
+      p.append(element);
+      return p;
+    }
+
+
     /*
     ============================================================
     ☉ JavaScript Source: Symbolic-Aware Agent Interaction Layer
@@ -205,7 +241,7 @@
       UnwrapPreCode(baseElement);
       PrepareAndDecorateFramework(baseElement);
       PreparePromptAreas(baseElement);
-      PrepareAndDecorateBricks(baseElement)
+      PrepareAndDecorateCards(baseElement);
       RenderMarkdownAreas(baseElement);
       AddCopyButtons(baseElement);
 
@@ -431,37 +467,37 @@
           }).catch(err=> alert("Failed to copy content: " + err));
         });
 
-        prompt.append(document.createElement('br'));
-        prompt.append(button);
+        prompt.append(wrapElementInParagraph(button));
       });
     }
 
-    function PrepareAndDecorateBricks(baseElement)
+    function PrepareAndDecorateCards(baseElement)
     {
 
-      const selectedElementsNodeList = document.querySelectorAll('.slf-brick');
+      const selectedElementsNodeList = baseElement.querySelectorAll('.slf-card, .slf-brick');
 
-      // 2. Convert the NodeList to an array (a "list" in JavaScript)
-      // This allows using array methods like `reverse()` and `forEach()`.
-      const elementsArray = Array.from(selectedElementsNodeList);
+      //for (let i = selectedElementsNodeList.length - 1; i >= 0; i--) {
+      for (let i = 0; i <selectedElementsNodeList.length; i++) {
+        const card= selectedElementsNodeList[i];
 
-      for (let i = selectedElementsNodeList.length - 1; i >= 0; i--) {
-        const brick= selectedElementsNodeList[i];
-
-            const text = htmlStrip(brick.outerHTML);
+            const text = htmlStrip(card.outerHTML);
             const button = document.createElement('button');
             button.type = "button";
-            button.textContent = '📋 Copy brick';
+            var name="card";
+            if (card.classList.contains("slf-brick")) name="brick";
+
+
+            button.textContent = '📋 Copy '+name;
             button.classList.add("copy-content-button");
 
             button.addEventListener('click', ()=>{
               navigator.clipboard.writeText(text).then(()=>{
                 button.innerText = "✅ Prepared and Copied!";
-                setTimeout(()=> button.innerText = "Copy brick", 2000);
+                setTimeout(()=> button.innerText = "Copy "+name, 2000);
               }).catch(err=> alert("Failed to copy content: " + err));
             });
 
-            brick.append(button);
+            card.append(wrapElementInParagraph(button));
         }
     }
 
@@ -487,7 +523,7 @@
           button = document.createElement('button');
           button.type = "button";
           button.classList.add('copy-content-button');
-          area.appendChild(button);
+          area.appendChild(wrapElementInParagraph(button));
         }
         const id = `prompt_${counter++}`;
         button.id = id;
@@ -559,7 +595,10 @@
   </script>
 
 </head>
+
 <body>
+
+
 <h2>Prelude: On the Subtle Dominance of Truth</h2>
 
 <p>
@@ -668,5 +707,6 @@ Falsehood&nbsp;&sub;&nbsp;RelationToTruth
             In this way, truth is not only a value. For a reasoning system, it is also an orientation.
             </p>
         <p><strong>Article Reference:</strong> AMF-TRUTH-Article-01</p>
-<!-- #CONTENT# END --></body>
+<!-- #CONTENT# END -->
+</body>
 </html>

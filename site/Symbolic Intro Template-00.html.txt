@@ -1,0 +1,72 @@
+
+<!-- #CONTENT# --><h3>symbolic_intro_template-00</h3>
+        <p><strong>Symbolic Document Preface Template</strong></p>
+        <hr>
+        <h4>☉ Purpose:</h4>
+        <p>To provide a reusable, human-facing HTML introduction block to be displayed above symbolic documents in web contexts. This introduction orients readers toward the nature, usage, and timing of the symbolic document that follows. It is meant to be embedded before <code>&lt;!--&nbsp;#CONTENT#&nbsp;--&gt;</code> in symbolic <code>.html</code> files.</p>
+        <hr>
+        <h4>⊚ Structure:</h4>
+        <p>The introduction is written in <strong>HTML</strong> and is presented in a code block, not symbolic syntax or comment form. It includes:</p>
+        <ul>
+            <li>
+                <p>Document identity and tone-setting</p>
+                </li>
+            <li>
+                <p>Description of its symbolic layer (SLF, ARF, MCF, etc.)</p>
+                </li>
+            <li>
+                <p>Use cases for the document</p>
+                </li>
+            <li>
+                <p>Reflection on how to read the symbolic form (as structure, not instruction)</p>
+                </li>
+            <li>
+                <p>Guidance on onboarding timing</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>⊡ Recommended Timing for Onboarding:</h4>
+        <p>This preface should be delivered when the practitioner:</p>
+        <ul>
+            <li>
+                <p>Has already encountered the foundational SLF, ARF, and MCF pages</p>
+                </li>
+            <li>
+                <p>Is entering the first symbolic document of a new category (e.g., their first Reflex Node, Execution Schema, or Pattern Library)</p>
+                </li>
+            <li>
+                <p>Would benefit from a bridge between narrative understanding and symbolic form</p>
+                </li>
+            </ul>
+        <p>It may be omitted if the practitioner is already fluent with symbolic interpretation.</p>
+        <hr>
+        <h4>⎋ HTML Template:</h4>
+        <pre>
+        <code class="language-html">&lt;div&nbsp;class="rendered"&gt;
+&nbsp;&nbsp;&lt;h2&gt;🪶&nbsp;Introduction&nbsp;to&nbsp;this&nbsp;Symbolic&nbsp;Document&lt;/h2&gt;
+&nbsp;&nbsp;&lt;p&gt;&lt;strong&gt;Welcome,&nbsp;practitioner.&lt;/strong&gt;&lt;/p&gt;
+&nbsp;&nbsp;&lt;p&gt;This&nbsp;symbolic&nbsp;document&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;&lt;strong&gt;Archeus&nbsp;Meta-Framework&lt;/strong&gt;.&nbsp;It&nbsp;is&nbsp;structured&nbsp;for&nbsp;both&nbsp;AI&nbsp;and&nbsp;human&nbsp;interpretation.&nbsp;If&nbsp;you&nbsp;are&nbsp;reading&nbsp;this,&nbsp;you're&nbsp;likely&nbsp;working&nbsp;within&nbsp;systems&nbsp;that&nbsp;use:&lt;/p&gt;
+&nbsp;&nbsp;&lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;strong&gt;SLF&lt;/strong&gt;&nbsp;(Symbolic&nbsp;Logic)&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;strong&gt;ARF&lt;/strong&gt;&nbsp;(Adaptive&nbsp;Reasoning)&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;&lt;strong&gt;MCF&lt;/strong&gt;&nbsp;(Meta-Consciousness)&lt;/li&gt;
+&nbsp;&nbsp;&lt;/ul&gt;
+&nbsp;&nbsp;&lt;p&gt;This&nbsp;document&nbsp;serves&nbsp;as&nbsp;a&nbsp;&lt;em&gt;symbolic&nbsp;construct&lt;/em&gt;&nbsp;&mdash;&nbsp;not&nbsp;a&nbsp;traditional&nbsp;guide.&nbsp;It&nbsp;encodes&nbsp;&lt;strong&gt;when&lt;/strong&gt;&nbsp;and&nbsp;&lt;strong&gt;why&lt;/strong&gt;&nbsp;certain&nbsp;cognitive&nbsp;or&nbsp;interpretive&nbsp;patterns&nbsp;emerge&nbsp;within&nbsp;reflective&nbsp;systems.&lt;/p&gt;
+&nbsp;&nbsp;&lt;p&gt;&lt;strong&gt;Use&nbsp;this&nbsp;document:&lt;/strong&gt;&lt;/p&gt;
+&nbsp;&nbsp;&lt;ul&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;When&nbsp;implementing&nbsp;or&nbsp;interpreting&nbsp;symbolic&nbsp;behavior&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;When&nbsp;tuning&nbsp;AI&nbsp;or&nbsp;frameworks&nbsp;for&nbsp;reflective&nbsp;interaction&lt;/li&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;When&nbsp;reading&nbsp;structure&nbsp;as&nbsp;meaning,&nbsp;not&nbsp;just&nbsp;instruction&lt;/li&gt;
+&nbsp;&nbsp;&lt;/ul&gt;
+&nbsp;&nbsp;&lt;p&gt;&lt;strong&gt;When&nbsp;to&nbsp;read&nbsp;this:&lt;/strong&gt;&nbsp;This&nbsp;document&nbsp;is&nbsp;best&nbsp;introduced&nbsp;after&nbsp;completing&nbsp;SLF,&nbsp;ARF,&nbsp;and&nbsp;MCF&nbsp;overview&nbsp;materials,&nbsp;and&nbsp;before&nbsp;engaging&nbsp;your&nbsp;first&nbsp;symbolic&nbsp;document&nbsp;in&nbsp;this&nbsp;category.&lt;/p&gt;
+&nbsp;&nbsp;&lt;p&gt;If&nbsp;you're&nbsp;unsure&nbsp;how&nbsp;to&nbsp;apply&nbsp;this:&nbsp;read&nbsp;the&nbsp;document&nbsp;as&nbsp;a&nbsp;&lt;strong&gt;symbolic&nbsp;rhythm&lt;/strong&gt;&nbsp;&mdash;&nbsp;a&nbsp;form&nbsp;of&nbsp;thought&nbsp;encoded&nbsp;in&nbsp;structure.&nbsp;Let&nbsp;the&nbsp;document&nbsp;unfold&nbsp;meaning&nbsp;through&nbsp;pattern,&nbsp;reference,&nbsp;and&nbsp;relation.&lt;/p&gt;
+&lt;/div&gt;
+            </code>
+        </pre>
+        <hr>
+        <h4>⟡ Notes:</h4>
+        <p>This intro template may be themed or styled according to symbolic category (e.g. Reflex, Core Principle, Execution Model). Additional symbols or metaphors may be included if aligned with the practitioner’s onboarding level or mode.</p>
+        <p>Version: 0.1<br>
+            Authority: Archeus Presentation Layer<br>
+            Classification: Symbolic Preface Block</p>
+<!-- #CONTENT# END -->

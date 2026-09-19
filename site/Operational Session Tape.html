@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- HeaderVersion 20260305_102548 -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="header-version" content="1.1.0" />
@@ -88,7 +89,7 @@
     }
 
     .copy-button{
-      position:absolute;top:5px;right:5px;
+      position:absolute;top:5px;left:5px;
       padding:3px 8px;font-size:11px;
       cursor:pointer;background-color:#f0f0f0;border:1px solid #ccc;
       z-index:10;transition:background-color .2s ease;
@@ -125,11 +126,15 @@
     .slf-card h3{margin-top:0}
     .slf-card h4{margin:0.6rem 0 0.25rem}
 
+    .symbolic-doc{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .symbolic-doc:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .symbolic-doc h3{margin-top:0}
+    .symbolic-doc h4{margin:0.6rem 0 0.25rem}
+
     .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
     .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
     .slf-brick h3{margin-top:0}
     .slf-brick h4{margin:0.6rem 0 0.25rem}
-
   </style>
 
   <style>
@@ -146,6 +151,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: {
+          fontCache: 'local'
+      }
+    };
+    </script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 
   <script>
     function htmlStrip(text) {
@@ -574,7 +596,9 @@
 
 </head>
 
-<body><!-- #CONTENT# -->        <h1>**📘 Operationalizing Session Tape</h1>
+<body>
+
+<!-- #CONTENT# -->        <h1>**📘 Operationalizing Session Tape</h1>
         <p>A Behavioral Extension of the Late-Collapse Creativity Substrate**</p>
         <p>This document describes how to operationalize a <strong>Session Tape</strong> in an AI system using the principles introduced in <em>Tape as a Late-Collapse Creativity Substrate</em>.<br>
             It is written as a <strong>behavioral protocol</strong>, not a narrative explanation.</p>
@@ -820,6 +844,6 @@ Acknowledge&nbsp;activation&nbsp;and&nbsp;standby.
         <h1><strong>5. Closing</strong></h1>
         <p>The Session Tape is a procedural interface for the deeper Tape substrate.<br>
             It offers structure without constraint, persistence without rigidity, and collaboration without overdesign.</p>
-<!-- #CONTENT# END --></body>
+<!-- #CONTENT# END -->
+</body>
 </html>
-

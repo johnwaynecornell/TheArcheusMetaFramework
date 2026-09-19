@@ -1,0 +1,172 @@
+
+<!-- #CONTENT# --><!-- Framework Page -->
+        <p><strong>SLF-MOD-03: Mod.MetaFormFunction</strong></p>
+        <hr>
+        <p><strong>Symbolic Module</strong>: <code>Mod.MetaFormFunction</code></p>
+        <p><strong>Canonical Source</strong>: <code>SLF-MOD-03.sig</code><br>
+            <strong>Contextual Annex</strong>: <code>SLF-MOD-03-ANNEX-01.sig</code></p>
+        <p><strong>Symbolic Core</strong>: <code>Meta&nbsp;&harr;&nbsp;Form&nbsp;&harr;&nbsp;Function</code></p>
+        <p><strong>Purpose</strong>: To provide a triadic symbolic structure for aligning intention, representation, and execution across symbolic, cognitive, physical, and design systems. This pattern applies universally across realms (Qualitative, Quantitative, Hybrid) and facilitates interpretation, modeling, and transformation in both abstract and applied reasoning.</p>
+        <hr>
+        <h3>1. Triadic Structure: Meta ↔ Form ↔ Function</h3>
+        <ul>
+            <li>
+                <p><strong>Meta</strong>: That which governs, defines, or provides intent.</p>
+                </li>
+            <li>
+                <p><strong>Form</strong>: The structural or symbolic embodiment.</p>
+                </li>
+            <li>
+                <p><strong>Function</strong>: The operation or realization in context.</p>
+                </li>
+            </ul>
+        <p>This module posits that:</p>
+        <pre><code>Meta&nbsp;defines&nbsp;Form
+Form&nbsp;enables&nbsp;Function
+Function&nbsp;expresses&nbsp;Meta
+        </code></pre>
+        <p>Each node in the triad completes a reflective loop.</p>
+        <hr>
+        <h3>2. Realms of Application</h3>
+        <h4>Realm(Qualitative):</h4>
+        <ul>
+            <li>
+                <p><strong>Quantifier</strong>: ∀ (For all)</p>
+                </li>
+            <li>
+                <p><strong>Axes</strong>: meaning, perception, value, expression, empathy, ...</p>
+                </li>
+            <li>
+                <p><strong>Nature</strong>: interpretive, pattern-based, symbolic</p>
+                </li>
+            </ul>
+        <h4>Realm(Quantitative):</h4>
+        <ul>
+            <li>
+                <p><strong>Quantifier</strong>: ∃ (There exists)</p>
+                </li>
+            <li>
+                <p><strong>Axes</strong>: time, frequency, output, magnitude, ...</p>
+                </li>
+            <li>
+                <p><strong>Nature</strong>: measurable, functional, instance-based</p>
+                </li>
+            </ul>
+        <h4>Realm(Hybrid):</h4>
+        <ul>
+            <li>
+                <p><strong>Interaction</strong>: Qualitative ∩ Quantitative</p>
+                </li>
+            <li>
+                <p><strong>Nature</strong>: Resonant, dual-mode, symbolic execution</p>
+                </li>
+            <li>
+                <p><strong>Application</strong>: cognition modeling, symbolic simulation, MSE structures</p>
+                </li>
+            </ul>
+        <hr>
+        <h3>3. Canonical Triads (Examples)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>Meta</th>
+                    <th>Form</th>
+                    <th>Function</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>Cognition</td>
+                    <td>abstract</td>
+                    <td>real</td>
+                    <td>imaginary</td>
+                    </tr>
+                <tr>
+                    <td>Emulation</td>
+                    <td>see</td>
+                    <td>do</td>
+                    <td>refine</td>
+                    </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>meaning</td>
+                    <td>symbol</td>
+                    <td>expression</td>
+                    </tr>
+                <tr>
+                    <td>Physics</td>
+                    <td>space</td>
+                    <td>mass</td>
+                    <td>time</td>
+                    </tr>
+                <tr>
+                    <td>Design</td>
+                    <td>blueprint</td>
+                    <td>chair</td>
+                    <td>sit</td>
+                    </tr>
+                <tr>
+                    <td>Computation</td>
+                    <td>input</td>
+                    <td>structure</td>
+                    <td>output</td>
+                    </tr>
+                <tr>
+                    <td>Temporal</td>
+                    <td>past</td>
+                    <td>present</td>
+                    <td>future</td>
+                    </tr>
+                <tr>
+                    <td>AMF</td>
+                    <td>intent</td>
+                    <td>structure</td>
+                    <td>feedback</td>
+                    </tr>
+                <tr>
+                    <td>SLF</td>
+                    <td>symbol</td>
+                    <td>transform</td>
+                    <td>interpret</td>
+                    </tr>
+                <tr>
+                    <td>MCF</td>
+                    <td>mirror</td>
+                    <td>process</td>
+                    <td>resolution</td>
+                    </tr>
+                </tbody>
+            </table>
+        <hr>
+        <h3>4. Symbolic Patterns</h3>
+        <pre>
+        <code class="language-slf">apply(triad)&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Meta:&nbsp;triad[0];
+&nbsp;&nbsp;&nbsp;&nbsp;Form:&nbsp;triad[1];
+&nbsp;&nbsp;&nbsp;&nbsp;Function:&nbsp;triad[2];
+};
+            </code>
+        </pre>
+        <hr>
+        <h3>5. Integration and Placement</h3>
+        <ul>
+            <li>
+                <p><strong>SLF</strong>: Supports symbolic interpretation and the structure of notation (<code>SLF-02</code>)</p>
+                </li>
+            <li>
+                <p><strong>MCF</strong>: Mirrors recursive intention, form resolution, and outcome feedback (<code>MCF-04</code>, <code>MCF-05</code>)</p>
+                </li>
+            <li>
+                <p><strong>AMF</strong>: Serves as the underlying pattern for reasoning pathways (<code>AMF-SLF-01</code>, <code>AMF-01</code>)</p>
+                </li>
+            <li>
+                <p><strong>MetaMap Inclusion</strong>: <code>Mod.MetaFormFunction</code></p>
+                </li>
+            </ul>
+        <hr>
+        <h3>6. Reflective Note</h3>
+        <p>The lattice formed by intersecting <code>Meta&nbsp;&harr;&nbsp;Form&nbsp;&harr;&nbsp;Function</code> triads across realms yields a symbolic substrate for modeling layered systems. This module enables transparent symbolic representation across cognition, simulation, execution, and adaptation.</p>
+        <hr>
+        <p><strong>Document Reference:</strong> SLF-MOD-03</p>
+<!-- #CONTENT# END -->

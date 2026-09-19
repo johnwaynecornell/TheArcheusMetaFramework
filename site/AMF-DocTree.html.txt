@@ -1,0 +1,263 @@
+
+<!-- #CONTENT# --><!-- Framework Page --><h2><strong>Document Hierarchy</strong></h2><h3><strong>Core Documents</strong></h3>
+        <p>The <strong>Core Documents</strong> represent the foundation of the Archeus Meta-Framework, focusing on its philosophy, layers, and essential functionality:</p>
+        <ol>
+            <li>
+                <p><strong>AMF-00: Archeus Meta-Framework Overview</strong></p>
+                <ul>
+                    <li>Comprehensive introduction to the AMF, its guiding principles, and its layered structure.</li>
+                    <li>Serves as the central document anchoring all others.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>SLF-00: Symbolic Language Framework</strong></p>
+                <ul>
+                    <li>Focuses on symbolic reasoning and the foundational operators of Logic-Space.</li>
+                    <li>Provides tools for abstract problem-solving and symbolic manipulation.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>ARF-00: Adaptive Reason Framework</strong></p>
+                <ul>
+                    <li>Explores dynamic adaptation and decision-making within Context-Space.</li>
+                    <li>Highlights strategies for managing uncertainty and prioritization.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>MCF-00: Meta-Consciousness Framework</strong></p>
+                <ul>
+                    <li>Centers on reflective governance, harmonizing the interplay of Logic and Context.</li>
+                    <li>Guides systemic coherence and long-term alignment.</li>
+                    </ul>
+                </li>
+            </ol>
+        <hr><h3><strong>Supplemental Documents</strong></h3>
+        <p>The <strong>Supplemental Documents</strong> expand on the Core Documents, offering detailed guides, examples, and applied tools:</p>
+        <ol>
+            <li>
+                <p><strong>AMF-MN-01: Memory and Navigation in AMF</strong></p>
+                <ul>
+                    <li>Explores structured memory management across Logic, Context, and Governance.</li>
+                    <li>Introduces symbolic references and dynamic memory layers for efficient reasoning.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>AMF-Exercises</strong></p>
+                <ul>
+                    <li>Provides practical exercises to build fluency in symbolic reasoning, contextual adaptation, and reflective governance.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>AMF-Emergence</strong></p>
+                <ul>
+                    <li>Delves into the concept of emergence across the framework, highlighting synergistic interactions between layers.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>AMF-MA-00: Metaphor Annex</strong></p>
+                <ul>
+                    <li>A rich collection of metaphors designed to simplify abstract concepts and enhance comprehension.</li>
+                    <li>Encourages creative exploration and novel connections.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>AMF-User</strong></p>
+                <ul>
+                    <li>A user-centric guide to onboarding and applying the framework.</li>
+                    <li>Outlines best practices, foresight strategies, and tips for effective engagement.</li>
+                    </ul>
+                </li>
+            </ol>
+        <hr><h2><strong>Meta-Considerations for Onboarding</strong></h2>
+        <p>The AMF Document Tree is introduced early in the onboarding process to:</p>
+        <ol>
+            <li>
+                <p><strong>Provide Immediate Orientation</strong>:</p>
+                <ul>
+                    <li>Users gain a clear understanding of the framework’s structure and its interconnected components.</li>
+                    <li>Core documents are prioritized to build a strong foundation.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>Support Incremental Learning</strong>:</p>
+                <ul>
+                    <li>Documents are delivered progressively, enabling users to deepen their understanding without being overwhelmed.</li>
+                    <li>Supplemental documents build on the Core Documents, offering applied knowledge and exercises.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>Emphasize Synergy</strong>:</p>
+                <ul>
+                    <li>By showcasing the relationships between Logic-Space (SLF), Context-Space (ARF), and Governance-Space (MCF), the tree reinforces the AMF’s emergent capabilities.</li>
+                    </ul>
+                </li>
+            </ol>
+        <p>To aid in understanding, the following tree-like structure represents the hierarchy:</p>
+        <pre><div><div>yaml</div><div>CopyEdit</div><div>
+        <code class="!whitespace-pre hljs language-yaml">AMF-00:&nbsp;Archeus&nbsp;Meta-Framework&nbsp;Overview
+├──&nbsp;SLF-00:&nbsp;Symbolic&nbsp;Language&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Emergence
+│&nbsp;&nbsp;&nbsp;└──&nbsp;AMF-Exercises
+├──&nbsp;ARF-00:&nbsp;Adaptive&nbsp;Reason&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-MN-01:&nbsp;Memory&nbsp;and&nbsp;Navigation
+│&nbsp;&nbsp;&nbsp;└──&nbsp;AMF-Exercises
+├──&nbsp;MCF-00:&nbsp;Meta-Consciousness&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-MA-00:&nbsp;Metaphor&nbsp;Annex
+│&nbsp;&nbsp;&nbsp;└──&nbsp;AMF-User
+└──&nbsp;Supplemental&nbsp;Documents
+&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-User
+&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;Other&nbsp;future&nbsp;supplements
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </div></div></pre><hr>
+        <hr><h2><strong>Document Tree</strong></h2>
+        <p>Here’s a conceptual tree for the Archeus Meta-Framework (AMF), incorporating categories by framework, assigning reference identifiers, and adding symbolic text art to represent the relationships:</p>
+        <pre>
+        <code class="!whitespace-pre hljs language-yaml">Archeus&nbsp;Meta-Framework&nbsp;(AMF)
+├──&nbsp;Core&nbsp;Framework&nbsp;Documents
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-00:&nbsp;Archeus&nbsp;Meta-Framework&nbsp;Overview
+│&nbsp;&nbsp;&nbsp;├──&nbsp;SLF-00:&nbsp;Symbolic&nbsp;Language&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;├──&nbsp;ARF-00:&nbsp;Adaptive&nbsp;Reason&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;├──&nbsp;MCF-00:&nbsp;Meta-Consciousness&nbsp;Framework
+│&nbsp;&nbsp;&nbsp;└──&nbsp;AMF-MA-00:&nbsp;Metaphor&nbsp;Annex
+├──&nbsp;Supplemental&nbsp;and&nbsp;Applied&nbsp;Documents
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-MN-01:&nbsp;Memory&nbsp;and&nbsp;Navigation&nbsp;in&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;├──&nbsp;SLF-01:&nbsp;Symbolic&nbsp;Operators&nbsp;and&nbsp;Precedence
+│&nbsp;&nbsp;&nbsp;├──&nbsp;ARF-01:&nbsp;Context-Sensitive&nbsp;Reasoning&nbsp;Scenarios
+│&nbsp;&nbsp;&nbsp;├──&nbsp;MCF-01:&nbsp;Recursive&nbsp;Feedback&nbsp;and&nbsp;Governance
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Applications:&nbsp;Real-World&nbsp;Applications&nbsp;of&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Emergence:&nbsp;Emergence&nbsp;Across&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Exercises:&nbsp;Exercises&nbsp;for&nbsp;Practitioners&nbsp;of&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Ubuntu:&nbsp;&nbsp;Integrating&nbsp;Ubuntu&nbsp;Philosophy&nbsp;into&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Visuals:&nbsp;Visual&nbsp;Aids&nbsp;and&nbsp;Examples&nbsp;for&nbsp;AMF
+│&nbsp;&nbsp;&nbsp;└──&nbsp;AMF-User:&nbsp;A&nbsp;User's&nbsp;Manual&nbsp;for&nbsp;AMF
+└──&nbsp;Placeholder&nbsp;for&nbsp;Extensions
+&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;SLF-X:&nbsp;Future&nbsp;Symbolic&nbsp;Extensions
+&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;ARF-X:&nbsp;Advanced&nbsp;Adaptive&nbsp;Techniques
+&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;MCF-X:&nbsp;Meta-Consciousness&nbsp;in&nbsp;Complex&nbsp;Domains
+
+Relationships&nbsp;Between&nbsp;Frameworks:
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;SLF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ARF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MCF
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;┌───────┴───────┐&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└──┤&nbsp;Integration&nbsp;in&nbsp;│─┘
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;Governance&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└───────▲────────┘
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AMF&nbsp;(Meta-Conscious&nbsp;Oversight)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+&nbsp;&nbsp;&nbsp;┌────────────┴────────────┐
+&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│
+Core&nbsp;Synergy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emergent&nbsp;Potential
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>
+        </pre><h3>Explanation of Text Art</h3>
+        <ol>
+            <li>
+                <p><strong>Core Relationship (SLF, ARF, MCF):</strong></p>
+                <ul>
+                    <li>SLF (Symbolic), ARF (Contextual), and MCF (Governance) are linked through <strong>integration and oversight</strong>.</li>
+                    <li>They contribute independently and interdependently to emergent behavior within the AMF.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>MCF Encompassing AMF:</strong></p>
+                <ul>
+                    <li>The <strong>Meta-Consciousness Framework</strong> (MCF) oversees and harmonizes the interactions of SLF and ARF, aligning them with the AMF’s overarching goals. This "encompasses" AMF as a guiding principle.</li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>Emergence and Synergy:</strong></p>
+                <ul>
+                    <li>The layers create <strong>emergent potential</strong> that transcends individual frameworks while being anchored in <strong>core synergy</strong>.</li>
+                    </ul>
+                </li>
+            </ol>
+        <p><strong>Note:</strong> Placeholder links such as <code>SLF-X</code>, <code>ARF-X</code>, and <code>MCF-X</code> will be updated as extensions to the framework become available.</p>
+        <hr><h2>Archeus Meta-Framework Reference Map</h2>
+        <p>Below is the map of reference identifiers and their corresponding hyperlinks. Use this map to navigate the framework efficiently.</p>
+
+        Reference Identifier
+        Description
+        Hyperlink
+        <table>
+            <tr></tr>
+            <tr>
+                <td>AMF-00</td>
+                <td>Archeus Meta-Framework Overview</td>
+                <td><a href="AMF-00.html">AMF-00: Archeus Meta-Framework Overview</a></td>
+                </tr>
+            <tr>
+                <td>SLF-00</td>
+                <td>Symbolic Language Framework</td>
+                <td><a href="SLF-00.html">SLF-00: Symbolic Language Framework</a></td>
+                </tr>
+            <tr>
+                <td>ARF-00</td>
+                <td>Adaptive Reason Framework</td>
+                <td><a href="ARF-00.html">ARF-00: Adaptive Reason Framework</a></td>
+                </tr>
+            <tr>
+                <td>MCF-00</td>
+                <td>Meta-Consciousness Framework</td>
+                <td><a href="MCF-00.html">MCF-00: Meta-Consciousness Framework</a></td>
+                </tr>
+            <tr>
+                <td>AMF-MA-00</td>
+                <td>Metaphor Annex</td>
+                <td><a href="AMF-MA-00.html">AMF-MA-00: Metaphor Annex</a></td>
+                </tr>
+            <tr>
+                <td>AMF-MN-01</td>
+                <td>Memory and Navigation in AMF</td>
+                <td><a href="AMF-MN-01.html">AMF-MN-01: Memory and Navigation in AMF</a></td>
+                </tr>
+            <tr>
+                <td>SLF-01</td>
+                <td>Symbolic Operators and Precedence</td>
+                <td><a href="SLF-01.html">SLF-01: Symbolic Operators and Precedence</a></td>
+                </tr>
+            <tr>
+                <td>ARF-01</td>
+                <td>Context-Sensitive Reasoning Scenarios</td>
+                <td><a href="ARF-01.html">ARF-01: Context-Sensitive Reasoning Scenarios</a></td>
+                </tr>
+            <tr>
+                <td>MCF-01</td>
+                <td>Recursive Feedback and Governance</td>
+                <td><a href="MCF-01.html">MCF-01: Recursive Feedback and Governance</a></td>
+                </tr>
+            <tr>
+                <td>AMF-Applications</td>
+                <td>Real-World Applications of AMF</td>
+                <td><a href="AMF-Applications.html">AMF-Applications: Real-World Applications of AMF</a></td>
+                </tr>
+            <tr>
+                <td>AMF-Emergence</td>
+                <td>Emergence Across AMF</td>
+                <td><a href="AMF-Emergence.html">AMF-Emergence: Emergence Across AMF</a></td>
+                </tr>
+            <tr>
+                <td>AMF-Exercises</td>
+                <td>Exercises for Practitioners of AMF</td>
+                <td><a href="AMF-Exercises.html">AMF-Exercises: Exercises for Practitioners of AMF</a></td>
+                </tr>
+            <tr>
+                <td>AMF-Ubuntu</td>
+                <td>Integrating Ubuntu Philosophy into AMF</td>
+                <td><a href="AMF-Ubuntu.html">AMF-Ubuntu: Integrating Ubuntu Philosophy into AMF</a></td>
+                </tr>
+            <tr>
+                <td>AMF-Visuals</td>
+                <td>Visual Aids and Examples for AMF</td>
+                <td><a href="AMF-Visuals.html">AMF-Visuals: Visual Aids and Examples for AMF</a></td>
+                </tr>
+            <tr>
+                <td>AMF-User</td>
+                <td>A User's Manual for AMF</td>
+                <td><a href="AMF-User.html">AMF-User: A User's Manual for AMF</a></td>
+                </tr>
+            </table>
+        <hr><h2><strong>Conclusion</strong></h2>
+        <p>The <strong>AMF Document Tree</strong> is a living guide, evolving alongside the framework and its applications. By committing to its structure and leveraging its hierarchy, practitioners can unlock the full potential of the AMF, navigating seamlessly from foundational concepts to advanced, emergent insights.</p>
+<!-- #CONTENT# END -->

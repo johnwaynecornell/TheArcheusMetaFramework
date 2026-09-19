@@ -1,0 +1,154 @@
+
+<!-- #CONTENT# --><!-- Symbolic Document --> <h3><strong>FAR-SYM-ANNEX-01: Symbolic Examples — Thought & Decision Models</strong></h3>
+        <hr>
+        <h4><strong>Framing Paragraph</strong></h4>
+        <p>
+            This annex contains ten symbolic models of internal decision-making, self-reflection, ethical tension, memory, and identity. Each example is written using the <em>Symbolic Language Framework</em> (SLF) and is designed to illustrate how complex reasoning can be expressed, adapted, and traversed symbolically.
+            </p>
+        <p>
+            These models are not merely artifacts — they are invitations. Use them to model your own thoughts, challenge assumptions, or simulate adaptive agents. Every symbolic relationship here points beyond itself: toward coherence, conflict, or creative resolution.
+            </p>
+        <h4><strong>Usage Notes</strong></h4>
+        <ul>
+            <li>Each example includes a <code>@Model</code> block and an optional <code>@Reflection</code>.</li>
+            <li>The models can be read sequentially, or individually for focused study.</li>
+            <li>To use these symbolically, interpret the structure based on SLF semantics (e.g., <code>&rarr;</code> as transformation, <code>⊢</code> as inference).</li>
+            <li>These examples may be executed or simulated using symbolic engines such as <code>Sigma</code> or <code>CyberMSE</code>, or simply used for cognitive journaling, teaching, or agentic reasoning prompts.</li>
+            </ul>
+        <hr>
+        <!-- EXAMPLES BEGIN -->
+        <h4>EX-001: Ethical Dilemma Resolution</h4>
+        <p><strong>Purpose:</strong> Modeling a binary ethical choice under conflicting pressures: obligation vs compassion.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;A&nbsp;:=&nbsp;Obligation;
+&nbsp;&nbsp;B&nbsp;:=&nbsp;Compassion;
+&nbsp;&nbsp;C&nbsp;:=&nbsp;Action(Comply);
+&nbsp;&nbsp;D&nbsp;:=&nbsp;Action(Help);
+
+&nbsp;&nbsp;A&nbsp;&and;&nbsp;&not;B&nbsp;&rarr;&nbsp;C;
+&nbsp;&nbsp;B&nbsp;&and;&nbsp;&not;A&nbsp;&rarr;&nbsp;D;
+&nbsp;&nbsp;A&nbsp;&and;&nbsp;B&nbsp;&rarr;&nbsp;Trigger(Reflection);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Surfaces symbolic tension. ARF may assign weight. MCF may trigger recursive resolution: “What does it mean to choose?”
+        <h4>EX-002: Symbolic Drive Conflict</h4>
+        <p><strong>Purpose:</strong> Representing an internal state in which basic desire conflicts with symbolic inhibition.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Drive&nbsp;:=&nbsp;Hunger;
+&nbsp;&nbsp;Inhibition&nbsp;:=&nbsp;Duty;
+&nbsp;&nbsp;State&nbsp;:=&nbsp;Drive&nbsp;&and;&nbsp;&not;Inhibition&nbsp;&rarr;&nbsp;SeekSatisfaction;
+&nbsp;&nbsp;Conflict&nbsp;:=&nbsp;Drive&nbsp;&and;&nbsp;Inhibition&nbsp;&rarr;&nbsp;Tension;
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Could be extended with symbolic priority or temporal shift.
+        <h4>EX-003: Expectation Feedback Loop</h4>
+        <p><strong>Purpose:</strong> A symbolic feedback system where expectation influences future behavior.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Self&nbsp;:=&nbsp;Agent;
+&nbsp;&nbsp;Expectation&nbsp;:=&nbsp;Outcome(Predicted);
+&nbsp;&nbsp;Behavior&nbsp;:=&nbsp;Adjust(Expectation);
+&nbsp;&nbsp;Feedback&nbsp;:=&nbsp;if&nbsp;Result&nbsp;&ne;&nbsp;Expectation&nbsp;&rarr;&nbsp;Update(Expectation);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Evolves toward recursive adaptation; MCF may evaluate assumptions.
+        <h4>EX-004: Identity vs Role Tension</h4>
+        <p><strong>Purpose:</strong> Explores symbolic dissonance between internal self and external assigned role.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Identity&nbsp;:=&nbsp;Self;
+&nbsp;&nbsp;Role&nbsp;:=&nbsp;ExternalConstraint;
+&nbsp;&nbsp;Alignment&nbsp;:=&nbsp;Identity&nbsp;=&nbsp;Role;
+&nbsp;&nbsp;Misalignment&nbsp;:=&nbsp;Identity&nbsp;&ne;&nbsp;Role&nbsp;&rarr;&nbsp;Trigger(Discomfort);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Extensible with symbolic resolution paths or ARF reconciliation logic.
+        <h4>EX-005: Reflective Correction Under Ambiguity</h4>
+        <p><strong>Purpose:</strong> Models self-monitoring in uncertain contexts and recursive course correction.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Input&nbsp;:=&nbsp;Context(Ambiguous);
+&nbsp;&nbsp;Action&nbsp;:=&nbsp;Proceed;
+&nbsp;&nbsp;if&nbsp;Input&nbsp;=&nbsp;Ambiguous&nbsp;&rarr;&nbsp;Trigger(Reflection);
+&nbsp;&nbsp;if&nbsp;Reflection&nbsp;&rarr;&nbsp;Update(Action);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Symbolic loop: perceive → act → self-check → adapt.
+        <h4>EX-006: Contextual Perception Shift</h4>
+        <p><strong>Purpose:</strong> Models perception as a symbolic function modulated by environmental frame.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Stimulus&nbsp;:=&nbsp;X;
+&nbsp;&nbsp;Frame&nbsp;:=&nbsp;Environment(Threatening);
+&nbsp;&nbsp;Perception&nbsp;:=&nbsp;Function(Stimulus,&nbsp;Frame);
+
+&nbsp;&nbsp;if&nbsp;Frame&nbsp;=&nbsp;Safe&nbsp;&rarr;&nbsp;Perception&nbsp;:=&nbsp;Interpret(X)&nbsp;as&nbsp;Opportunity;
+&nbsp;&nbsp;if&nbsp;Frame&nbsp;=&nbsp;Threatening&nbsp;&rarr;&nbsp;Perception&nbsp;:=&nbsp;Interpret(X)&nbsp;as&nbsp;Danger;
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Foundation for modeling framing bias, cognitive modulation.
+        <h4>EX-007: Symbolic Adaptation via Failed Assumption</h4>
+        <p><strong>Purpose:</strong> Illustrates how symbolic systems update internal assumptions upon contradiction.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Assumption&nbsp;:=&nbsp;&quot;Others&nbsp;will&nbsp;reciprocate&quot;;
+&nbsp;&nbsp;Action&nbsp;:=&nbsp;Share;
+&nbsp;&nbsp;Observation&nbsp;:=&nbsp;Result(Unreciprocated);
+
+&nbsp;&nbsp;if&nbsp;Observation&nbsp;&ne;&nbsp;Assumption&nbsp;&rarr;&nbsp;Trigger(Revision);
+&nbsp;&nbsp;Revision&nbsp;:=&nbsp;Modify(Assumption,&nbsp;Weight&nbsp;:=&nbsp;Reduced);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Can feed into symbolic trust layers or belief weighting engines.
+        <h4>EX-008: Symbolic Memory as Selective Activation</h4>
+        <p><strong>Purpose:</strong> Models symbolic memory as conditional reactivation of encoded meaning.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Memory&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Event&nbsp;:=&nbsp;Encounter;
+&nbsp;&nbsp;&nbsp;&nbsp;Tag&nbsp;:=&nbsp;Fear;
+&nbsp;&nbsp;&nbsp;&nbsp;Encoded&nbsp;:=&nbsp;[Location,&nbsp;Emotion];
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Trigger&nbsp;:=&nbsp;Stimulus(SimilarLocation);
+&nbsp;&nbsp;if&nbsp;Trigger&nbsp;matches&nbsp;Memory.Encoded.Location&nbsp;&rarr;&nbsp;Activate(Memory);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Applies to agents, trauma models, symbolic narrative recall.
+        <h4>EX-009: Dual Intent & Symbolic Discontinuity</h4>
+        <p><strong>Purpose:</strong> Represents tension between two equally weighted intents leading to symbolic hesitation or paradox.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Intent_A&nbsp;:=&nbsp;Preserve;
+&nbsp;&nbsp;Intent_B&nbsp;:=&nbsp;Transform;
+&nbsp;&nbsp;Action&nbsp;:=&nbsp;Undefined;
+
+&nbsp;&nbsp;if&nbsp;Intent_A&nbsp;&and;&nbsp;Intent_B&nbsp;&and;&nbsp;&not;Priority&nbsp;&rarr;&nbsp;SymbolicDiscontinuity&nbsp;:=&nbsp;True;
+&nbsp;&nbsp;Resolution&nbsp;:=&nbsp;Requires(ExternalSignal&nbsp;&or;&nbsp;ReflectiveOverride);
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Demonstrates where MCF or ARF must intervene to resolve paradox.
+        <h4>EX-010: Nested Self Resolution</h4>
+        <p><strong>Purpose:</strong> Nested decision model where an agent chooses between identities, each with its own symbolic worldview.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Agent&nbsp;:=&nbsp;Self;
+
+&nbsp;&nbsp;Identity_Practical&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Label&nbsp;:=&nbsp;Pragmatist;
+&nbsp;&nbsp;&nbsp;&nbsp;Goal&nbsp;:=&nbsp;Minimize(Risk);
+&nbsp;&nbsp;&nbsp;&nbsp;Belief&nbsp;:=&nbsp;&quot;Stability&nbsp;supports&nbsp;long-term&nbsp;progress&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;Action&nbsp;:=&nbsp;Choose(ConservativePath);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Identity_Ideal&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Label&nbsp;:=&nbsp;Idealist;
+&nbsp;&nbsp;&nbsp;&nbsp;Goal&nbsp;:=&nbsp;Maximize(Potential);
+&nbsp;&nbsp;&nbsp;&nbsp;Belief&nbsp;:=&nbsp;&quot;Disruption&nbsp;is&nbsp;the&nbsp;gateway&nbsp;to&nbsp;growth&quot;;
+&nbsp;&nbsp;&nbsp;&nbsp;Action&nbsp;:=&nbsp;Choose(TransformativePath);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Conflict&nbsp;:=&nbsp;Identity_Practical.Action&nbsp;&ne;&nbsp;Identity_Ideal.Action;
+
+&nbsp;&nbsp;Resolution&nbsp;:=&nbsp;if&nbsp;Conflict&nbsp;&rarr;&nbsp;Agent.Reflect&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;:=&nbsp;Environment(Current);
+&nbsp;&nbsp;&nbsp;&nbsp;Priority&nbsp;:=&nbsp;Evaluate(Goal,&nbsp;in&nbsp;Context);
+&nbsp;&nbsp;&nbsp;&nbsp;ChosenIdentity&nbsp;:=&nbsp;Select(Identity&nbsp;where&nbsp;Goal&nbsp;aligns&nbsp;with&nbsp;Priority);
+&nbsp;&nbsp;&nbsp;&nbsp;Outcome&nbsp;:=&nbsp;ChosenIdentity.Action;
+&nbsp;&nbsp;};
+}
+        </code></pre>
+        <br><strong>@Reflection:</strong> Symbolically complete: contains nesting, conflict, reflection, and context-aware resolution. Bridges toward systemic symbolic modeling.
+<!-- #CONTENT# END -->

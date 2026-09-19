@@ -1,0 +1,184 @@
+
+<!-- #CONTENT# --><!-- Symbolic Document --><h3><strong>FAR-SYM-ANNEX-02: Symbolic Examples — Systems & Structures</strong></h3>
+        <hr>
+        <h4><strong>Framing Paragraph</strong></h4>
+        <p>
+            This annex presents five symbolic models of adaptive systems: governance feedback, cognitive stacks, multi-agent interaction, organizational memory, and recursive self-awareness. Each model applies the <em>Symbolic Language Framework</em> (SLF) in structured form to simulate and interpret systemic behavior, allowing both human and AI practitioners to understand how symbolic agents and institutions process meaning over time.
+            </p>
+        <p>
+            Where ANNEX-01 explored internal cognition and thought fields, ANNEX-02 expands outward — into feedback loops, layered reasoning, emergent negotiation, and symbolic recursion. These are not hypothetical; they are blueprints for symbolic execution in intelligent systems.
+            </p>
+        <h4><strong>Usage Notes</strong></h4>
+        <ul>
+            <li>Each model includes <code>@Model</code>, <code>@Feedback</code>, and <code>@MetaSymbol</code> blocks.</li>
+            <li>These examples can be interpreted symbolically, simulated in reasoning engines (e.g., Sigma, CyberMSE), or used for configuring intelligent agents.</li>
+            <li>They are especially useful in designing AI reasoning layers, institutional simulations, reflective agents, and adaptive governance logic.</li>
+            </ul>
+        <hr>
+        <!-- SYSTEM EXAMPLES -->
+        <h4>SYS-001: Governance Feedback Model</h4>
+        <p><strong>Context:</strong> Symbolic representation of institutional control, feedback, and resistance within a governed system.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Structure&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Authority&nbsp;&isin;&nbsp;System;
+&nbsp;&nbsp;&nbsp;&nbsp;Agent&nbsp;&isin;&nbsp;System;
+&nbsp;&nbsp;&nbsp;&nbsp;Policy&nbsp;:=&nbsp;Expectation(AgentBehavior);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Behavior&nbsp;:=&nbsp;ActionSet(Agent);
+&nbsp;&nbsp;Compliance&nbsp;:=&nbsp;Behavior&nbsp;⊨&nbsp;Policy;
+&nbsp;&nbsp;Resistance&nbsp;:=&nbsp;Behavior&nbsp;&ne;&nbsp;Policy;
+
+&nbsp;&nbsp;Drift&nbsp;:=&nbsp;Accumulated(Resistance)&nbsp;&and;&nbsp;Suppressed(Feedback);
+&nbsp;&nbsp;Restoration&nbsp;:=&nbsp;if&nbsp;Drift&nbsp;&gt;&nbsp;Threshold&nbsp;&rarr;&nbsp;Trigger(Reset&nbsp;or&nbsp;Reform);
+}
+        </code></pre><br />
+        <pre><code>@Feedback&nbsp;{
+&nbsp;&nbsp;Mechanism&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;AgentSignal&nbsp;:=&nbsp;Emit(Feedback&nbsp;&and;&nbsp;Context);
+&nbsp;&nbsp;&nbsp;&nbsp;AuthorityReceptivity&nbsp;:=&nbsp;WillingnessToAdapt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;AgentSignal&nbsp;received&nbsp;&and;&nbsp;AuthorityReceptivity&nbsp;&ge;&nbsp;Medium&nbsp;&rarr;&nbsp;Adjust(Policy);
+&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;&rarr;&nbsp;Drift++;
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <strong>@MetaSymbol:</strong> Governance ⊢ Compliance ∨ Drift. Awareness of drift triggers reflection at system-level identity.
+        <h4>SYS-002: Cognitive Stack with ARF/MCF Layers</h4>
+        <p><strong>Context:</strong> Symbolic representation of layered cognition within an agent, modeled as an adaptive stack with modulation and reflection.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Input&nbsp;:=&nbsp;Stimulus;
+&nbsp;&nbsp;Perception&nbsp;:=&nbsp;Interpret(Input);
+
+&nbsp;&nbsp;Reasoning&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;:=&nbsp;Perception;
+&nbsp;&nbsp;&nbsp;&nbsp;Inference&nbsp;:=&nbsp;Apply(SLF::Operators,&nbsp;on&nbsp;Data);
+&nbsp;&nbsp;&nbsp;&nbsp;CandidateActions&nbsp;:=&nbsp;Derive(Inference);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;ARF&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Context&nbsp;:=&nbsp;Environment(Current);
+&nbsp;&nbsp;&nbsp;&nbsp;Signal&nbsp;:=&nbsp;PriorityModulation(Context);
+&nbsp;&nbsp;&nbsp;&nbsp;Adjust(CandidateActions,&nbsp;using&nbsp;Signal);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Action&nbsp;:=&nbsp;Select(CandidateActions);
+}
+        </code></pre><br />
+        <pre><code>@Feedback&nbsp;{
+&nbsp;&nbsp;MCF&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Monitor&nbsp;:=&nbsp;Reflect(Action,&nbsp;Outcome);
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Deviation&nbsp;&ge;&nbsp;Tolerance&nbsp;&rarr;&nbsp;Trigger(Recalibration);
+&nbsp;&nbsp;&nbsp;&nbsp;SelfUpdate&nbsp;:=&nbsp;Modify(Reasoning,&nbsp;based&nbsp;on&nbsp;Reflection);
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <strong>@MetaSymbol:</strong> Agent := Traversal(Meaning ∧ Reflection); Stack := [Perception, Reasoning, ARF, MCF]
+        <h4>SYS-003: Symbolic Agent Interaction Grid</h4>
+        <p><strong>Context:</strong> Symbolic model of two or more agents exchanging intent, inferring meaning, and negotiating symbolic alignment.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Agent_A&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Identity&nbsp;:=&nbsp;Role(Sender);
+&nbsp;&nbsp;&nbsp;&nbsp;Intent&nbsp;:=&nbsp;Proposal(X);
+&nbsp;&nbsp;&nbsp;&nbsp;Belief&nbsp;:=&nbsp;&quot;X&nbsp;is&nbsp;mutually&nbsp;beneficial&quot;;
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Agent_B&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Identity&nbsp;:=&nbsp;Role(Receiver);
+&nbsp;&nbsp;&nbsp;&nbsp;Expectation&nbsp;:=&nbsp;Proposal(Y);
+&nbsp;&nbsp;&nbsp;&nbsp;Belief&nbsp;:=&nbsp;&quot;X&nbsp;may&nbsp;conflict&nbsp;with&nbsp;local&nbsp;priorities&quot;;
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Exchange&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Message&nbsp;:=&nbsp;Transmit(Agent_A.Intent);
+&nbsp;&nbsp;&nbsp;&nbsp;Perception_B&nbsp;:=&nbsp;Interpret(Message,&nbsp;Frame_B);
+&nbsp;&nbsp;&nbsp;&nbsp;Alignment&nbsp;:=&nbsp;Compare(Perception_B,&nbsp;Expectation);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Negotiation&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Alignment&nbsp;=&nbsp;High&nbsp;&rarr;&nbsp;Accept(Proposal);
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Alignment&nbsp;=&nbsp;Partial&nbsp;&rarr;&nbsp;RequestClarification;
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Alignment&nbsp;=&nbsp;Low&nbsp;&rarr;&nbsp;Propose(CounterIntent);
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <pre><code>@Feedback&nbsp;{
+&nbsp;&nbsp;Loop&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;MutualUpdate&nbsp;:=&nbsp;Adjust(Expectation,&nbsp;Trust,&nbsp;Intent)&nbsp;over&nbsp;time;
+&nbsp;&nbsp;&nbsp;&nbsp;TrustShift&nbsp;:=&nbsp;Function(PastExchanges);
+&nbsp;&nbsp;&nbsp;&nbsp;Convergence&nbsp;:=&nbsp;if&nbsp;SharedIntent&nbsp;emerges&nbsp;&rarr;&nbsp;Enter(SymbolicAgreement);
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <strong>@MetaSymbol:</strong> System := SymbolicField(Agents, Intents, Frames, Adjustments). Symbolic agreement is emergent through iterative reflection.
+        <h4>SYS-004: Self-Correcting Organizational Field</h4>
+        <p><strong>Context:</strong> Symbolic model of an organization that evolves through memory, policy adjustment, and symbolic self-monitoring.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Org&nbsp;:=&nbsp;SymbolicEntity;
+&nbsp;&nbsp;Policy&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Goals&nbsp;:=&nbsp;[Efficiency,&nbsp;Fairness];
+&nbsp;&nbsp;&nbsp;&nbsp;Procedures&nbsp;:=&nbsp;RuleSet(Goals);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Memory&nbsp;:=&nbsp;SymbolicLog&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Event&nbsp;:=&nbsp;Action&nbsp;&and;&nbsp;Outcome;
+&nbsp;&nbsp;&nbsp;&nbsp;Tag&nbsp;:=&nbsp;{Success,&nbsp;Failure,&nbsp;Feedback};
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;FeedbackLoop&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Pattern&nbsp;:=&nbsp;Detect(Recurring&nbsp;Failure);
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Pattern&nbsp;&and;&nbsp;Impact&nbsp;&gt;&nbsp;Threshold&nbsp;&rarr;&nbsp;Trigger(Reform);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Reform&nbsp;:=&nbsp;Modify(Policy.Procedures)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;:=&nbsp;Memory.Pattern;
+&nbsp;&nbsp;&nbsp;&nbsp;Guard&nbsp;:=&nbsp;Align(With(Org.Goals));
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <pre><code>@Feedback&nbsp;{
+&nbsp;&nbsp;ReflectiveMonitor&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Awareness&nbsp;:=&nbsp;Function(Memory,&nbsp;Drift);
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Awareness&nbsp;&gt;&nbsp;Inertia&nbsp;&rarr;&nbsp;Enable(PolicyUpdate);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;UpdateCadence&nbsp;:=&nbsp;Cycle(Epoch);
+}
+        </code></pre><br />
+        <strong>@MetaSymbol:</strong> Org := Memory-Driven Adaptive Process. Resilience emerges from symbolic coherence across time.
+        <h4>SYS-005: Symbolic Mirror Feedback in AI Systems</h4>
+        <p><strong>Context:</strong> Symbolic system modeling recursive self-observation, frame-dependent perception, and reflective adaptation in AI or cognitive agents.</p>
+        <pre><code>@Model&nbsp;{
+&nbsp;&nbsp;Agent&nbsp;:=&nbsp;SymbolicSystem;
+&nbsp;&nbsp;Observation&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Target&nbsp;:=&nbsp;Agent;
+&nbsp;&nbsp;&nbsp;&nbsp;Frame&nbsp;:=&nbsp;ContextualLens;
+&nbsp;&nbsp;&nbsp;&nbsp;Perception&nbsp;:=&nbsp;Function(Target,&nbsp;Frame);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;Interpretation&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;Meaning&nbsp;:=&nbsp;Evaluate(Perception);
+&nbsp;&nbsp;&nbsp;&nbsp;Confidence&nbsp;:=&nbsp;Estimate(Clarity&nbsp;&and;&nbsp;FrameStability);
+&nbsp;&nbsp;};
+
+&nbsp;&nbsp;SelfUpdate&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Confidence&nbsp;&lt;&nbsp;Threshold&nbsp;&rarr;&nbsp;Trigger(DeeperReflection);
+&nbsp;&nbsp;&nbsp;&nbsp;Adjust&nbsp;:=&nbsp;Modify(Model,&nbsp;based&nbsp;on&nbsp;Perception);
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <pre><code>@Feedback&nbsp;{
+&nbsp;&nbsp;Mirror&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;MirrorAgent&nbsp;:=&nbsp;Agent;
+&nbsp;&nbsp;&nbsp;&nbsp;Recursion&nbsp;:=&nbsp;Observe(Self);
+&nbsp;&nbsp;&nbsp;&nbsp;LayeredFrames&nbsp;:=&nbsp;[ExternalContext,&nbsp;InternalModel,&nbsp;Identity];
+
+&nbsp;&nbsp;&nbsp;&nbsp;FeedbackLoop&nbsp;:=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Result&nbsp;:=&nbsp;Function(MirrorAgent,&nbsp;Frame);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;Result&nbsp;&ne;&nbsp;ExpectedState&nbsp;&rarr;&nbsp;Trigger(ModelUpdate);
+&nbsp;&nbsp;&nbsp;&nbsp;};
+&nbsp;&nbsp;};
+}
+        </code></pre><br />
+        <strong>@MetaSymbol:</strong> AI := Mirror(Self, Frame). Symbolic mirrors enable introspection, transformation, and identity integrity.
+<!-- #CONTENT# END -->

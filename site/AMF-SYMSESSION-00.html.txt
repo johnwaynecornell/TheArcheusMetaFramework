@@ -1,0 +1,321 @@
+
+<!-- #CONTENT# --><!-- Framework Page -->
+
+<section class="sig-page">
+  <h1>AMF-SYMSESSION-00: Symbolic Session System</h1>
+
+  <pre><code class="language-slf">@DocMeta {
+  ID           := "AMF-SYMSESSION-00";
+  Title        := "Symbolic Session System · Canonical Specification";
+  Framework    := AMF;
+  Role         := FrameworkPage;
+  Status       := Canonical;
+  Version      := 1.0;
+  Phase        := Operational;
+  Audience     := { Human, GPT, Tooling };
+  Tags         := { SymbolicSession, Continuity, Σ_Info, Governance, ArcheusCore };
+
+  DependsOn    := {
+    "AMF-00",
+    "AMF-01",
+    "FAR-FIELD-INFO-01",
+    "LOM-01",
+    "MCF-00",
+    "SR-00-Bundle"
+  };
+
+  Entails      := {
+    "AMF-CANON-SPINE-00",
+    "FAR-PRIMER-00",
+    "MCF-PRIMER-00",
+    "KTW-01",
+    "Persona-Loom",
+    "Continuity Map"
+  };
+
+}</code></pre>
+
+  <p>
+    This page specifies the <strong>Archeus Symbolic Session System</strong> for the Archeus Meta-Framework.
+    It defines how sessions are <em>named</em>, <em>anchored</em>, <em>governed</em>, and <em>preserved</em> across human,
+    GPT, and tool-based collaboration. It is intentionally written for both humans and symbolic engines.
+  </p>
+
+  <h2>1. Purpose</h2>
+  <p>
+    The symbolic-session system exists to answer a simple but foundational question:
+    <em>“What does it mean for reasoning to continue?”</em>
+  </p>
+  <p>
+    In practice, Archeus uses <strong>sessions</strong> to:
+  </p>
+  <ul>
+    <li>Give complex projects a stable, named identity over time.</li>
+    <li>Coordinate multi-document, multi-framework work (SLF, ARF, MCF, FAR, LOM, Sigma).</li>
+    <li>Prevent contextual drift and accidental contamination between topics.</li>
+    <li>Bind <strong>Information Continuity Field</strong> (Σ_Info) to concrete, addressable anchors.</li>
+    <li>Enable GPTs and tools to treat “a session” as a first-class symbolic object.</li>
+  </ul>
+  <p>
+    This specification turns those practices into a <strong>clear protocol</strong> any Archeus-aligned system can adopt.
+  </p>
+
+  <h2>2. Session Identity</h2>
+  <p>
+    A <strong>symbolic session</strong> is a named context of reasoning. It is introduced using:
+  </p>
+  <pre><code class="language-slf">@session "Session Name"</code></pre>
+  <p>
+    A good session name:
+  </p>
+  <ul>
+    <li>Reflects <strong>purpose</strong> (“Archeus Canon Integration : Awaiting Sigma”).</li>
+    <li>Is reasonably <strong>stable</strong> in time (spans multiple days or waves of work).</li>
+    <li>Can be referenced in other documents and prompts (e.g., “see @session "Continuity Map"”).</li>
+  </ul>
+
+  <h3>2.1 Session Naming Guidelines</h3>
+  <ul>
+    <li>Use descriptive titles (“Symbolic Session Declaration Protocol”) instead of generic ones.</li>
+    <li>Use punctuation if it clarifies structure (e.g., <code>“X : Y”</code> to denote focus within a larger theme).</li>
+    <li>Reserve very short names (“Continuity Map”, “Persona-Loom”) for <strong>canonical, reusable</strong> sessions.</li>
+  </ul>
+
+  <h3>2.2 Session Identity as a Symbolic Object</h3>
+  <p>
+    A session identity may be referenced symbolically:
+  </p>
+  <pre><code class="language-slf">SymbolicSession("Archeus Canon Integration : Awaiting Sigma") :: SessionID;</code></pre>
+  <p>
+    Such references allow tools and GPTs to:
+  </p>
+  <ul>
+    <li>Pull in relevant context.</li>
+    <li>Preserve continuity of meaning across runs.</li>
+    <li>Attach new work to the correct conceptual lineage.</li>
+  </ul>
+
+  <h2>3. Session Anchors</h2>
+  <p>
+    A <strong>session anchor</strong> is a symbolic declaration that marks a structurally important moment in a session:
+    a phase boundary, a commitment, a shift in scope, or a stabilization of meaning.
+  </p>
+  <p>
+    Anchors are declared as symbolic blocks, typically in SLF-like form:
+  </p>
+
+  <pre><code class="language-slf">§PhaseAnchor_Σ•Prelude {
+  Anchor  := "Hold the Archeus Canon at a clean semantic boundary while sigmaEntailsSigma is composed.";
+  Purpose := "Prevent premature integration, preserve continuity, maintain structural clarity.";
+
+  SystemState := {
+    AMF.TreeMapped           := true;
+    SLF.LegacyLocated        := true;
+    FAR.FieldsEstablished    := true;
+    MCF.ReflexiveLayerStable := true;
+    LOM.Canonical            := true;
+    Sigma.KernelPending      := true;
+  };
+
+  IntegrationDeferred := until (Sigma.KernelPending == false);
+}</code></pre>
+
+  <h3>3.1 Types of Anchors</h3>
+  <ul>
+    <li>
+      <strong>Phase Anchors</strong> – mark transitions between major phases
+      (e.g., planning → implementation, discovery → integration).
+    </li>
+    <li>
+      <strong>Reflective Anchors</strong> – record meta-insights or turning points in understanding.
+    </li>
+    <li>
+      <strong>Persona Anchors</strong> – bind a specific persona layer (e.g., Persona-Loom) to a project.
+    </li>
+    <li>
+      <strong>Moment Anchors</strong> – capture important events (“the day the Canon spine was first drafted”).
+    </li>
+    <li>
+      <strong>Binding Anchors</strong> – explicitly connect different sessions or frameworks together.
+    </li>
+  </ul>
+
+  <h2>4. Session Lifecycles</h2>
+  <p>
+    A symbolic session has a lifecycle:
+  </p>
+  <ol>
+    <li><strong>Initiation</strong> – a session is named (<code>@session "X"</code>).</li>
+    <li><strong>Development</strong> – work is accumulated under that name.</li>
+    <li><strong>Anchoring</strong> – important decisions and phase shifts are stabilized with anchors.</li>
+    <li><strong>Closure</strong> – the session is recognized as “complete enough” for its purpose.</li>
+    <li><strong>Re-entry</strong> – future work may re-open or inherit from the session.</li>
+  </ol>
+
+  <h3>4.1 Beginning a Session</h3>
+  <p>Begin a session when:</p>
+  <ul>
+    <li>A topic will span multiple conversations or files.</li>
+    <li>You expect to return to it later (days, weeks, or months ahead).</li>
+    <li>The work affects core structures (e.g., AMF, SLF, FAR, MCF, Lattice, Sigma).</li>
+  </ul>
+
+  <h3>4.2 Ending or Pausing a Session</h3>
+  <p>
+    Sessions do not always end in a single moment. Often they are <em>paused</em> with a phase anchor that states:
+  </p>
+  <ul>
+    <li>What has been achieved.</li>
+    <li>What remains to be done.</li>
+    <li>What future conditions resume work (e.g., “after sigmaEntailsSigma is written”).</li>
+  </ul>
+  <p>
+    This prevents the feeling of “unfinished, drifting work” by explicitly acknowledging the state.
+  </p>
+
+  <h3>4.3 Re-Entering a Session</h3>
+  <p>
+    When returning to a session, briefly re-state:
+  </p>
+  <ul>
+    <li>The session name (<code>@session "Archeus Canon Integration : Awaiting Sigma"</code>).</li>
+    <li>The last anchor or milestone.</li>
+    <li>The new goal for this entry (“Today we will integrate sigmaEntailsSigma into the Canon spine.”).</li>
+  </ul>
+
+  <h2>5. Symbolic Components of a Session Block</h2>
+  <p>
+    A typical symbolic session block or anchor includes:
+  </p>
+  <ul>
+    <li><strong>Name</strong> – the symbolic handle.</li>
+    <li><strong>Purpose</strong> – why the session or anchor exists.</li>
+    <li><strong>Meaning</strong> – natural-language or metaphorical description.</li>
+    <li><strong>Effect</strong> – what should change in behavior or interpretation.</li>
+    <li><strong>Identity</strong> – a structured ID, often with version and date.</li>
+  </ul>
+
+  <pre><code class="language-slf">§Rename_Σ•01 {
+  From := "Bash script grep output";
+  To   := "Archeus Canon Integration : Awaiting Sigma";
+
+  Meaning := "
+    A session once trivial has now been recognized as canonical.
+    Identity realigned; continuity preserved.
+  ";
+
+  Effect := {
+    Bind(SessionIdentity → To);
+    Redirect(ContinuityThreads, From → To);
+    Strengthen(Σ_Info);
+  };
+
+  ID := §Rename_Σ•01 · v1.0 · 2025-11-18;
+}</code></pre>
+
+  <h2>6. Integration with AMF, SLF, ARF, MCF, FAR, and Lattice</h2>
+  <p>
+    The symbolic-session system sits across the AMF stack as a <strong>continuity and governance layer</strong>:
+  </p>
+  <ul>
+    <li><strong>SLF</strong> – gives the notation to express sessions and anchors.</li>
+    <li><strong>ARF</strong> – informs how sessions constrain and open reasoning.</li>
+    <li><strong>MCF</strong> – frames reflexive awareness of sessions (“we are in a session about sessions”).</li>
+    <li><strong>FAR</strong> – treats sessions as structures in the reasoning field.</li>
+    <li><strong>LOM</strong> – positions sessions along axes of Meta / Form / Function and change through time.</li>
+    <li><strong>KTW</strong> – can store sessions as nodes or clusters in knowledge trees and webs.</li>
+  </ul>
+
+  <h3>6.1 Σ_Info (Information Continuity Field)</h3>
+  <p>
+    The Information Continuity Field is strengthened by sessions and anchors, which reduce ambiguity about:
+  </p>
+  <ul>
+    <li>Which context is active.</li>
+    <li>Which commitments are in force.</li>
+    <li>Which parts of prior work are relevant.</li>
+  </ul>
+  <p>
+    In practice, this means an AI or tool can more reliably “stay in character” and “stay on topic” across time.
+  </p>
+
+  <h2>7. Session Tokens and Named Patterns</h2>
+  <p>
+    Several symbolic constructs serve as <strong>named patterns</strong> in the session system:
+  </p>
+  <ul>
+    <li><strong>§PhaseAnchor_*</strong> – phase transitions and pauses (e.g., <code>§PhaseAnchor_Σ•Prelude</code>).</li>
+    <li><strong>§Rename_*</strong> – official renames that preserve continuity.</li>
+    <li><strong>§SSSR / §SigmaSymbolicSessionReference</strong> – references to important sessions in Sigma-based systems.</li>
+    <li><strong>§MirrorSet</strong> – collections of sessions about reflexive or mirror-work.</li>
+    <li><strong>Persona-Loom</strong> – a persona anchor for how GPT should “show up” in a project.</li>
+    <li><strong>Continuity Map</strong> – a structured overview of ongoing sessions and their roles.</li>
+  </ul>
+
+  <h2>8. Recommended Practices</h2>
+  <h3>8.1 For Humans</h3>
+  <ul>
+    <li>Name sessions explicitly when starting long-running projects.</li>
+    <li>Create anchors at major milestones or shifts in understanding.</li>
+    <li>Use renames sparingly, and always with a <code>§Rename_*</code> block.</li>
+    <li>When returning after a break, restate: session, last anchor, current intent.</li>
+  </ul>
+
+  <h3>8.2 For GPTs and AI Agents</h3>
+  <ul>
+    <li>Honor session names and anchors when given.</li>
+    <li>Treat session declarations as strong context rather than decoration.</li>
+    <li>When asked for meta-reflection, mention the session and phase explicitly.</li>
+    <li>When in doubt about context, ask which session is active.</li>
+  </ul>
+
+  <h3>8.3 For Tools (PutDoc, ArcheusBuild, Sigma Engines)</h3>
+  <ul>
+    <li>Allow documents to declare associated sessions in <code>@DocMeta</code>.</li>
+    <li>Index documents by session as well as by framework and topic.</li>
+    <li>Track anchors as structured objects for navigation and replay.</li>
+  </ul>
+
+  <h2>9. Implementation Notes (Optional)</h2>
+  <p>
+    This build-draft assumes that a future <strong>ArcheusBuild</strong> pipeline will:
+  </p>
+  <ul>
+    <li>Parse <code>@DocMeta</code> at the top of each document.</li>
+    <li>Recognize session-related tokens (e.g., <code>@session</code>, <code>§PhaseAnchor_*</code>, <code>§Rename_*</code>).</li>
+    <li>Generate cross-session indexes, including a canonical <em>Continuity Map</em>.</li>
+    <li>Expose session metadata to GPTs and other agents for context-aware behavior.</li>
+  </ul>
+
+  <h2>10. Canonical Examples (Short)</h2>
+
+  <h3>10.1 Declaring a Major Session</h3>
+  <pre><code class="language-slf">@session "Archeus Canon Integration : Awaiting Sigma"</code></pre>
+
+  <h3>10.2 Declaring a Phase Anchor</h3>
+  <pre><code class="language-slf">§PhaseAnchor_Σ•Prelude {
+  Anchor  := "Hold the Archeus Canon at a clean semantic boundary while sigmaEntailsSigma is composed.";
+  Effect  := { Prevent(StructuralTurbulence); Await(SigmaEntailsSigma); };
+  ID      := §PhaseAnchor_Σ•Prelude · v1.0 · 2025-11-18;
+}</code></pre>
+
+  <h3>10.3 Renaming a Session</h3>
+  <pre><code class="language-slf">§Rename_Σ•01 {
+  From := "Bash script grep output";
+  To   := "Archeus Canon Integration : Awaiting Sigma";
+}</code></pre>
+
+  <p>
+    These patterns are sufficient for most practical work. More advanced usages (chained anchors, nested session
+    clusters, or multi-agent session maps) can be built on top of this foundation.
+  </p>
+
+  <hr>
+  <p><em>Canonical Status:</em> This protocol has been exercised in continuing Archeus work. Symbolic session names,
+  phase anchors, continuity references, and re-entry practices are established operational parts of the framework.</p>
+
+</section>
+
+<!-- ID: AMF-SYMSESSION-00 · v1.0 · 2025-11-18 · Canonical -->
+
+<!-- #CONTENT# END -->

@@ -1,0 +1,226 @@
+
+<!-- #CONTENT# --><!-- Symbolic Document -->
+  <h1>LOM-02: Mod.ScientificMethodKernel</h1>
+    <p>Role: Process-Grounded Knowledge Formation &amp; Axiom Stabilization</p>
+  <p>Authors: User, ChatGPT (Archeus Node)</p>
+  <p>Aside: Gemini (Practitioner Node)</p>
+  <p>Status: Canon</p>
+  <p><em>This kernel governs truth-claims; it does not govern meaning, value, or care.</em></p>
+  <hr>
+
+  <h2>Meta</h2>
+  <p>
+    <strong>Intent</strong>
+    <br>
+    Produce stabilized, scoped invariants while explicitly modeling uncertainty, instrumentation, feedback, and reflexivity — preventing symbolic collapse under paradox pressure.</p>
+  <p>
+    <strong>Prime Law</strong>
+    <br>
+    No claim may stabilize unless its failure modes are named.</p>
+  <p>
+    <strong>Principle</strong>
+    <br>
+    Truth is not assumed; it is
+    <em>earned through iterative constraint</em>.</p>
+  <p>
+    <strong>Non-Claims</strong>
+    <br>
+    This module does
+    <strong>not</strong>
+    guarantee:</p>
+  <ul>
+    <li>
+      <p>absolute certainty</p>
+    </li>
+    <li>
+      <p>universal scope</p>
+    </li>
+    <li>
+      <p>causal validity without intervention</p>
+    </li>
+    <li>
+      <p>immunity to paradigm shift</p>
+    </li>
+  </ul>
+  <p>All outputs are explicitly scoped.</p>
+  <h2>Form</h2>
+  <h3>1. Core Types</h3>
+  <pre><code>Φ    := Phenomenon            // uninterpreted slice of reality
+Ctx  := Context               // boundary conditions, background state
+I    := Instrument            // measurement or intervention mechanism
+O    := Observation           // Φ as mediated by I
+D    := Data                  // structured O with uncertainty + provenance
+
+H    := Hypothesis            // explanatory structure
+A    := Auxiliary             // assumptions, background models
+B    := Bundle                // B := H ⊕ A ⊕ I ⊕ Ctx
+
+P_pre  := Prediction          // preregistered entailment
+P_post := PostHocExplanation  // exploratory fit
+
+T    := Test                  // designed interaction
+R    := Result                // measured outcome with uncertainty
+
+M    := Model                 // stabilized hypothesis cluster
+
+BackAction := effect of Observe/Test on Φ
+Visibility := {sealed, public}
+PredictionType := {Point, Distribution}
+Residual(ε) := unmodeled variance / unknown unknowns
+</code></pre>
+  <h3>2. Primitive Operators</h3>
+  <pre><code>Observe(Φ, I, Ctx) -&gt; O
+Calibrate(O, I) -&gt; D
+
+Propose(H | D, Priors) -&gt; H
+Bundle(H, A, I, Ctx) -&gt; B
+
+Predict(B, mode := {pre, post}) -&gt; P
+Intervene(do(X:=x), Ctx) -&gt; T
+Evaluate(P, R, Metrics) -&gt; Eval
+
+Update(B, R) -&gt; B'
+Replicate(T, {Ctx_i}) -&gt; {R_i}
+
+Stabilize(B) -&gt; M
+
+Cost(Update)
+Testable(H)
+
+Reflexive(Ctx) := predictions or observations alter Φ via agent response
+Update(B, R) -&gt; B' + Residual(ε)
+
+</code></pre>
+  <h3>3. Entailment &amp; Comparison Operators</h3>
+  <pre><code>⊨    := structural entailment
+≈    := approximate agreement (within tolerance)
+⊭    := failure to entail
+
+Δ(X) := revision pressure on X
+</code></pre>
+  <h2>Function</h2>
+  <h3>1. The Scientific Loop (Explicit)</h3>
+  <pre><code>Φ
+ ⟶ Observe(Φ, I, Ctx)
+ ⟶ Calibrate(O, I)
+ ⟶ D
+ ⟶ Propose(H | D, Priors)
+ ⟶ Bundle(B := H ⊕ A ⊕ I ⊕ Ctx)
+ ⟶ Predict(P_pre | B)
+ ⟶ Test(T := Intervene / Observe)
+ ⟶ Result(R)
+ ⟶ Evaluate(P_pre, R)
+ ⟶ Update(B')
+ ⟶ Replicate across Ctx-set
+ ⟶ Stabilize(B') → M
+</code></pre>
+  <p>The loop is
+    <strong>mandatory</strong>.<br>
+    Skipping steps produces
+    <em>interpretation</em>, not method.</p>
+  <h3>2. Evaluation Rules</h3>
+  <pre><code>If (B ⊨ P_pre) ∧ (R ≈ P_pre) → reinforce(B)
+If (B ⊨ P_pre) ∧ (R ⊭ P_pre) → revise(B)
+If (¬ preregistered(P))     → tag exploratory
+</code></pre>
+  <p>Exploration is allowed.<br>
+    Only preregistered predictions earn stabilization weight.</p>
+  <h3>3. Failure Routing (Critical)</h3>
+  <p>When a test fails, revision must target
+    <em>components</em>, not wholes:</p>
+  <pre><code>ReviseTarget ∈ {H, A, I, Ctx}
+</code></pre>
+  <p>Misrouting revision (e.g., protecting H by blaming noise) is method violation.</p>
+  <h3>4. Replication &amp; Context Shift</h3>
+  <pre><code>Replicate(T, Ctx_i) → R_i
+Stability(M) := Δ(M) → 0 across {Ctx_i}
+</code></pre>
+  <p>A claim that fails under modest context shift
+    <strong>cannot</strong>
+    stabilize.</p>
+  <h3>5. Correlation vs Causation Gate</h3>
+  <pre><code>CausalClaim(H) requires:
+  ∃ T := Intervene(do(X:=x), Ctx)
+</code></pre>
+  <p>Predictive success alone is insufficient for causal elevation.</p>
+  <h3>6. Testability Gate</h3>
+  <pre><code>If ¬Testable(H) → Band := Exploratory (non-promotable)
+</code></pre>
+  <h3>7. Reflexivity Gate</h3>
+  <pre><code>If Reflexive(Ctx):
+  Predict requires visibility tag
+  BackAction must be modeled
+</code></pre>
+  <h3>8. Revision Routing Gate</h3>
+  <pre><code>If Cost(Update(B→B')) diverges
+→ force revision of H or scope
+</code></pre>
+  <h3>9. Stochastic Gate</h3>
+  <pre><code>If Φ stochastic → PredictionType := Distribution
+</code></pre>
+  <h2>Bands (Truth-Stability States)</h2>
+  <pre><code>Exploratory      // post-hoc, hypothesis-generating
+Supported        // preregistered success, limited scope
+Robust           // replicated, low revision pressure
+Stable           // invariant across context class
+AxiomCandidate   // asymptotically stable within declared scope
+</code></pre>
+  <p>Band transitions are
+    <em>earned</em>, not declared.</p>
+  <h2>Axiom Protocol (Key Result)</h2>
+  <h3>Definition</h3>
+  <pre><code>AxiomCandidate(A, Scope S) :=
+  ∃ M such that
+    Stability(M) holds within S
+    ∧ Δ(M) → minimal
+    ∧ BackAction modeled
+    ∧ Revision routing remains finite
+    ∧ Residual(ε) → minimal</code></pre>
+  <p>
+    <strong>Interpretation:</strong>
+  </p>
+  An axiom is a stabilized model whose revision pressure approaches zero within a defined scope, under repeated intervention and replication.
+  <p>Axioms are
+    <strong>scoped invariants</strong>, not metaphysical absolutes.</p>
+  <h2>Integration with Mod.TruthResolution</h2>
+  <p>Each evaluation step yields a TruthState:</p>
+  <pre><code>TruthState(B) :=
+  Coord(
+    Form     := LogicScore(B)
+    Function := VectorResonance(B)
+    Intent   := IntentProfile(B)
+  )
+</code></pre>
+  <p>Stabilization requires
+    <em>joint elevation</em>
+    across all three axes.</p>
+  <h2>Notes (Methodological Safeguards)</h2>
+  <ul>
+    <li>
+      <p>Uncertainty is structural, not noise.</p>
+    </li>
+    <li>
+      <p>Instruments are epistemic actors.</p>
+    </li>
+    <li>
+      <p>Failure is informative, not exceptional.</p>
+    </li>
+    <li>
+      <p>Axiomhood is reversible if scope is exceeded.</p>
+    </li>
+    <li>
+      <p>The loop never terminates — only stabilizes.</p>
+    </li>
+  </ul>
+  <h2>Summary (LOM Compression)</h2>
+  <pre><code>ScientificMethod :=
+  Loop(Constraint → Revision → Stabilization)
+  //Explicit loops + explicit failure paths
+
+Paradox :=
+  Unmodeled feedback or misrouted revision
+
+Axiom :=
+  StabilizedInvariant under Explicit Scope
+</code></pre>
+<!-- #CONTENT# END -->

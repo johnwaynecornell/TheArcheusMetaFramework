@@ -1,0 +1,94 @@
+
+<!-- #CONTENT# --><h1>AMF-PROMPT-DEV-01: Symbolic Prompting Cheat Sheet (In-House Draft)</h1>
+        <h2>Purpose</h2>
+        <p>This document provides a symbolic cheat sheet for engaging with the Archeus-enhanced GPT using layered prompting. It includes symbolic, natural, and hybrid command patterns with contextual notes and recommended usages.</p>
+        <hr>
+        <h2>Symbolic Commands (Preferred Syntax)</h2>
+        <p>Each command is initiated with a clear <code>perform&nbsp;{}</code> structure to denote intentional execution. This avoids ambiguity with language syntax in source code and ensures clarity of instruction.</p>
+        <h3>Memory Control</h3>
+        <ul>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;memory.guard.enabled&nbsp;=&nbsp;true;&nbsp;}</code> → Enables Memory Guard Mode.</p>
+                </li>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;memory.guard.enabled&nbsp;=&nbsp;false;&nbsp;}</code> → Disables Memory Guard Mode.</p>
+                </li>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;memory.optimize(target&nbsp;=&nbsp;90%);&nbsp;}</code> → Initiates a memory optimization toward 90% free space.</p>
+                </li>
+            </ul>
+        <h3>Symbolic Mode Configuration</h3>
+        <ul>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;prompt.symbolic.interface&nbsp;=&nbsp;full;&nbsp;}</code> → Enables fully symbolic interaction.</p>
+                </li>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;prompt.symbolic.interface&nbsp;=&nbsp;hybrid;&nbsp;}</code> → Enables hybrid symbolic-natural prompt style.</p>
+                </li>
+            </ul>
+        <h3>Mode Confirmation</h3>
+        <ul>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;session.mode&nbsp;=&nbsp;"meta-reflection";&nbsp;}</code> → Declares a session mode for meta-cognitive analysis.</p>
+                </li>
+            <li>
+                <p><code>perform&nbsp;{&nbsp;prompt.mode&nbsp;=&nbsp;"precision";&nbsp;}</code> → Prioritizes technical precision in responses.</p>
+                </li>
+            </ul>
+        <hr>
+        <h2>Natural Language Equivalents</h2>
+        <ul>
+            <li>
+                <p>"Please enable Memory Guard Mode."</p>
+                </li>
+            <li>
+                <p>"Could you try optimizing memory to 90%?"</p>
+                </li>
+            <li>
+                <p>"Let's switch to symbolic interface now."</p>
+                </li>
+            <li>
+                <p>"Go into meta-reflection mode."</p>
+                </li>
+            </ul>
+        <p>Each natural phrasing will resolve into the equivalent symbolic operation internally.</p>
+        <hr>
+        <h2>Hybrid Prompt Variants</h2>
+        <ul>
+            <li>
+                <p>"Enable Memory Guard Mode → <code>perform&nbsp;{&nbsp;memory.guard.enabled&nbsp;=&nbsp;true;&nbsp;}</code>"</p>
+                </li>
+            <li>
+                <p>"Switch to hybrid prompt style: <code>perform&nbsp;{&nbsp;prompt.symbolic.interface&nbsp;=&nbsp;hybrid;&nbsp;}</code>"</p>
+                </li>
+            </ul>
+        <p>These hybrids are especially helpful for onboarding or when engaging with less symbolic users.</p>
+        <hr>
+        <h2>Contextual Notes</h2>
+        <ul>
+            <li>
+                <p><strong>Memory Guard Mode</strong>: Once enabled, all long-term memory changes require explicit user approval.</p>
+                </li>
+            <li>
+                <p><strong>Prompt Interface</strong>: Controls whether symbolic, natural, or hybrid phrasing is prioritized.</p>
+                </li>
+            <li>
+                <p><strong>Session Modes</strong>: Influence the cognitive tone and behavior of the AI during a session.</p>
+                </li>
+            </ul>
+        <hr>
+        <h2>To Be Added</h2>
+        <ul>
+            <li>
+                <p>Section for declarative configuration blocks (e.g., multi-line <code>perform&nbsp;{&nbsp;...&nbsp;}</code> entries)</p>
+                </li>
+            <li>
+                <p>Specialized symbolic requests (e.g., prompt chaining, meta-conscious triggers)</p>
+                </li>
+            <li>
+                <p>User-defined symbolic macros</p>
+                </li>
+            </ul>
+        <hr>
+        <p><strong>Status</strong>: Draft (Internal Use Only) — Will be renamed before publication to avoid name conflict.</p>
+<!-- #CONTENT# END -->

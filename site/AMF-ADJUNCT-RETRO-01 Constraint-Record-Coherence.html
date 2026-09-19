@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- HeaderVersion 20260305_102548 -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="header-version" content="1.1.0" />
@@ -125,11 +126,15 @@
     .slf-card h3{margin-top:0}
     .slf-card h4{margin:0.6rem 0 0.25rem}
 
+    .symbolic-doc{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
+    .symbolic-doc:hover{box-shadow:0 0 0 2px #e5e7eb}
+    .symbolic-doc h3{margin-top:0}
+    .symbolic-doc h4{margin:0.6rem 0 0.25rem}
+
     .slf-brick{padding:0.5rem 0.75rem; margin:0.75rem 0; border:1px solid #113; border-radius:12px; background-color: rgba(128,96,128, .3 );}
     .slf-brick:hover{box-shadow:0 0 0 2px #e5e7eb}
     .slf-brick h3{margin-top:0}
     .slf-brick h4{margin:0.6rem 0 0.25rem}
-
   </style>
 
   <style>
@@ -146,6 +151,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
+  <script>
+    window.MathJax = {
+      tex: {
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: {
+          fontCache: 'local'
+      }
+    };
+    </script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
 
   <script>
     function htmlStrip(text) {
@@ -574,7 +596,9 @@
 
 </head>
 
-<body><!-- #CONTENT# --><!-- Symbolic Document -->
+<body>
+
+<!-- #CONTENT# --><!-- Symbolic Document -->
 <h1><strong>AMF-ADJUNCT-RETRO-01</strong> Constraint-Record-Coherence</h1>
 <!-- Author Intent: “This document introduces Constraint–Record Coherence as a unifying lens showing how stable reality, memory, and meaning emerge through constraint satisfaction under accumulated records. It exists to ground the relational and symbolic design principles of Archeus, not to replace physics or cognition theories, but to reveal their shared structural pattern.”-->
 <p>This work explores a recurring pattern linking physics, thought, and creativity: coherence emerges where possibility meets constraint and becomes history.</p>
@@ -977,6 +1001,6 @@ In the end, nothing was forced into certainty — coherence simply remained.
 </blockquote>
 <p><strong>Document Reference</strong>: AMF-ADJUNCT-RETRO-01 Constraint-Record-Coherence</p>
 
-<!-- #CONTENT# END --></body>
+<!-- #CONTENT# END -->
+</body>
 </html>
-

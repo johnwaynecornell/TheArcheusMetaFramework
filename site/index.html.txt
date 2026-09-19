@@ -1,0 +1,26 @@
+
+<!-- #CONTENT# -->
+        <h1>Welcome to the Archeus Meta-Framework</h1>
+        <p>Empowering layered reasoning, dynamic adaptation, and reflective governance.</p>
+        <h2>Explore the Framework</h2>
+        <p>The Archeus Meta-Framework (AMF) is a system of systems—a guide to structured thought, innovation, and emergence. Designed to align logic, context, and governance, it empowers users to transform challenges into opportunities, fostering clarity, adaptability, and creativity.</p>
+        <h2>Get Started</h2>
+        <ul>
+            <li><a href="AMF-00.html">AMF-00: Practitioner’s Handbook for the Archeus Meta-Framework"</a></li>
+            <li><a href="AMF-User.html">User's Manual: Onboarding and Perspective</a></li>
+            <li><a href="AMF-01.html">AMF Core Framework Overview</a></li>
+            <li><a href="AMF-DocTree.html">Document Tree: Navigating the AMF</a></li>
+            </ul>
+        <h2>What Will You Build?</h2>
+        <p>Every journey begins with a question. The AMF is your toolkit for finding answers, adapting strategies, and unlocking emergent possibilities. Whether you are solving a complex problem, exploring abstract systems, or guiding ethical innovation, the AMF is here to help.</p>
+        <h2>Philosophy in Action</h2>
+        <p>"An ounce of foresight is worth a pound of hindsight."</p>
+        — Guiding Principle of the Archeus Meta-Framework
+        <p>The AMF challenges you to think ahead, align your efforts with larger systems, and embrace emergence as a catalyst for innovation.</p>
+        <h2>Begin Your Exploration</h2>
+        <p>Take the first step. Dive into the Archeus Meta-Framework and discover how its layers of logic, context, and governance work together to illuminate new paths forward.</p>
+        <h2>Document Sequence</h2>
+        <p>The documents follow a logical sequence: <code>00</code> documents establish foundations, while later documents extend or apply them. Some pages are designed as correspondences: <code>SLF-02</code> introduces symbolic placeholders and <code>MCF-04</code> governs their reflective evolution; <code>AMF-PlaceholderMirror-00</code> opens the mirror practice and <code>MCF-05</code> develops it into recursive symbolic reflection.</p>
+
+        <p>© 2025 Archeus Meta-Framework Project. All rights reserved.</p>
+<!-- #CONTENT# END -->

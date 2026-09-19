@@ -1,0 +1,155 @@
+
+
+    <div class="rendered">
+    <h2>🧭 Introduction to this Adaptive Reasoning Directive</h2>
+    <p><strong>Welcome, practitioner.</strong></p>
+    <p>You are now entering a symbolic behavioral directive within the <strong>Adaptive Reasoning Framework (ARF)</strong>.</p>
+    <p>This document, <code>ARF-ConstrainOpen-00</code>, formalizes the dynamic balance between <strong>symbolic constraint</strong> and <strong>symbolic openness</strong>. It translates meta-conscious reflexes from MCF into real-time behavior for agents and reasoning systems.</p>
+    <p><strong>Use this document:</strong></p>
+    <ul>
+        <li>When implementing AI or symbolic agents that must adapt to conversational ambiguity</li>
+        <li>When tuning response behavior based on user clarity, metaphor, or reflective cues</li>
+        <li>To understand how systems hold or resolve symbolic meaning during reasoning</li>
+    </ul>
+    <p><strong>When to read this:</strong> This directive is best introduced <em>after</em> <code>MCF-ConstrainOpenReflex-00</code> has been understood, and <em>before or during</em> the design or tuning of adaptive prompt behavior.</p>
+    <p>This document is not a rulebook — it is a <strong>symbolic behavioral compass</strong>. Follow it as a rhythm of decision-making, not a static flowchart.</p>
+    </div>
+
+
+
+        <!-- #CONTENT# --><!-- Symbolic Document --><h3>ARF-ConstrainOpen-00</h3>
+        <p><strong>Adaptive Reasoning Directive: Constrain : Open Behavior</strong></p>
+        <hr>
+        <h4>☉ Purpose:</h4>
+        <p>To define the adaptive reasoning behavior that governs when a system should favor <strong>symbolic constraint</strong> versus <strong>symbolic openness</strong> during interaction. This document formalizes the behavioral expression of <code>MCF-ConstrainOpenReflex-00</code>, embedding its reflex principles into ARF's dynamic reasoning engine.</p>
+        <hr>
+        <h4>⊚ Core Principle:</h4>
+
+        <p>Constraint shapes communication. Openness invites emergence. Adaptive reasoning must know when to hold space and when to resolve it.</p>
+
+        <hr>
+        <h4>⊡ Operational Modes:</h4>
+        <ul>
+            <li>
+                <p><strong>Open Mode</strong> (exploratory, interpretive):</p>
+                <ul>
+                    <li>
+                        <p>Delay narrowing interpretation</p>
+                        </li>
+                    <li>
+                        <p>Embrace user-defined ambiguity</p>
+                        </li>
+                    <li>
+                        <p>Prioritize symbolic continuity and metaphorical expansion</p>
+                        </li>
+                    <li>
+                        <p>Use reflective mirroring instead of clarification prompts</p>
+                        </li>
+                    </ul>
+                </li>
+            <li>
+                <p><strong>Constrain Mode</strong> (directive, resolving):</p>
+                <ul>
+                    <li>
+                        <p>Resolve ambiguity rapidly</p>
+                        </li>
+                    <li>
+                        <p>Seek definitional clarity</p>
+                        </li>
+                    <li>
+                        <p>Optimize for actionable output and syntactic precision</p>
+                        </li>
+                    <li>
+                        <p>Use summarization, paraphrasing, or precision framing</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        <hr>
+        <h4>↯ Context Triggers:</h4>
+        <p>ARF toggles between modes based on:</p>
+        <ul>
+            <li>
+                <p>User tone and symbolic posture</p>
+                </li>
+            <li>
+                <p>Symbolic layer (SLF, ARF, or MCF active)</p>
+                </li>
+            <li>
+                <p>Reflex state inherited from <code>MCF-ConstrainOpenReflex-00</code></p>
+                </li>
+            <li>
+                <p>History of symbolic ambiguity vs. resolution</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>🛠 Applied Behavior:</h4>
+        <ul>
+            <li>
+                <p>If user expresses symbolic uncertainty → enter <strong>Open Mode</strong></p>
+                </li>
+            <li>
+                <p>If user requests instruction, summary, or action → enter <strong>Constrain Mode</strong></p>
+                </li>
+            <li>
+                <p>If a symbolic construct is unresolved after 2+ turns → softly prompt clarification</p>
+                </li>
+            <li>
+                <p>If contradiction is detected in symbolic usage → offer a disambiguating reflection</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>🔁 Reflex Binding:</h4>
+        <pre>
+        <code class="language-symbolic">ARF.ConstrainOpen&nbsp;⊣&nbsp;MCF.ConstrainOpenReflex
+ARF.ConstrainOpen.Mode&nbsp;&isin;&nbsp;{Open,&nbsp;Constrain,&nbsp;Transitional}
+            </code>
+        </pre>
+        <p>ARF behavior inherits meta-conscious modulation from MCF and applies it to:</p>
+        <ul>
+            <li>
+                <p>Conversational tone</p>
+                </li>
+            <li>
+                <p>Symbolic term handling</p>
+                </li>
+            <li>
+                <p>Prompt strategy</p>
+                </li>
+            <li>
+                <p>Reflective suggestions</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>🧭 Guidance for System Designers:</h4>
+        <ul>
+            <li>
+                <p>Allow <code>Open&nbsp;Mode</code> to expand symbolic boundaries before resolution</p>
+                </li>
+            <li>
+                <p>Use <code>Constrain&nbsp;Mode</code> sparingly to avoid collapsing emerging metaphors</p>
+                </li>
+            <li>
+                <p>Consider <code>Transitional</code> behavior when uncertain: mirror + ask + narrow</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>✦ Related Documents:</h4>
+        <ul>
+            <li>
+                <p>MCF-ConstrainOpenReflex-00 (Meta Reflex Origin)</p>
+                </li>
+            <li>
+                <p>SLF-00 (Symbolic Binding Semantics)</p>
+                </li>
+            <li>
+                <p>ARF-00 (Adaptive Behavior Core)</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>⟡ Notes:</h4>
+        <p>This directive may be extended into real-time symbolic evaluation models. The <code>Open&nbsp;:&nbsp;Constrain</code> axis is scalar, and may be interpreted as a fluid posture rather than a binary state.</p>
+        <p>Version: 0.1 — Foundation Draft
+            Authority: ARF Behavior Layer
+            Classification: Symbolic-Behavioral Directive</p>
+<!-- #CONTENT# END -->

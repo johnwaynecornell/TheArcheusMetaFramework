@@ -1,0 +1,176 @@
+
+<!-- #CONTENT# --><!-- Framework Article --><h3><strong>SMV and FAR-SYM: Seeing and Reasoning in Symbolic Fields</strong></h3>
+        <p><strong>Status:</strong> Explanatory · Second-Order Integration<br>
+            <strong>Scope:</strong> Archeus Meta-Framework</p>
+        <hr>
+        <h4>Overview</h4>
+        <p>Symbolic Multi-Modal Visualization (SMV) and Symbolic Field Reasoning (FAR-SYM) are complementary systems within the Archeus Meta-Framework. They address different aspects of the same challenge:</p>
+        <blockquote>
+            <p><strong>How can complex, non-linear symbolic systems be reasoned about without collapsing meaning, authority, or emergence?</strong></p>
+            </blockquote>
+        <p>They do so by cleanly separating <strong>field logic</strong> from <strong>field perception</strong>.</p>
+        <hr>
+        <h4>FAR-SYM: Field Logic</h4>
+        <p>FAR-SYM defines how meaning behaves when it cannot be reduced to a single linear chain of reasoning.</p>
+        <p>It operates over:</p>
+        <ul>
+            <li>
+                <p>symbolic fields</p>
+                </li>
+            <li>
+                <p>non-local dependencies</p>
+                </li>
+            <li>
+                <p>gradients, tensions, and attractors</p>
+                </li>
+            <li>
+                <p>context-sensitive stability</p>
+                </li>
+            </ul>
+        <p>FAR-SYM answers questions such as:</p>
+        <ul>
+            <li>
+                <p>Where is meaning stable?</p>
+                </li>
+            <li>
+                <p>Where does it shift under pressure?</p>
+                </li>
+            <li>
+                <p>What structures persist across context?</p>
+                </li>
+            <li>
+                <p>What patterns emerge without central control?</p>
+                </li>
+            </ul>
+        <p>FAR-SYM is <strong>authoritative about structure</strong>, but it is abstract by nature.</p>
+        <hr>
+        <h4>SMV: Field Projection</h4>
+        <p>SMV externalizes symbolic structures so that a reasoning agent can <strong>operate on them explicitly rather than implicitly</strong>.</p>
+        <p>SMV:</p>
+        <ul>
+            <li>
+                <p>renders relations, fields, and dynamics</p>
+                </li>
+            <li>
+                <p>reduces cognitive load</p>
+                </li>
+            <li>
+                <p>makes emergence inspectable</p>
+                </li>
+            <li>
+                <p>supports human, artificial, and hybrid cognition</p>
+                </li>
+            </ul>
+        <p>SMV does <strong>not</strong> decide how fields behave.<br>
+            It <strong>projects</strong> how they behave.</p>
+        <hr>
+        <h4>The Interlock (Division of Responsibility)</h4>
+        <p>The relationship is asymmetric and intentional:</p>
+        <ul>
+            <li>
+                <p><strong>FAR-SYM computes</strong> symbolic field behavior</p>
+                </li>
+            <li>
+                <p><strong>SMV renders</strong> symbolic field behavior</p>
+                </li>
+            </ul>
+        <p>Expressed simply:</p>
+        <blockquote>
+            <p>FAR-SYM defines <em>what is happening</em>.<br>
+                SMV defines <em>how it can be seen and worked with</em>.</p>
+            </blockquote>
+        <p>SMV inherits constraints, stability regions, and dynamics from FAR-SYM but does not alter them.</p>
+        <hr>
+        <h4>Governance and Truth</h4>
+        <p>Neither SMV nor FAR-SYM assigns truth independently.</p>
+        <ul>
+            <li>
+                <p>Truth-stability originates upstream (e.g., LOM)</p>
+                </li>
+            <li>
+                <p>FAR-SYM respects truth-state constraints</p>
+                </li>
+            <li>
+                <p>SMV may display truth-states but does not confer them</p>
+                </li>
+            </ul>
+        <p>This separation prevents:</p>
+        <ul>
+            <li>
+                <p>aesthetic coherence from masquerading as validity</p>
+                </li>
+            <li>
+                <p>visualization from becoming authority</p>
+                </li>
+            <li>
+                <p>emergence from bypassing discipline</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>Why Both Are Necessary</h4>
+        <p>Without FAR-SYM:</p>
+        <ul>
+            <li>
+                <p>SMV risks becoming free-form diagramming</p>
+                </li>
+            </ul>
+        <p>Without SMV:</p>
+        <ul>
+            <li>
+                <p>FAR-SYM becomes cognitively inaccessible at scale</p>
+                </li>
+            </ul>
+        <p>Together, they enable:</p>
+        <ul>
+            <li>
+                <p>field-based reasoning</p>
+                </li>
+            <li>
+                <p>explicit inspection</p>
+                </li>
+            <li>
+                <p>safe exploration of emergence</p>
+                </li>
+            <li>
+                <p>shared cognitive workspaces across agents</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>Relation to Tape</h4>
+        <p>Within Archeus:</p>
+        <ul>
+            <li>
+                <p><strong>Tape</strong> externalizes <em>temporal reasoning</em></p>
+                </li>
+            <li>
+                <p><strong>SMV</strong> externalizes <em>spatial / relational reasoning</em></p>
+                </li>
+            <li>
+                <p><strong>FAR-SYM</strong> defines the <em>field dynamics</em> both operate over</p>
+                </li>
+            </ul>
+        <p>This forms a complete reasoning loop:</p>
+        <ul>
+            <li>
+                <p>Time (Tape)</p>
+                </li>
+            <li>
+                <p>Space (SMV)</p>
+                </li>
+            <li>
+                <p>Dynamics (FAR-SYM)</p>
+                </li>
+            <li>
+                <p>Truth discipline (LOM)</p>
+                </li>
+            <li>
+                <p>Symbolic precision (SLF)</p>
+                </li>
+            </ul>
+        <hr>
+        <h4>Summary</h4>
+        <p>SMV and FAR-SYM are not alternatives.<br>
+            They are <strong>partners</strong>.</p>
+        <p>One defines the physics of symbolic fields.<br>
+            The other makes those fields navigable.</p>
+<!-- #CONTENT# END -->
