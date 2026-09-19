@@ -1,0 +1,71 @@
+index.html.txt
+AMF-00.html.txt
+AMF-01.html.txt
+AMF-ADJUNCT-CBC-01.html.txt
+AMF-ADJUNCT-RETRO-01 Constraint-Record-Coherence.html.txt
+AMF-AllSpark-00.html.txt
+AMF-AllSpark-01.html.txt
+AMF-Applications.html.txt
+AMF-COGITO-00.html.txt
+AMF-DocTree.html.txt
+AMF-Emergence.html.txt
+AMF-Exercises.html.txt
+AMF-KTW-00.html.txt
+AMF-KTW-01.html.txt
+AMF-MetaGovernance Article-00.html.txt
+AMF-MN-01.html.txt
+AMF-PlaceholderMirror-00.html.txt
+AMF-PROMPT-DEV-01.html.txt
+AMF-RLR-01.html.txt
+AMF-SLF-EXEC-00.html.txt
+AMF-SMV-01.html.txt
+AMF-SMV-02.html.txt
+AMF-SMV-Article Series 1 - 1 Why Emergence is Like Jazz.html.txt
+AMF-SMV-Article Series 1 - 2 Why Governence is More Like Gardening.html.txt
+AMF-SMV-Article Series 1 - 3 When Nodes Speak.html.txt
+AMF-SMV-Article Series 1 - 4 The Emergent Pathways.html.txt
+AMF-SMV-Article Series 1 - 5 Beyond the Framework.html.txt
+AMF-SYMSESSION-00.html.txt
+AMF-TRUTH-Article-01 The Dominance of Truth in Symbolic Systems.html.txt
+AMF-Ubuntu.html.txt
+AMF-User.html.txt
+AMF-Visuals.html.txt
+AMF-Writing-00.html.txt
+Archeus Meta-Framework Article Guide.html.txt
+ARF-00.html.txt
+ARF-01.html.txt
+ARF-ConstrainOpen-00.html.txt
+Dialectic Core and Partitions.html.txt
+FAR-FIELD-INFO-01.html.txt
+FAR-SYM-01.html.txt
+FAR-SYM-ANNEX-01.html.txt
+FAR-SYM-ANNEX-02.html.txt
+Foundational Metaphors.html.txt
+GeminiDreamPrompt Bootstrap.html.txt
+GeminiDreamPrompt Bootstrap.template.html.txt
+Initial Prompt.html.txt
+Kinetic Symbolic Method.html.txt
+LOM-01.html.txt
+LOM-02 - Mod.ScientificMethodKernel.html.txt
+MCF-00.html.txt
+MCF-01.html.txt
+MCF-02.html.txt
+MCF-03.html.txt
+MCF-04.html.txt
+MCF-05.html.txt
+MCF-Article-01 Introduction to Meta-Conscious Tracking of Symbolic Evolution.html.txt
+MCF-ConstrainOpenReflex-00.html.txt
+Operational Session Tape.html.txt
+SLF-00.html.txt
+SLF-01.html.txt
+SLF-02.html.txt
+SLF-Article-01 Introduction to the Symbolic Language Framework.html.txt
+SLF-Article-02 Introduction to Symbolic Emergence and Placeholder Reasoning.html.txt
+SLF-MA-00.html.txt
+SLF-MOD-03.html.txt
+SMV and FAR-SYM article.html.txt
+SR-00-Bundle.html.txt
+Symbolic Intro Template-00.html.txt
+Tape as a Late-Collapse Creativity Substrate.html.txt
+The Significance of Symbolic Language for Autoregressive GPTs.html.txt
+Ubuntu and the Adaptive Mind.html.txt
