@@ -1,5 +1,5 @@
 
-<!-- #CONTENT# --><h1><strong>AMF-AllSpark-01: Practical Implementation of the Thought Catalyst in the Archeus Meta-Framework</strong></h1><h2><strong>Introduction</strong></h2>
+<!-- #CONTENT# --><!-- Symbolic Document --><h1><strong>AMF-AllSpark-01: Practical Implementation of the Thought Catalyst in the Archeus Meta-Framework</strong></h1><h2><strong>Introduction</strong></h2>
         <p>Building upon <strong>AMF-AllSpark-00</strong>, this document provides a <strong>practical exploration</strong> of how <strong>thought governance</strong> functions through <strong>Symbolic Multi-Modal Visualization (SMV), feedback refinement, and self-regulating cognitive structuring</strong>.</p>
         <p><strong>AMF-AllSpark transforms raw thought into structured symbolic cognition, ensuring evolution through guided refinement.</strong></p>
         <p>This document introduces:</p>
