@@ -124,6 +124,8 @@
 │&nbsp;&nbsp;&nbsp;├──&nbsp;SLF-01:&nbsp;Symbolic&nbsp;Operators&nbsp;and&nbsp;Precedence
 │&nbsp;&nbsp;&nbsp;├──&nbsp;ARF-01:&nbsp;Context-Sensitive&nbsp;Reasoning&nbsp;Scenarios
 │&nbsp;&nbsp;&nbsp;├──&nbsp;MCF-01:&nbsp;Recursive&nbsp;Feedback&nbsp;and&nbsp;Governance
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-RLR-01:&nbsp;Recursive&nbsp;Lens&nbsp;Revision
+│&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-RLR-02:&nbsp;Governed&nbsp;Lens&nbsp;Revision&nbsp;Protocol
 │&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Applications:&nbsp;Real-World&nbsp;Applications&nbsp;of&nbsp;AMF
 │&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Emergence:&nbsp;Emergence&nbsp;Across&nbsp;AMF
 │&nbsp;&nbsp;&nbsp;├──&nbsp;AMF-Exercises:&nbsp;Exercises&nbsp;for&nbsp;Practitioners&nbsp;of&nbsp;AMF
@@ -226,6 +228,16 @@ Core&nbsp;Synergy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Emergent&nbsp;Potenti
                 <td>MCF-01</td>
                 <td>Recursive Feedback and Governance</td>
                 <td><a href="MCF-01.html">MCF-01: Recursive Feedback and Governance</a></td>
+                </tr>
+            <tr>
+                <td>AMF-RLR-01</td>
+                <td>Recursive Lens Revision</td>
+                <td><a href="AMF-RLR-01.html">AMF-RLR-01: Recursive Lens Revision</a></td>
+                </tr>
+            <tr>
+                <td>AMF-RLR-02</td>
+                <td>Governed Lens Revision Protocol</td>
+                <td><a href="AMF-RLR-02.html">AMF-RLR-02: Governed Lens Revision Protocol</a></td>
                 </tr>
             <tr>
                 <td>AMF-Applications</td>
