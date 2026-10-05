@@ -17,6 +17,7 @@ AMF-MN-01.html.txt
 AMF-PlaceholderMirror-00.html.txt
 AMF-PROMPT-DEV-01.html.txt
 AMF-RLR-01.html.txt
+AMF-RLR-02.html.txt
 AMF-SLF-EXEC-00.html.txt
 AMF-SMV-01.html.txt
 AMF-SMV-02.html.txt
