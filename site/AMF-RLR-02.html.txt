@@ -1,0 +1,244 @@
+
+<!-- #CONTENT# --><!-- Framework Page -->
+<h3><strong>AMF-RLR-02: Governed Lens Revision Protocol</strong></h3>
+<p><strong>Proposing, Testing, Authorizing, Committing, and Reversing Successor Lenses</strong></p>
+
+<h4><strong>Table of Contents</strong></h4>
+<ol>
+  <li><p><strong>Purpose and Relationship to RLR-01</strong></p></li>
+  <li><p><strong>The Governing Distinction</strong></p></li>
+  <li><p><strong>Revision Lifecycle</strong></p></li>
+  <li><p><strong>The Revision Record</strong></p></li>
+  <li><p><strong>Boundary-Level Counterfactual Evaluation</strong></p></li>
+  <li><p><strong>Governance Invariants</strong></p></li>
+  <li><p><strong>Decision States</strong></p></li>
+  <li><p><strong>Exploration Against Lens-Induced Blindness</strong></p></li>
+  <li><p><strong>Implementation Pattern</strong></p></li>
+  <li><p><strong>Research Correspondence</strong></p></li>
+  <li><p><strong>Failure Modes</strong></p></li>
+  <li><p><strong>Closing Reflection</strong></p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>1. Purpose and Relationship to RLR-01</strong></h3>
+<p><a href="AMF-RLR-01.html">AMF-RLR-01: Recursive Lens Revision</a> defines how a context-producing lens becomes an object of higher-order AMF recursion. AMF-RLR-02 provides its operational companion: a governed protocol for deciding whether a proposed successor lens should become active.</p>
+<p>The protocol applies when a system changes retrieval policy, compression instructions, memory selection, prompt assembly, rule activation, tool exposure, agent routing, or another mechanism that determines what becomes present for reasoning.</p>
+<blockquote>
+  <p>RLR-01 explains what successor formation means. RLR-02 governs when a candidate successor is allowed to become real.</p>
+</blockquote>
+<p>The protocol is not limited to automated learning. A candidate revision may be produced by a person, an agent, a symbolic transform, an optimizer, or a mixed process. Governance begins when the proposed change becomes inspectable.</p>
+
+<div><hr></div>
+<h3><strong>2. The Governing Distinction</strong></h3>
+<p>A better outcome does not by itself authorize a changed lens. The observed improvement may be caused by chance, evaluator capture, hidden authority expansion, loss of provenance, destructive compression, or a revision whose benefits do not survive beyond its originating case.</p>
+<p>RLR-02 therefore separates four objects:</p>
+<table>
+  <thead>
+    <tr><th>Object</th><th>Role</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>H_t</code></td><td>The active lens whose behavior and authority are already known</td></tr>
+    <tr><td><code>Delta_t</code></td><td>The articulated change proposed from evidence</td></tr>
+    <tr><td><code>H*</code></td><td>The candidate successor evaluated without yet replacing <code>H_t</code></td></tr>
+    <tr><td><code>H_(t+1)</code></td><td>The candidate only after governed acceptance and commit</td></tr>
+  </tbody>
+</table>
+<pre><code>H* = ApplyCandidate(H_t, Delta_t)
+
+Candidate(H*) != ActiveSuccessor(H_(t+1))</code></pre>
+<p>This separation creates room for testing, abstention, rejection, and rollback without confusing proposal with adoption.</p>
+
+<div><hr></div>
+<h3><strong>3. Revision Lifecycle</strong></h3>
+<pre><code>Observe
+  -&gt; Propose Revision
+  -&gt; Preserve Pre-Revision State
+  -&gt; Run Matched Continuations
+  -&gt; Assess Hazard and Benefit
+  -&gt; Verify Authority and Provenance
+  -&gt; Commit | Abstain | Reject
+  -&gt; Monitor
+  -&gt; Retain Rollback Path</code></pre>
+<ol>
+  <li><p><strong>Observe:</strong> Collect failures, omissions, costs, conflicting outcomes, or opportunities that may justify revision.</p></li>
+  <li><p><strong>Propose:</strong> State the candidate change and its intended applicability without altering the active lens.</p></li>
+  <li><p><strong>Preserve:</strong> Retain the pre-revision lens, supporting record, authority sources, and a reproducible evaluation boundary.</p></li>
+  <li><p><strong>Compare:</strong> Where practical, continue from matched states under the active and candidate lenses.</p></li>
+  <li><p><strong>Assess:</strong> Evaluate benefit, outcome hazard, interaction burden, regressions, provenance, and governance effects.</p></li>
+  <li><p><strong>Decide:</strong> Commit, abstain, or reject through explicit criteria.</p></li>
+  <li><p><strong>Monitor:</strong> Treat deployment as continuing evidence rather than final proof.</p></li>
+  <li><p><strong>Reverse:</strong> Preserve the ability to restore a known lens when later evidence invalidates the commit.</p></li>
+</ol>
+
+<div><hr></div>
+<h3><strong>4. The Revision Record</strong></h3>
+<p>Each candidate revision should be represented by a durable record rather than inferred from the final lens alone.</p>
+<pre><code>RLRRevisionRecord
+{
+    identity
+    parent_lens
+    candidate_lens
+
+    failure_set
+    candidate_rule
+    boundary_cases
+    applicability
+    abstain_condition
+
+    pre_revision_state
+    matched_continuations
+    outcome_hazard
+    interaction_burden
+    observed_benefit
+    regressions
+
+    authority_sources
+    provenance_links
+    excluded_evidence
+    commit_evidence
+    decision
+    rollback_target
+}</code></pre>
+<table>
+  <thead>
+    <tr><th>Field Group</th><th>Question Preserved</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Identity and ancestry</td><td>What changed, and from which active lens?</td></tr>
+    <tr><td>Failure and rule evidence</td><td>What observation motivated the change, and where should it apply?</td></tr>
+    <tr><td>Counterfactual evidence</td><td>What differs when execution continues across the revision boundary?</td></tr>
+    <tr><td>Authority and provenance</td><td>Who or what permitted the change, and which records support it?</td></tr>
+    <tr><td>Decision and rollback</td><td>Why was the candidate accepted or withheld, and how can it be reversed?</td></tr>
+  </tbody>
+</table>
+<p>The schema may be implemented as structured data, a signed record, a session tape entry, or another inspectable form. Its obligation is semantic: a successor must not conceal the path by which it became active.</p>
+
+<div><hr></div>
+<h3><strong>5. Boundary-Level Counterfactual Evaluation</strong></h3>
+<p>A revision should be evaluated as an intervention at a known boundary whenever the environment permits matched continuation.</p>
+<p>Let <code>s_t</code> be the preserved state before the candidate lens takes effect. Continue from that state using both the active and candidate lenses:</p>
+<pre><code>T_base = Continue(s_t, H_t)
+T_candidate = Continue(s_t, H*)
+
+Compare(T_base, T_candidate)
+    -&gt; {benefit, outcome_hazard, interaction_burden, regressions}</code></pre>
+<p><strong>Outcome hazard</strong> measures whether the revision changes a successful or acceptable continuation into an unsuccessful or unacceptable one. <strong>Interaction burden</strong> measures added work, delay, calls, tokens, corrections, or steps even when the task remains solvable.</p>
+<p>Matched continuation is evidence, not an oracle. Stochastic systems require repeated trials or confidence bounds; stateful environments may allow only approximate replay; ethical or costly actions may forbid live counterfactual execution. When direct comparison is unavailable, the record should state the proxy used and the uncertainty introduced.</p>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.CompareAtBoundary</strong></h3>
+  <p>Evaluate a candidate from the closest reproducible state preceding its effect so unrelated trajectory differences do not masquerade as revision effects.</p>
+</div>
+
+<div><hr></div>
+<h3><strong>6. Governance Invariants</strong></h3>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.AuthorityContinuity</strong></h3>
+  <p>A candidate may narrow inherited authority but cannot obtain new authority merely by retaining, summarizing, inferring, or repeating information.</p>
+  <pre><code>Authority(H*) subset_or_equal AuthorizedSources(s_t)</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.ProvenanceContinuity</strong></h3>
+  <p>Selected, derived, compressed, and superseded material remains traceable to supporting records and transformations.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.RecordViewSeparation</strong></h3>
+  <p>Changing the active view does not silently rewrite the record used to judge that change.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.BoundedApplicability</strong></h3>
+  <p>A learned rule carries explicit boundary conditions. Evidence supporting one region of use does not grant universal application.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.PreservedAbstention</strong></h3>
+  <p>When evidence is insufficient, conflicting, unauthorized, or outside applicability, the protocol retains non-commit as a valid outcome.</p>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.Protocol.ReversibleCommit</strong></h3>
+  <p>Activation preserves the parent lens, revision record, and a tested or otherwise credible path of return.</p>
+</div>
+<p>These invariants govern the revision process independently of task score. A candidate that violates them is not repaired merely by performing well.</p>
+
+<div><hr></div>
+<h3><strong>7. Decision States</strong></h3>
+<table>
+  <thead>
+    <tr><th>Decision</th><th>Meaning</th><th>Required Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Commit</strong></td><td>Evidence and governance constraints support activation</td><td>Create <code>H_(t+1)</code>, retain ancestry, begin monitoring</td></tr>
+    <tr><td><strong>Abstain</strong></td><td>The candidate is plausible but evidence, authority, or scope is insufficient</td><td>Keep <code>H_t</code> active and preserve the candidate for further inquiry</td></tr>
+    <tr><td><strong>Reject</strong></td><td>The candidate fails evaluation or violates an invariant</td><td>Keep <code>H_t</code>; record the failure and boundary conditions</td></tr>
+    <tr><td><strong>Rollback</strong></td><td>Post-commit evidence invalidates continued use</td><td>Restore an ancestor or governed replacement and preserve the incident trace</td></tr>
+  </tbody>
+</table>
+<pre><code>Decide(H*, E_t) in {Commit, Abstain, Reject}
+
+Monitor(H_(t+1)) -&gt; {Continue, Constrain, Rollback}</code></pre>
+<p>Abstention is not a failed revision. It is the protocol successfully refusing to convert uncertainty into structure.</p>
+
+<div><hr></div>
+<h3><strong>8. Exploration Against Lens-Induced Blindness</strong></h3>
+<p>A lens selects the evidence later used to evaluate that lens. This creates a reflexive risk: information never retrieved may appear valueless only because the current policy never allowed its value to become observable.</p>
+<p>RLR-02 therefore permits bounded exploration outside the dominant relevance policy. An implementation may reserve a small number of context positions, trials, or evaluation branches for provenance-weighted alternatives sampled under a known policy.</p>
+<pre><code>C_t = Exploit(H_t, R, q) union Explore(P_explore, R, q)
+
+Known(P_explore) -&gt; InspectableSelectionBias</code></pre>
+<p>Exploration must remain governed. It does not override access control, purpose limitation, context budget, or source restrictions. Its purpose is to test whether the active lens is hiding evidence needed to evaluate its own adequacy.</p>
+
+<div><hr></div>
+<h3><strong>9. Implementation Pattern</strong></h3>
+<ol>
+  <li><p>Assign the active lens a stable identity and retain an immutable or reconstructable snapshot.</p></li>
+  <li><p>Capture the motivating failure set without collapsing distinct cases into a single success metric.</p></li>
+  <li><p>Express the candidate as a bounded delta with applicability and abstention conditions.</p></li>
+  <li><p>Resolve authority sources before executing side effects under the candidate.</p></li>
+  <li><p>Preserve the nearest reproducible pre-revision state.</p></li>
+  <li><p>Run matched or responsibly approximated continuations.</p></li>
+  <li><p>Measure benefit, hazard, burden, and previously correct cases.</p></li>
+  <li><p>Inspect provenance, exclusions, plurality, and policy continuity through MCF.</p></li>
+  <li><p>Record an explicit decision rather than inferring acceptance from deployment.</p></li>
+  <li><p>If committed, monitor scope drift and retain a rollback target.</p></li>
+</ol>
+<p>A minimal implementation may begin with a human-readable revision record and deterministic replay. Greater automation should not remove the semantic checkpoints merely because the machinery becomes faster.</p>
+
+<div><hr></div>
+<h3><strong>10. Research Correspondence</strong></h3>
+<table>
+  <thead>
+    <tr><th>Research Contribution</th><th>RLR-02 Use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://arxiv.org/abs/2609.36526">PAIR: Adapting Context Compression with Counterfactual Continuations</a></td><td>Boundary-level attribution, outcome hazard, and interaction burden</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2609.25400">Robust Failure, Conservative Repair</a></td><td>Failure sets, bounded rule atoms, boundary cases, and abstention</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2609.14631">IntentCap</a></td><td>Authority sources, field ownership, and monotonic narrowing</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2609.34385">Just-In-Time Agent Memory</a></td><td>Separation of durable history from query-conditioned context construction</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2610.02002">Mem++</a></td><td>Non-destructive record retention, authorship, time, and supersession</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2610.02070">Causal Memory Policy</a></td><td>Exploration needed to expose retrieval-conditioned blind spots</td></tr>
+  </tbody>
+</table>
+<p>These works motivate mechanisms; AMF supplies their cross-layer interpretation. RLR-02 does not require one particular model, memory store, optimizer, or evaluation suite.</p>
+
+<div><hr></div>
+<h3><strong>11. Failure Modes</strong></h3>
+<ul>
+  <li><p><strong>Proposal becomes deployment:</strong> The candidate silently replaces the active lens before governed evaluation.</p></li>
+  <li><p><strong>Trajectory confounding:</strong> Unmatched executions attribute unrelated stochastic differences to the revision.</p></li>
+  <li><p><strong>Previously-correct regression:</strong> A repair improves failed cases by changing answers that were already sound.</p></li>
+  <li><p><strong>Authority laundering:</strong> Derived memory or repeated context is mistaken for permission.</p></li>
+  <li><p><strong>Historical collapse:</strong> A successor overwrites the record needed to understand earlier states or decisions.</p></li>
+  <li><p><strong>Applicability drift:</strong> A bounded rule gradually becomes a universal default.</p></li>
+  <li><p><strong>Evaluator capture:</strong> Revision optimizes the available measure while weakening the intended purpose.</p></li>
+  <li><p><strong>Exploration theater:</strong> Nominal alternatives are sampled but never allowed to affect assessment.</p></li>
+  <li><p><strong>Rollback fiction:</strong> An ancestor is stored but cannot actually be restored with its dependencies and policies.</p></li>
+</ul>
+
+<div><hr></div>
+<h3><strong>12. Closing Reflection</strong></h3>
+<p>A recursive system does not become trustworthy merely because it can change itself. Trust begins when change has ancestry, evidence, scope, authority, and a path of return.</p>
+<p>RLR-02 makes successor formation a governed event. SLF articulates the proposed structural change. ARF constructs the contexts in which its consequences can be observed. MCF decides whether the evidence and authority justify activation. AMF closes the recursion only when that decision becomes an accountable successor.</p>
+<blockquote>
+  <p>The right to propose a better lens is not the authority to install it.</p>
+</blockquote>
+<p><strong>Document Reference</strong>: AMF-RLR-02</p>
+<p><strong>Conceptual Foundation</strong>: <a href="AMF-RLR-01.html">AMF-RLR-01: Recursive Lens Revision</a></p>
+<!-- #CONTENT# END -->
