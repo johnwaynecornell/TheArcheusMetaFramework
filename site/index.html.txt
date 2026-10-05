@@ -2,6 +2,7 @@
 <!-- #CONTENT# -->
         <h1>Welcome to the Archeus Meta-Framework</h1>
         <p>Empowering layered reasoning, dynamic adaptation, and reflective governance.</p>
+        <blockquote>For an enhaced experience run a localhost like 'python3 -m http.server' in the site directory. And navigate there.</blockquote>
         <h2>Explore the Framework</h2>
         <p>The Archeus Meta-Framework (AMF) is a system of systems—a guide to structured thought, innovation, and emergence. Designed to align logic, context, and governance, it empowers users to transform challenges into opportunities, fostering clarity, adaptability, and creativity.</p>
         <h2>Get Started</h2>
@@ -10,6 +11,7 @@
             <li><a href="AMF-User.html">User's Manual: Onboarding and Perspective</a></li>
             <li><a href="AMF-01.html">AMF Core Framework Overview</a></li>
             <li><a href="AMF-DocTree.html">Document Tree: Navigating the AMF</a></li>
+            <li><a href="view.html">view.html for localhost</a></li>
             </ul>
         <h2>What Will You Build?</h2>
         <p>Every journey begins with a question. The AMF is your toolkit for finding answers, adapting strategies, and unlocking emergent possibilities. Whether you are solving a complex problem, exploring abstract systems, or guiding ethical innovation, the AMF is here to help.</p>
