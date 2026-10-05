@@ -186,7 +186,7 @@
                 <p><a href="AMF-DocTree.html">Archeus Meta-Framework Document Tree</a></p>
                 </li>
             <li>
-                <p><a href="AMF-MA-00.html">Metaphor Annex</a></p>
+                <p><a href="SLF-MA-00.html">Metaphor Annex</a></p>
                 </li>
             <li>
                 <p><a href="AMF-KTW-00.html">Knowledge Tree/Web (Future)</a></p>
