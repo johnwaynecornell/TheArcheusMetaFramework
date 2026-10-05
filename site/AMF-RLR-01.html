@@ -726,6 +726,20 @@ x in R and x not_in C_t
   <p>Storage alone is weak continuity. Recoverable eviction also preserves sufficient orientation for the system to recognize that unseen material exists and to make it contextually present again when purpose requires it.</p>
 </div>
 <div class="slf-brick">
+  <h3><strong>RLR.AuthorityCannotBeManufactured</strong></h3>
+  <p>A revised lens may preserve or narrow authority inherited from governing sources, but it cannot create authority that those sources did not grant.</p>
+  <pre><code>Authority(H_(t+1)) subset_or_equal AuthoritySources_t
+
+Revision(H_t) != Grant(NewAuthority)</code></pre>
+</div>
+<div class="slf-brick">
+  <h3><strong>RLR.SupersessionPreservesProvenance</strong></h3>
+  <p>A successor lens may supersede the present applicability of an earlier lens without erasing its record, ancestry, or historical validity.</p>
+  <pre><code>Supersede(H_t, H_(t+1))
+    -&gt; Preserve(Provenance(H_t))
+    and Preserve(RevisionPath(H_t, H_(t+1)))</code></pre>
+</div>
+<div class="slf-brick">
   <h3><strong>RLR.ConsequenceReturnsStructure</strong></h3>
   <p>When governed assessment of a view changes the mechanism that produced it, contextual consequence returns as successor structure.</p>
   <pre><code>Assess(C_t, A_t, Trace_t) -&gt; Revise(H_t) -&gt; H_(t+1)</code></pre>
@@ -823,6 +837,7 @@ Assess(C_t, A_t, Trace_t) -&gt; H_(t+1)</code></pre>
   <li><p><strong>Produce a successor deliberately.</strong> Revise the lens only from articulated evidence and constraints.</p></li>
   <li><p><strong>Retain ancestry.</strong> Preserve the relation <code>H_t -&gt; H_(t+1)</code> so revision remains auditable.</p></li>
 </ol>
+<p><strong>Operational companion:</strong> <a href="AMF-RLR-02.html">AMF-RLR-02: Governed Lens Revision Protocol</a> specifies how candidate revisions are proposed, tested, authorized, committed, abstained from, rejected, and reversed.</p>
 
 <div><hr></div>
 <h3><strong>12. Boundaries and Failure Modes</strong></h3>
@@ -844,6 +859,7 @@ Assess(C_t, A_t, Trace_t) -&gt; H_(t+1)</code></pre>
   <p>A system becomes recursively adaptive when it can govern not only what it concludes, but how it came to have that world before it.</p>
 </blockquote>
 <p><strong>Document Reference</strong>: AMF-RLR-01</p>
+<p><strong>Operational Companion</strong>: <a href="AMF-RLR-02.html">AMF-RLR-02: Governed Lens Revision Protocol</a></p>
 <!-- #CONTENT# END -->
 </body>
 </html>
