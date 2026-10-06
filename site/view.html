@@ -855,6 +855,35 @@
     menu.setAttribute("aria-expanded", "false");
   }
 
+  function promoteLocalDocumentLinks(root){
+    root.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      if(!href) return;
+
+      // Leave external/protocol links and in-page anchors untouched.
+      if(
+        href.startsWith("#") ||
+        href.startsWith("//") ||
+        /^[a-z][a-z0-9+.-]*:/i.test(href)
+      ){
+        return;
+      }
+
+      // Only promote links to Archeus standalone HTML documents.
+      const match = href.match(/^([^?#]+\.html)([?#].*)?$/i);
+      if(!match) return;
+
+      const standalonePath = match[1];
+      const fragmentPath = standalonePath + ".txt";
+
+      // Only turn it into viewer navigation if that fragment
+      // actually exists in the manifest.
+      if(!state.documents.includes(fragmentPath)) return;
+
+      link.href = "#doc=" + encodeURIComponent(fragmentPath);
+    });
+  }
+
   async function loadDocument(filename){
     if(!state.documents.includes(filename)) filename = defaultDocument;
     const request = ++state.request;
@@ -879,6 +908,8 @@
       status.hidden = true;
 
       if(typeof ProcessElement === "function") ProcessElement(content);
+      promoteLocalDocumentLinks(content);
+
       if(window.MathJax && typeof MathJax.typesetPromise === "function"){
         MathJax.typesetPromise([content]).catch(() => {});
       }
